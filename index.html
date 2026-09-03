@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 DevQuest - Aprende Programación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container" id="app">
+
+        <!-- ============================================================
+        PANTALLA DE LOGIN / REGISTRO
+        ============================================================ -->
+        <div id="pantallaLogin" class="fade-in">
+            <div style="text-align:center; margin-bottom:28px;">
+                <span style="font-size:4rem; display:block; margin-bottom:4px;">🧠</span>
+                <h1 style="font-size:2.4rem; font-weight:800; background:linear-gradient(135deg, #818cf8, #a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px;">DevQuest</h1>
+                <p style="color:#94a3b8; font-size:0.95rem; margin-top:4px;">Aprende programación con 50 preguntas</p>
+            </div>
+
+            <div id="formLogin">
+                <div style="margin-bottom:14px;">
+                    <label style="display:block; color:#94a3b8; font-weight:600; font-size:0.8rem; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">👤 Usuario</label>
+                    <input type="text" id="loginUsuario" placeholder="Ingresa tu usuario">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; color:#94a3b8; font-weight:600; font-size:0.8rem; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">🔒 Contraseña</label>
+                    <input type="password" id="loginPassword" placeholder="Ingresa tu contraseña">
+                </div>
+                <button class="btn btn-primary" id="btnLogin" style="width:100%; padding:16px; font-size:1.05rem; border-radius:14px;">🚀 Iniciar Sesión</button>
+                <p style="text-align:center; color:#94a3b8; font-size:0.85rem; margin-top:16px;">
+                    ¿No tienes cuenta? <span id="btnMostrarRegistro" style="color:#818cf8; cursor:pointer; font-weight:600;">Regístrate aquí</span>
+                </p>
+                <div id="loginError" class="login-error"></div>
+            </div>
+
+            <div id="formRegistro" style="display:none;">
+                <div style="margin-bottom:12px;">
+                    <label style="display:block; color:#94a3b8; font-weight:600; font-size:0.8rem; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">👤 Usuario</label>
+                    <input type="text" id="regUsuario" placeholder="Elige un usuario">
+                </div>
+                <div style="margin-bottom:12px;">
+                    <label style="display:block; color:#94a3b8; font-weight:600; font-size:0.8rem; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">🔒 Contraseña</label>
+                    <input type="password" id="regPassword" placeholder="Crea una contraseña (mín. 4)">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; color:#94a3b8; font-weight:600; font-size:0.8rem; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">📛 Nombre completo</label>
+                    <input type="text" id="regNombre" placeholder="Tu nombre completo">
+                </div>
+                <button class="btn btn-success" id="btnRegistro" style="width:100%; padding:16px; font-size:1.05rem; border-radius:14px;">📝 Registrarse</button>
+                <p style="text-align:center; color:#94a3b8; font-size:0.85rem; margin-top:16px;">
+                    ¿Ya tienes cuenta? <span id="btnMostrarLogin" style="color:#818cf8; cursor:pointer; font-weight:600;">Inicia sesión</span>
+                </p>
+                <div id="regError" class="login-error"></div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        PANTALLA PRINCIPAL (APP)
+        ============================================================ -->
+        <div id="pantallaApp" style="display:none;">
+
+            <!-- HEADER -->
+            <div class="header">
+                <div class="header-left">
+                    <span class="logo">🧠</span>
+                    <h1>DevQuest</h1>
+                    <span class="subtitle">beta</span>
+                </div>
+                <div class="header-right">
+                    <span class="badge-count user-badge">👤 <span id="usuarioActual">Usuario</span></span>
+                    <span class="badge-count">✅ <span id="aciertosHeader">0</span> / <span id="totalHeader">50</span></span>
+                    <span class="badge-count" id="rachaBadge" style="background:rgba(251,191,36,0.1); border-color:rgba(251,191,36,0.2); color:#fbbf24;">🔥 <span id="rachaHeader">0</span></span>
+                    <button class="btn btn-secondary btn-sm" id="btnIrPerfil">👤 Perfil</button>
+                    <button class="btn btn-outline btn-sm" id="btnCerrarSesion">🚪 Salir</button>
+                </div>
+            </div>
+
+            <!-- MENSAJE DE BIENVENIDA -->
+            <div id="bienvenida" style="display:none; background:rgba(129,140,248,0.1); border:1px solid rgba(129,140,248,0.2); border-radius:14px; padding:16px 20px; margin-bottom:16px; align-items:center; gap:12px;">
+                <span style="font-size:2rem;">🎉</span>
+                <div>
+                    <span style="color:#f1f5f9; font-weight:600; font-size:1.05rem;">¡Bienvenido/a a DevQuest!</span>
+                    <span style="color:#94a3b8; font-size:0.9rem; display:block;">Comienza respondiendo preguntas y aprendiendo programación. ¡Buena suerte! 🚀</span>
+                </div>
+                <button id="cerrarBienvenida" style="margin-left:auto; background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.2rem;">✕</button>
+            </div>
+
+            <!-- MIGAS DE PAN -->
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="folder-link" id="breadInicio">📁 Inicio</span>
+                <span class="separator">›</span>
+                <span class="current" id="breadActual">Carpetas</span>
+            </div>
+
+            <!-- VISTA 1: CARPETAS -->
+            <div id="vistaCarpetas" class="fade-in">
+                <div class="flex-between mb-8">
+                    <span class="section-title">📂 Selecciona una carpeta para empezar</span>
+                    <span class="text-muted"><span id="totalPreguntasCarpetas">50</span> preguntas totales</span>
+                </div>
+                <div class="carpetas-grid" id="carpetasGrid"></div>
+            </div>
+
+            <!-- VISTA 2: PREGUNTAS (SECUENCIAL - UNA POR UNA) -->
+            <div id="vistaPreguntas" class="fade-in">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                    <span style="font-size:1.15rem; font-weight:700; color:#f1f5f9; letter-spacing:-0.3px;">🌐 Página Web</span>
+                    <span class="text-muted" id="infoPregunta">Pregunta 1 de 50</span>
+                </div>
+                
+                <!-- PROGRESO DE LA PREGUNTA ACTUAL -->
+                <div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:16px 20px; margin-bottom:16px; border:1px solid rgba(255,255,255,0.06);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                        <span style="color:#94a3b8; font-size:0.85rem; font-weight:500;">
+                            Pregunta <span id="preguntaNumeroActual">1</span> de <span id="preguntaTotalActual">50</span>
+                        </span>
+                        <span style="color:#94a3b8; font-size:0.85rem; font-weight:500;">
+                            ✅ <span id="preguntasAcertadas">0</span> / <span id="preguntasRespondidas">0</span>
+                        </span>
+                    </div>
+                    <!-- Barra de progreso -->
+                    <div style="margin-top:8px; height:4px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden;">
+                        <div id="barraProgreso" style="height:100%; width:0%; background:linear-gradient(90deg, #4a6cf7, #7c3aed); border-radius:4px; transition:width 0.5s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- TARJETA DE PREGUNTA -->
+                <div class="question-card" id="questionCard">
+                    <div class="q-text" id="preguntaTexto">Cargando pregunta...</div>
+                    <div class="options-grid" id="opcionesContainer"></div>
+                    <div id="feedbackContainer"></div>
+                    
+                    <!-- BOTONES DE NAVEGACIÓN -->
+                    <div class="acciones" style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+                        <button class="btn btn-outline" id="btnAnteriorPregunta">← Anterior</button>
+                        <button class="btn btn-warning" id="btnReiniciarPregunta" style="background:linear-gradient(135deg,#f59e0b,#d97706); color:white; border:none;">🔄 Reiniciar</button>
+                        <button class="btn btn-primary" id="btnSiguientePregunta">Siguiente →</button>
+                        <button class="btn btn-secondary" id="btnVolverCarpetas" style="margin-left:auto;">📂 Ver todas</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISTA 3: PERFIL -->
+            <div id="pantallaPerfil" class="fade-in">
+                <div class="flex-between mb-12">
+                    <h2 style="font-size:1.4rem; color:#f1f5f9; font-weight:800; letter-spacing:-0.3px;">👤 Mi Perfil</h2>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn btn-secondary btn-sm" id="btnVolverPerfil">← Volver</button>
+                        <button class="btn btn-danger btn-sm" id="reiniciarDesdePerfil">⟳ Reiniciar todo</button>
+                    </div>
+                </div>
+
+                <div class="perfil-header">
+                    <div class="avatar-big" id="avatarPerfil">👨‍💻</div>
+                    <div class="perfil-info">
+                        <h2 id="perfilNombre">Usuario</h2>
+                        <div class="detalles">
+                            <span>📛 <span id="perfilNombreCompleto">-</span></span>
+                            <span>📊 <span id="perfilProgreso">0%</span></span>
+                            <span>🔥 Rachas: <span id="perfilRacha">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="emoji">✅</span><div class="numero" id="perfilAciertos">0</div><div class="label">Correctas</div></div>
+                    <div class="stat-card"><span class="emoji">❌</span><div class="numero" id="perfilFallos">0</div><div class="label">Incorrectas</div></div>
+                    <div class="stat-card"><span class="emoji">📊</span><div class="numero" id="perfilPorcentaje">0%</div><div class="label">Porcentaje</div></div>
+                    <div class="stat-card"><span class="emoji">🏆</span><div class="numero" id="perfilEstado">⚡</div><div class="label">Nivel</div></div>
+                </div>
+
+                <div class="text-center text-muted" style="padding-top:14px; border-top:1.5px solid rgba(255,255,255,0.06); font-size:0.8rem;">
+                    Datos guardados en tu dispositivo
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
