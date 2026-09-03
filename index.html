@@ -26,10 +26,18 @@
             background-image: 
                 radial-gradient(ellipse at 10% 20%, rgba(74, 108, 247, 0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 90% 80%, rgba(118, 75, 162, 0.06) 0%, transparent 50%);
+            transition: background 0.3s ease;
+        }
+
+        body.modo-claro {
+            background: #f0f4f8;
+            background-image: 
+                radial-gradient(ellipse at 10% 20%, rgba(74, 108, 247, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, rgba(118, 75, 162, 0.03) 0%, transparent 50%);
         }
 
         .container {
-            max-width: 940px;
+            max-width: 960px;
             width: 100%;
             background: rgba(18, 18, 30, 0.92);
             backdrop-filter: blur(20px);
@@ -38,9 +46,15 @@
             padding: 32px 36px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: 0.4s;
+            transition: all 0.4s ease;
             position: relative;
             min-height: 500px;
+        }
+
+        body.modo-claro .container {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         /* HEADER */
@@ -79,6 +93,13 @@
             letter-spacing: -0.5px;
         }
 
+        body.modo-claro .header-left h1 {
+            background: linear-gradient(135deg, #4a6cf7, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .header-left .subtitle {
             font-size: 0.65rem;
             color: #64748b;
@@ -89,6 +110,12 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        body.modo-claro .header-left .subtitle {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #64748b;
         }
 
         .header-right {
@@ -112,6 +139,12 @@
             gap: 6px;
         }
 
+        body.modo-claro .header-right .badge-count {
+            background: rgba(0, 0, 0, 0.04);
+            color: #334155;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
         .header-right .badge-count:hover {
             border-color: #818cf8;
             background: rgba(129, 140, 248, 0.08);
@@ -129,6 +162,19 @@
 
         .header-right .user-badge span {
             color: #a78bfa;
+        }
+
+        /* ===== ADMIN BADGE ===== */
+        .admin-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white !important;
+            border-color: #ef4444 !important;
+            font-size: 0.65rem !important;
+            padding: 2px 10px !important;
+            border-radius: 20px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* BOTONES */
@@ -152,6 +198,12 @@
             overflow: hidden;
         }
 
+        body.modo-claro .btn {
+            background: rgba(0, 0, 0, 0.04);
+            color: #334155;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
         .btn::before {
             content: '';
             position: absolute;
@@ -169,6 +221,10 @@
         .btn:hover {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        body.modo-claro .btn:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
         .btn:active {
@@ -191,6 +247,11 @@
             background: transparent;
             color: #818cf8;
             border: 2px solid #818cf8;
+        }
+
+        body.modo-claro .btn-secondary {
+            color: #4a6cf7;
+            border: 2px solid #4a6cf7;
         }
 
         .btn-secondary:hover {
@@ -229,6 +290,11 @@
             border: 1.5px solid rgba(255, 255, 255, 0.08);
         }
 
+        body.modo-claro .btn-outline {
+            color: #64748b;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+        }
+
         .btn-outline:hover {
             border-color: #818cf8;
             color: #818cf8;
@@ -244,6 +310,18 @@
 
         .btn-warning:hover {
             box-shadow: 0 8px 32px rgba(245, 158, 11, 0.35);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .btn-admin {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
+        }
+
+        .btn-admin:hover {
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.35);
             transform: translateY(-3px) scale(1.02);
         }
 
@@ -273,9 +351,18 @@
             flex-wrap: wrap;
         }
 
+        body.modo-claro .breadcrumb {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
         .breadcrumb span {
             color: #94a3b8;
             font-size: 0.85rem;
+        }
+
+        body.modo-claro .breadcrumb span {
+            color: #64748b;
         }
 
         .breadcrumb .separator {
@@ -302,6 +389,10 @@
             font-weight: 600;
         }
 
+        body.modo-claro .breadcrumb .current {
+            color: #1e293b;
+        }
+
         /* VISTA CARPETAS */
         #vistaCarpetas { display: block; }
 
@@ -322,6 +413,13 @@
             text-align: center;
             position: relative;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        body.modo-claro .carpeta-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .carpeta-card:hover {
@@ -329,6 +427,18 @@
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 16px 48px rgba(74, 108, 247, 0.12);
             background: rgba(255, 255, 255, 0.07);
+        }
+
+        body.modo-claro .carpeta-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 16px 48px rgba(74, 108, 247, 0.08);
+        }
+
+        .carpeta-card.oculta {
+            opacity: 0.3;
+            filter: grayscale(1);
+            pointer-events: none;
+            cursor: not-allowed;
         }
 
         .carpeta-card .icon {
@@ -349,11 +459,19 @@
             letter-spacing: -0.3px;
         }
 
+        body.modo-claro .carpeta-card .nombre {
+            color: #0f172a;
+        }
+
         .carpeta-card .info {
             font-size: 0.85rem;
             color: #94a3b8;
             margin-top: 4px;
             font-weight: 500;
+        }
+
+        body.modo-claro .carpeta-card .info {
+            color: #64748b;
         }
 
         .carpeta-card .ano {
@@ -388,6 +506,10 @@
             overflow: hidden;
         }
 
+        body.modo-claro .carpeta-card .progreso {
+            background: rgba(0, 0, 0, 0.06);
+        }
+
         .carpeta-card .progreso .barra {
             height: 100%;
             background: linear-gradient(90deg, #4a6cf7, #7c3aed);
@@ -418,6 +540,150 @@
             font-size: 0.9rem;
         }
 
+        /* ============================================================
+           ADMIN PANEL
+           ============================================================ */
+        .admin-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 18px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 16px;
+            display: none;
+        }
+
+        body.modo-claro .admin-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .admin-panel.visible {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .admin-panel .titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        body.modo-claro .admin-panel .titulo {
+            color: #0f172a;
+        }
+
+        .admin-panel .titulo .badge-admin {
+            background: #ef4444;
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .admin-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        body.modo-claro .admin-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .admin-card:hover {
+            border-color: #818cf8;
+        }
+
+        .admin-card .label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        body.modo-claro .admin-card .label {
+            color: #64748b;
+        }
+
+        .admin-card .valor {
+            font-weight: 600;
+            color: #f1f5f9;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        body.modo-claro .admin-card .valor {
+            color: #0f172a;
+        }
+
+        .admin-card .acciones {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .admin-card .acciones .btn {
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .toggle-switch-sm {
+            position: relative;
+            width: 36px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: inline-block;
+        }
+
+        body.modo-claro .toggle-switch-sm {
+            background: rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .toggle-switch-sm.active {
+            background: #4a6cf7;
+            border-color: #4a6cf7;
+        }
+
+        .toggle-switch-sm .thumb-sm {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-switch-sm.active .thumb-sm {
+            left: 18px;
+        }
+
         /* VISTA PREGUNTAS */
         #vistaPreguntas { display: none; }
 
@@ -429,6 +695,12 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
+        body.modo-claro .question-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
         .question-card .q-text {
             font-size: 1.35rem;
             font-weight: 700;
@@ -437,6 +709,10 @@
             letter-spacing: -0.3px;
             line-height: 1.4;
             min-height: 60px;
+        }
+
+        body.modo-claro .question-card .q-text {
+            color: #0f172a;
         }
 
         .question-card .options-grid {
@@ -460,11 +736,21 @@
             color: #e2e8f0;
         }
 
+        body.modo-claro .question-card .options-grid .opt {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            color: #1e293b;
+        }
+
         .question-card .options-grid .opt:hover:not(.disabled) {
             border-color: #818cf8;
             background: rgba(129, 140, 248, 0.08);
             transform: scale(1.01) translateY(-1px);
             box-shadow: 0 4px 16px rgba(74, 108, 247, 0.08);
+        }
+
+        body.modo-claro .question-card .options-grid .opt:hover:not(.disabled) {
+            background: #eef2ff;
         }
 
         .question-card .options-grid .opt .letter {
@@ -480,6 +766,11 @@
             flex-shrink: 0;
             color: #94a3b8;
             transition: all 0.3s ease;
+        }
+
+        body.modo-claro .question-card .options-grid .opt .letter {
+            background: rgba(0, 0, 0, 0.06);
+            color: #64748b;
         }
 
         .question-card .options-grid .opt.correct {
@@ -529,10 +820,20 @@
             border-left: 4px solid #10b981;
         }
 
+        body.modo-claro .feedback-text.ok {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
         .feedback-text.fail {
             background: rgba(239, 68, 68, 0.12);
             color: #fca5a5;
             border-left: 4px solid #ef4444;
+        }
+
+        body.modo-claro .feedback-text.fail {
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         .question-card .acciones {
@@ -542,102 +843,416 @@
             flex-wrap: wrap;
         }
 
-        /* PERFIL */
+        /* ============================================================
+           PERFIL REDISEÑADO
+           ============================================================ */
         #pantallaPerfil { display: none; }
 
-        .perfil-header {
-            display: flex;
-            align-items: center;
+        .perfil-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
             gap: 28px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
+            margin-top: 10px;
         }
 
-        .avatar-big {
-            width: 96px;
-            height: 96px;
+        @media (max-width: 700px) {
+            .perfil-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .perfil-sidebar {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 18px;
+            padding: 24px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        body.modo-claro .perfil-sidebar {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .perfil-avatar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .perfil-avatar .avatar {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, #4a6cf7, #7c3aed);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 8px 32px rgba(74, 108, 247, 0.2);
-            flex-shrink: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: default;
+            font-size: 2.5rem;
+            margin: 0 auto 10px;
+            box-shadow: 0 8px 24px rgba(74, 108, 247, 0.2);
         }
 
-        .avatar-big:hover {
-            transform: scale(1.06) rotate(-6deg);
-        }
-
-        .perfil-info h2 {
-            font-size: 1.8rem;
+        .perfil-avatar .nombre {
+            font-size: 1.2rem;
+            font-weight: 700;
             color: #f1f5f9;
-            font-weight: 800;
-            letter-spacing: -0.5px;
         }
 
-        .perfil-info .detalles {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-top: 4px;
+        body.modo-claro .perfil-avatar .nombre {
+            color: #0f172a;
         }
 
-        .perfil-info .detalles span {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3px 16px;
-            border-radius: 20px;
-            margin-right: 10px;
-            font-weight: 500;
-            display: inline-block;
+        .perfil-avatar .usuario {
             font-size: 0.85rem;
-            color: #cbd5e1;
+            color: #94a3b8;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-            margin: 20px 0 24px 0;
+        body.modo-claro .perfil-avatar .usuario {
+            color: #64748b;
         }
 
-        .stat-card {
+        .perfil-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .perfil-menu li {
+            padding: 10px 14px;
+            margin-bottom: 2px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.modo-claro .perfil-menu li {
+            color: #64748b;
+        }
+
+        .perfil-menu li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #f1f5f9;
+        }
+
+        body.modo-claro .perfil-menu li:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: #0f172a;
+        }
+
+        .perfil-menu li.active {
+            background: rgba(129, 140, 248, 0.12);
+            color: #818cf8;
+        }
+
+        body.modo-claro .perfil-menu li.active {
+            background: rgba(74, 108, 247, 0.08);
+            color: #4a6cf7;
+        }
+
+        .perfil-menu li .icon {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .perfil-content {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 18px;
-            padding: 20px 16px;
+            padding: 24px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        body.modo-claro .perfil-content {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .perfil-content .titulo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.modo-claro .perfil-content .titulo {
+            color: #0f172a;
+        }
+
+        .perfil-content .subtitulo {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+
+        body.modo-claro .perfil-content .subtitulo {
+            color: #64748b;
+        }
+
+        .stats-grid-perfil {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin: 16px 0 20px 0;
+        }
+
+        .stat-card-perfil {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 16px;
             text-align: center;
-            border: 1.5px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
         }
 
-        .stat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-            border-color: #4a6cf7;
-            background: rgba(255, 255, 255, 0.05);
+        body.modo-claro .stat-card-perfil {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
-        .stat-card .numero {
-            font-size: 2.2rem;
+        .stat-card-perfil:hover {
+            transform: translateY(-4px);
+            border-color: #818cf8;
+        }
+
+        .stat-card-perfil .numero {
+            font-size: 2rem;
             font-weight: 800;
             color: #818cf8;
-            letter-spacing: -0.5px;
         }
 
-        .stat-card .label {
+        body.modo-claro .stat-card-perfil .numero {
+            color: #4a6cf7;
+        }
+
+        .stat-card-perfil .label {
             font-size: 0.78rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        body.modo-claro .stat-card-perfil .label {
             color: #64748b;
-            margin-top: 4px;
+        }
+
+        .stat-card-perfil .emoji {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .preferencias-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .preferencias-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .preferencia-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        body.modo-claro .preferencia-item {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .preferencia-item:hover {
+            border-color: #818cf8;
+        }
+
+        .preferencia-item .label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        body.modo-claro .preferencia-item .label {
+            color: #64748b;
+        }
+
+        .preferencia-item .valor {
+            font-weight: 600;
+            color: #f1f5f9;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.modo-claro .preferencia-item .valor {
+            color: #0f172a;
+        }
+
+        .preferencia-item select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.modo-claro .preferencia-item select {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #1e293b;
+        }
+
+        .preferencia-item select:focus {
+            border-color: #818cf8;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        body.modo-claro .toggle-switch {
+            background: rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .toggle-switch.active {
+            background: #4a6cf7;
+            border-color: #4a6cf7;
+        }
+
+        .toggle-switch .thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-switch.active .thumb {
+            left: 26px;
+        }
+
+        .toggle-label {
+            font-size: 0.9rem;
+            color: #e2e8f0;
             font-weight: 500;
         }
 
-        .stat-card .emoji {
-            font-size: 1.4rem;
-            display: block;
-            margin-bottom: 2px;
+        body.modo-claro .toggle-label {
+            color: #1e293b;
+        }
+
+        /* ============================================================
+           CALIFICACIONES - DATOS DE USUARIO
+           ============================================================ */
+        .datos-usuario {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 16px;
+        }
+
+        body.modo-claro .datos-usuario {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .datos-usuario .dato {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.modo-claro .datos-usuario .dato {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .datos-usuario .dato:last-child {
+            border-bottom: none;
+        }
+
+        .datos-usuario .dato .label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        body.modo-claro .datos-usuario .dato .label {
+            color: #64748b;
+        }
+
+        .datos-usuario .dato .valor {
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        body.modo-claro .datos-usuario .dato .valor {
+            color: #0f172a;
+        }
+
+        .calificacion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.modo-claro .calificacion-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .calificacion-item .materia {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        body.modo-claro .calificacion-item .materia {
+            color: #1e293b;
+        }
+
+        .calificacion-item .nota {
+            font-weight: 700;
+            color: #818cf8;
+            font-size: 1.1rem;
         }
 
         /* LOGIN */
@@ -660,6 +1275,12 @@
             font-family: 'Inter', sans-serif;
         }
 
+        body.modo-claro #pantallaLogin input {
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.8);
+            color: #1e293b;
+        }
+
         #pantallaLogin input:focus {
             border-color: #818cf8;
             box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.12);
@@ -677,6 +1298,10 @@
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        body.modo-claro #pantallaLogin label {
+            color: #64748b;
         }
 
         .login-error {
@@ -702,6 +1327,11 @@
             gap: 12px;
         }
 
+        body.modo-claro #bienvenida {
+            background: rgba(74, 108, 247, 0.04);
+            border: 1px solid rgba(74, 108, 247, 0.08);
+        }
+
         #bienvenida.visible {
             display: flex;
         }
@@ -720,6 +1350,10 @@
         #bienvenida button:hover {
             background: rgba(255, 255, 255, 0.05);
             color: #f1f5f9;
+        }
+
+        body.modo-claro #bienvenida button:hover {
+            color: #0f172a;
         }
 
         /* RACHA */
@@ -741,6 +1375,10 @@
             background: rgba(251, 191, 36, 0.2) !important;
             border-color: rgba(251, 191, 36, 0.4) !important;
             box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+        }
+
+        body.modo-claro #rachaBadge.racha-encendida {
+            background: rgba(251, 191, 36, 0.15) !important;
         }
 
         /* ADICIONALES */
@@ -781,7 +1419,10 @@
             .question-card .q-text { font-size: 1.1rem; }
             .btn { padding: 8px 16px; font-size: 0.82rem; }
             .header-right { flex-wrap: wrap; justify-content: flex-start; }
-            .perfil-header { flex-direction: column; text-align: center; }
+            .perfil-grid { grid-template-columns: 1fr; }
+            .perfil-content { padding: 18px 16px; }
+            .preferencias-grid { grid-template-columns: 1fr; }
+            .admin-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 450px) {
@@ -800,6 +1441,14 @@
 
         .fade-in {
             animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .perfil-tab {
+            display: none;
+        }
+
+        .perfil-tab.active {
+            display: block;
         }
     </style>
 </head>
@@ -861,7 +1510,7 @@
         ============================================================ -->
         <div id="pantallaApp" style="display:none;">
 
-            <!-- HEADER -->
+            <!-- HEADER - SIN BOTÓN SALIR -->
             <div class="header">
                 <div class="header-left">
                     <span class="logo">🧠</span>
@@ -872,8 +1521,8 @@
                     <span class="badge-count user-badge">👤 <span id="usuarioActual">Usuario</span></span>
                     <span class="badge-count">✅ <span id="aciertosHeader">0</span> / <span id="totalHeader">150</span></span>
                     <span class="badge-count" id="rachaBadge" style="background:rgba(251,191,36,0.1); border-color:rgba(251,191,36,0.2); color:#fbbf24;">🔥 <span id="rachaHeader">0</span></span>
+                    <span id="adminBadgeContainer"></span>
                     <button class="btn btn-secondary btn-sm" id="btnIrPerfil">👤 Perfil</button>
-                    <button class="btn btn-outline btn-sm" id="btnCerrarSesion">🚪 Salir</button>
                 </div>
             </div>
 
@@ -892,6 +1541,20 @@
                 <span class="folder-link" id="breadInicio">📁 Inicio</span>
                 <span class="separator">›</span>
                 <span class="current" id="breadActual">Cursos</span>
+                <span style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+                    <button class="btn btn-admin btn-sm" id="btnAdminPanel" style="display:none;">🛡️ Admin</button>
+                </span>
+            </div>
+
+            <!-- ADMIN PANEL -->
+            <div class="admin-panel" id="adminPanel">
+                <div class="titulo">
+                    🛡️ Panel de Administración
+                    <span class="badge-admin">Admin</span>
+                </div>
+                <div class="admin-grid" id="adminGrid">
+                    <!-- Generado por JavaScript -->
+                </div>
             </div>
 
             <!-- VISTA CARPETAS -->
@@ -939,36 +1602,167 @@
                 </div>
             </div>
 
-            <!-- VISTA PERFIL -->
+            <!-- ============================================================
+            PERFIL REDISEÑADO
+            ============================================================ -->
             <div id="pantallaPerfil" class="fade-in">
                 <div class="flex-between mb-12">
                     <h2 style="font-size:1.4rem; color:#f1f5f9; font-weight:800; letter-spacing:-0.3px;">👤 Mi Perfil</h2>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="btn btn-secondary btn-sm" id="btnVolverPerfil">← Volver</button>
-                        <button class="btn btn-danger btn-sm" id="reiniciarDesdePerfil">⟳ Reiniciar todo</button>
                     </div>
                 </div>
 
-                <div class="perfil-header">
-                    <div class="avatar-big" id="avatarPerfil">👨‍💻</div>
-                    <div class="perfil-info">
-                        <h2 id="perfilNombre">Usuario</h2>
-                        <div class="detalles">
-                            <span>📛 <span id="perfilNombreCompleto">-</span></span>
-                            <span>📊 <span id="perfilProgreso">0%</span></span>
-                            <span>🔥 Rachas: <span id="perfilRacha">0</span></span>
+                <div class="perfil-grid">
+                    <!-- SIDEBAR -->
+                    <div class="perfil-sidebar">
+                        <div class="perfil-avatar">
+                            <div class="avatar" id="avatarPerfil">👨‍💻</div>
+                            <div class="nombre" id="perfilNombre">Usuario</div>
+                            <div class="usuario" id="perfilUsuario">@usuario</div>
+                        </div>
+                        <ul class="perfil-menu">
+                            <li class="active" data-tab="info">
+                                <span class="icon">📊</span> Información
+                            </li>
+                            <li data-tab="calificaciones">
+                                <span class="icon">📝</span> Calificaciones
+                            </li>
+                            <li data-tab="preferencias">
+                                <span class="icon">⚙️</span> Preferencias
+                            </li>
+                            <li data-tab="cerrar" style="color:#ef4444; margin-top:10px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+                                <span class="icon">🚪</span> Cerrar sesión
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CONTENIDO -->
+                    <div class="perfil-content">
+                        <!-- TAB: Información -->
+                        <div class="perfil-tab active" id="tab-info">
+                            <div class="titulo">📊 Información</div>
+                            <div class="subtitulo">Tu progreso en DevQuest</div>
+                            
+                            <div class="stats-grid-perfil">
+                                <div class="stat-card-perfil">
+                                    <span class="emoji">✅</span>
+                                    <div class="numero" id="perfilAciertos">0</div>
+                                    <div class="label">Correctas</div>
+                                </div>
+                                <div class="stat-card-perfil">
+                                    <span class="emoji">❌</span>
+                                    <div class="numero" id="perfilFallos">0</div>
+                                    <div class="label">Incorrectas</div>
+                                </div>
+                                <div class="stat-card-perfil">
+                                    <span class="emoji">📊</span>
+                                    <div class="numero" id="perfilPorcentaje">0%</div>
+                                    <div class="label">Porcentaje</div>
+                                </div>
+                                <div class="stat-card-perfil">
+                                    <span class="emoji">🏆</span>
+                                    <div class="numero" id="perfilEstado">⚡</div>
+                                    <div class="label">Nivel</div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:12px; padding:14px 18px; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                    <span style="color:#94a3b8; font-size:0.85rem;">🔥 Racha actual</span>
+                                    <span style="color:#fbbf24; font-weight:700; font-size:1.2rem;" id="perfilRacha">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: Calificaciones (CON DATOS DE USUARIO) -->
+                        <div class="perfil-tab" id="tab-calificaciones">
+                            <div class="titulo">📝 Calificaciones</div>
+                            <div class="subtitulo">Tus resultados por materia</div>
+                            
+                            <!-- DATOS DEL USUARIO -->
+                            <div class="datos-usuario" id="datosUsuario">
+                                <div class="dato">
+                                    <span class="label">👤 Usuario</span>
+                                    <span class="valor" id="datoUsuario">-</span>
+                                </div>
+                                <div class="dato">
+                                    <span class="label">📛 Nombre completo</span>
+                                    <span class="valor" id="datoNombre">-</span>
+                                </div>
+                                <div class="dato">
+                                    <span class="label">🔒 Contraseña</span>
+                                    <span class="valor" id="datoPassword">••••••••</span>
+                                </div>
+                                <div class="dato">
+                                    <span class="label">📅 Registro</span>
+                                    <span class="valor" id="datoRegistro">-</span>
+                                </div>
+                            </div>
+                            
+                            <div id="calificacionesList"></div>
+                        </div>
+
+                        <!-- TAB: Preferencias -->
+                        <div class="perfil-tab" id="tab-preferencias">
+                            <div class="titulo">⚙️ Preferencias</div>
+                            <div class="subtitulo">Configura tu experiencia en DevQuest</div>
+                            
+                            <!-- CUENTA DE USUARIO -->
+                            <div style="margin-bottom:16px;">
+                                <div style="font-size:0.9rem; font-weight:600; color:#94a3b8; margin-bottom:8px;">👤 Cuenta de usuario</div>
+                                <div class="preferencias-grid">
+                                    <div class="preferencia-item">
+                                        <span class="label">👤 Usuario</span>
+                                        <div class="valor" id="prefUsuario">-</div>
+                                    </div>
+                                    <div class="preferencia-item">
+                                        <span class="label">📛 Nombre completo</span>
+                                        <div class="valor" id="prefNombre">-</div>
+                                    </div>
+                                    <div class="preferencia-item">
+                                        <span class="label">🔒 Contraseña</span>
+                                        <div class="valor" id="prefPassword">••••••••</div>
+                                    </div>
+                                    <div class="preferencia-item">
+                                        <span class="label">📅 Fecha de registro</span>
+                                        <div class="valor" id="prefRegistro">-</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PREFERENCIAS -->
+                            <div style="font-size:0.9rem; font-weight:600; color:#94a3b8; margin-bottom:8px;">⚙️ Configuración</div>
+                            <div class="preferencias-grid">
+                                <div class="preferencia-item">
+                                    <span class="label">🌓 Tema</span>
+                                    <div class="valor">
+                                        <div class="toggle-container">
+                                            <span style="font-size:0.8rem; color:#94a3b8;">🌙</span>
+                                            <div class="toggle-switch" id="toggleTema">
+                                                <div class="thumb"></div>
+                                            </div>
+                                            <span style="font-size:0.8rem; color:#94a3b8;">☀️</span>
+                                        </div>
+                                        <span id="temaLabel" style="font-size:0.8rem; color:#94a3b8;">Oscuro</span>
+                                    </div>
+                                </div>
+
+                                <div class="preferencia-item">
+                                    <span class="label">🌐 Idioma</span>
+                                    <div class="valor">
+                                        <select id="selectIdioma">
+                                            <option value="es">Español</option>
+                                            <option value="en">English</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card"><span class="emoji">✅</span><div class="numero" id="perfilAciertos">0</div><div class="label">Correctas</div></div>
-                    <div class="stat-card"><span class="emoji">❌</span><div class="numero" id="perfilFallos">0</div><div class="label">Incorrectas</div></div>
-                    <div class="stat-card"><span class="emoji">📊</span><div class="numero" id="perfilPorcentaje">0%</div><div class="label">Porcentaje</div></div>
-                    <div class="stat-card"><span class="emoji">🏆</span><div class="numero" id="perfilEstado">⚡</div><div class="label">Nivel</div></div>
-                </div>
-
-                <div class="text-center text-muted" style="padding-top:14px; border-top:1.5px solid rgba(255,255,255,0.06); font-size:0.8rem;">
+                <div class="text-center text-muted" style="padding-top:14px; border-top:1.5px solid rgba(255,255,255,0.06); font-size:0.8rem; margin-top:20px;">
                     Datos guardados en tu dispositivo
                 </div>
             </div>
@@ -979,7 +1773,7 @@
 
     <script>
         // ============================================================
-        //  B A S E   D E   D A T O S   (localStorage)
+        //  B A S E   D E   D A T O S   (localStorage + Admin)
         // ============================================================
         const DB = {
             getUsuarios() {
@@ -1047,204 +1841,171 @@
                     this.setUsuario(nombre, usuario);
                 }
             },
-            borrarTodasLasCuentas() {
-                localStorage.removeItem('devquest_usuarios');
-                localStorage.removeItem('devquest_sesion');
-                console.log('🗑️ Todas las cuentas han sido eliminadas');
+            getTema(nombre) {
+                const usuario = this.getUsuario(nombre);
+                return usuario ? usuario.tema || 'oscuro' : 'oscuro';
+            },
+            setTema(nombre, tema) {
+                const usuario = this.getUsuario(nombre);
+                if (usuario) {
+                    usuario.tema = tema;
+                    this.setUsuario(nombre, usuario);
+                }
+            },
+            getIdioma(nombre) {
+                const usuario = this.getUsuario(nombre);
+                return usuario ? usuario.idioma || 'es' : 'es';
+            },
+            setIdioma(nombre, idioma) {
+                const usuario = this.getUsuario(nombre);
+                if (usuario) {
+                    usuario.idioma = idioma;
+                    this.setUsuario(nombre, usuario);
+                }
+            },
+            // ADMIN
+            esAdmin(nombre) {
+                const usuarios = this.getUsuarios();
+                return usuarios[nombre] && usuarios[nombre].rol === 'admin';
+            },
+            getTodosLosUsuarios() {
+                return this.getUsuarios();
+            },
+            cambiarRol(nombre, nuevoRol) {
+                const usuarios = this.getUsuarios();
+                if (usuarios[nombre]) {
+                    usuarios[nombre].rol = nuevoRol;
+                    this.guardarUsuarios(usuarios);
+                    return true;
+                }
+                return false;
+            },
+            eliminarUsuario(nombre) {
+                const usuarios = this.getUsuarios();
+                if (usuarios[nombre] && nombre !== 'admin') {
+                    delete usuarios[nombre];
+                    this.guardarUsuarios(usuarios);
+                    return true;
+                }
+                return false;
+            },
+            getEstadisticas() {
+                const usuarios = this.getUsuarios();
+                const total = Object.keys(usuarios).length;
+                let admins = 0;
+                let totalPreguntas = 0;
+                Object.keys(usuarios).forEach(key => {
+                    if (usuarios[key].rol === 'admin') admins++;
+                    if (usuarios[key].progreso) {
+                        Object.keys(usuarios[key].progreso).forEach(c => {
+                            if (usuarios[key].progreso[c] && usuarios[key].progreso[c].acertadas) {
+                                totalPreguntas += usuarios[key].progreso[c].acertadas.filter(a => a === true)
+                                    .length;
+                            }
+                        });
+                    }
+                });
+                return { total, admins, totalPreguntas };
+            },
+            getCarpetasOcultas() {
+                const data = localStorage.getItem('devquest_carpetas_ocultas');
+                return data ? JSON.parse(data) : {};
+            },
+            setCarpetaOculta(id, oculta) {
+                const ocultas = this.getCarpetasOcultas();
+                ocultas[id] = oculta;
+                localStorage.setItem('devquest_carpetas_ocultas', JSON.stringify(ocultas));
+            },
+            getCarpetaOculta(id) {
+                const ocultas = this.getCarpetasOcultas();
+                return ocultas[id] || false;
+            },
+            getTextoPersonalizado() {
+                const data = localStorage.getItem('devquest_textos_personalizados');
+                return data ? JSON.parse(data) : {};
+            },
+            setTextoPersonalizado(id, texto) {
+                const textos = this.getTextoPersonalizado();
+                textos[id] = texto;
+                localStorage.setItem('devquest_textos_personalizados', JSON.stringify(textos));
+            },
+            getTextoPersonalizadoId(id) {
+                const textos = this.getTextoPersonalizado();
+                return textos[id] || null;
             }
         };
 
         // ============================================================
-        //  P R E G U N T A S   (150 en total)
+        //  C R E A R   U S U A R I O   A D M I N
         // ============================================================
-        // [TODAS LAS PREGUNTAS AQUÍ - MISMO CÓDIGO DE ANTES]
-        // Para no repetir todo el código, uso las mismas preguntas que ya tenías.
-        // Si necesitas las preguntas completas, avísame.
+        function crearAdminPorDefecto() {
+            if (!DB.existeUsuario('admin')) {
+                DB.setUsuario('admin', {
+                    password: 'admin123',
+                    nombre: 'Administrador',
+                    rol: 'admin',
+                    progreso: {},
+                    fechaRegistro: new Date().toISOString(),
+                    bienvenidoVisto: true,
+                    racha: 0,
+                    tema: 'oscuro',
+                    idioma: 'es'
+                });
+                console.log('✅ Usuario admin creado por defecto');
+                console.log('   👤 Usuario: admin');
+                console.log('   🔒 Contraseña: admin123');
+            }
+        }
+
+        // ============================================================
+        //  P R E G U N T A S
+        // ============================================================
+        const PREGUNTAS_ADS = [
+            { pregunta: '¿Qué es un sistema informático?', opciones: ['Conjunto de hardware, software y usuarios', 'Solo hardware', 'Solo software', 'Solo usuarios'], correcta: 0 },
+            { pregunta: '¿Qué es el análisis de sistemas?', opciones: ['Estudiar un sistema para entenderlo y mejorarlo', 'Crear un sistema desde cero', 'Eliminar un sistema', 'Comprar un sistema'], correcta: 0 },
+            { pregunta: '¿Qué es el diseño de sistemas?', opciones: ['Planificar la arquitectura y componentes de un sistema', 'Analizar un sistema', 'Usar un sistema', 'Eliminar un sistema'], correcta: 0 },
+            { pregunta: '¿Qué es un requerimiento funcional?', opciones: ['Describe lo que el sistema debe hacer', 'Describe cómo se ve el sistema', 'Describe el hardware', 'Describe los costos'], correcta: 0 },
+            { pregunta: '¿Qué es un requerimiento no funcional?', opciones: ['Describe atributos de calidad como rendimiento y seguridad', 'Describe funciones del sistema', 'Describe la interfaz', 'Describe los datos'], correcta: 0 },
+            { pregunta: '¿Qué es un diagrama de flujo de datos?', opciones: ['Representa el flujo de información en un sistema', 'Representa el hardware', 'Representa el código', 'Representa la interfaz'], correcta: 0 },
+            { pregunta: '¿Qué es un caso de uso?', opciones: ['Describe una interacción entre usuario y sistema', 'Describe el hardware', 'Describe el código', 'Describe la base de datos'], correcta: 0 },
+            { pregunta: '¿Qué es un actor en un diagrama de casos de uso?', opciones: ['Un usuario o entidad que interactúa con el sistema', 'Un objeto', 'Una función', 'Una variable'], correcta: 0 },
+            { pregunta: '¿Qué es un diagrama de clases?', opciones: ['Representa la estructura estática de un sistema', 'Representa el flujo de datos', 'Representa la interfaz', 'Representa el hardware'], correcta: 0 },
+            { pregunta: '¿Qué es un diagrama de secuencia?', opciones: ['Representa la interacción entre objetos en el tiempo', 'Representa la estructura', 'Representa el flujo de datos', 'Representa el hardware'], correcta: 0 }
+        ];
+
+        const PREGUNTAS_WEB = [
+            { pregunta: '¿Qué significa HTML?', opciones: ['Lenguaje de marcado de hipertexto', 'Lenguaje de máquina de alta tecnología', 'Lenguaje de texto de alto nivel', 'Lenguaje moderno de hipertexto'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para el título de una página?', opciones: ['<title>', '<head>', '<header>', '<h1>'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para enlaces?', opciones: ['<a>', '<link>', '<href>', '<url>'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para imágenes?', opciones: ['<img>', '<image>', '<src>', '<picture>'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para listas ordenadas?', opciones: ['<ol>', '<ul>', '<li>', '<list>'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para listas desordenadas?', opciones: ['<ul>', '<ol>', '<li>', '<list>'], correcta: 0 },
+            { pregunta: '¿Qué etiqueta HTML se usa para tablas?', opciones: ['<table>', '<tab>', '<grid>', '<list>'], correcta: 0 },
+            { pregunta: '¿Qué es un formulario en HTML?', opciones: ['Permite recopilar datos del usuario', 'Muestra imágenes', 'Crea enlaces', 'Define estilos'], correcta: 0 },
+            { pregunta: '¿Qué atributo se usa en <a> para abrir en nueva pestaña?', opciones: ['target="_blank"', 'target="_new"', 'open="new"', 'new="true"'], correcta: 0 },
+            { pregunta: '¿Qué es un div en HTML?', opciones: ['Contenedor genérico para agrupar elementos', 'Un enlace', 'Una imagen', 'Un título'], correcta: 0 }
+        ];
+
+        const PREGUNTAS_BD = [
+            { pregunta: '¿Qué significa SQL?', opciones: ['Lenguaje de consulta estructurada', 'Lenguaje de preguntas simple', 'Lógica de consulta de sistemas', 'Lenguaje de calidad estándar'], correcta: 0 },
+            { pregunta: '¿Qué es una base de datos relacional?', opciones: ['Datos organizados en tablas con relaciones', 'Datos en un solo archivo', 'Datos sin estructura', 'Datos solo en memoria'], correcta: 0 },
+            { pregunta: '¿Qué es una clave primaria?', opciones: ['Un campo que identifica de forma única cada registro', 'Un campo que puede estar vacío', 'Un campo que se repite', 'Un campo sin importancia'], correcta: 0 },
+            { pregunta: '¿Qué es una clave foránea?', opciones: ['Un campo que referencia otra tabla', 'Un campo que es clave primaria', 'Un campo con valores nulos', 'Un campo sin relación'], correcta: 0 },
+            { pregunta: '¿Qué comando SQL se usa para consultar datos?', opciones: ['SELECT', 'INSERT', 'UPDATE', 'DELETE'], correcta: 0 },
+            { pregunta: '¿Qué comando SQL se usa para insertar datos?', opciones: ['INSERT INTO', 'SELECT', 'UPDATE', 'DELETE'], correcta: 0 },
+            { pregunta: '¿Qué comando SQL se usa para actualizar datos?', opciones: ['UPDATE', 'SELECT', 'INSERT', 'DELETE'], correcta: 0 },
+            { pregunta: '¿Qué comando SQL se usa para eliminar datos?', opciones: ['DELETE FROM', 'SELECT', 'INSERT', 'UPDATE'], correcta: 0 },
+            { pregunta: '¿Qué hace la cláusula WHERE en SQL?', opciones: ['Filtra los resultados', 'Ordena los resultados', 'Agrupa los resultados', 'Une tablas'], correcta: 0 },
+            { pregunta: '¿Qué hace la cláusula ORDER BY en SQL?', opciones: ['Ordena los resultados', 'Filtra los resultados', 'Agrupa los resultados', 'Elimina datos'], correcta: 0 }
+        ];
 
         // ============================================================
         //  E S T R U C T U R A   D E   C A R P E T A S
         // ============================================================
         const CARPETAS = [
-            {
-                id: 'ads',
-                nombre: 'Análisis y Diseño de Sistemas Informáticos (ADS)',
-                icono: '📊',
-                descripcion: 'Aprende a analizar y diseñar sistemas informáticos. Diseño de interfaces gráficas, bases de datos, aplicaciones web y más.',
-                ano: 'AÑO ESCOLAR 2026-2027',
-                preguntas: [
-                    // 50 preguntas de ADS
-                    { pregunta: '¿Qué es un sistema informático?', opciones: ['Conjunto de hardware, software y usuarios', 'Solo hardware', 'Solo software', 'Solo usuarios'], correcta: 0 },
-                    { pregunta: '¿Qué es el análisis de sistemas?', opciones: ['Estudiar un sistema para entenderlo y mejorarlo', 'Crear un sistema desde cero', 'Eliminar un sistema', 'Comprar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es el diseño de sistemas?', opciones: ['Planificar la arquitectura y componentes de un sistema', 'Analizar un sistema', 'Usar un sistema', 'Eliminar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un requerimiento funcional?', opciones: ['Describe lo que el sistema debe hacer', 'Describe cómo se ve el sistema', 'Describe el hardware', 'Describe los costos'], correcta: 0 },
-                    { pregunta: '¿Qué es un requerimiento no funcional?', opciones: ['Describe atributos de calidad como rendimiento y seguridad', 'Describe funciones del sistema', 'Describe la interfaz', 'Describe los datos'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama de flujo de datos?', opciones: ['Representa el flujo de información en un sistema', 'Representa el hardware', 'Representa el código', 'Representa la interfaz'], correcta: 0 },
-                    { pregunta: '¿Qué es un caso de uso?', opciones: ['Describe una interacción entre usuario y sistema', 'Describe el hardware', 'Describe el código', 'Describe la base de datos'], correcta: 0 },
-                    { pregunta: '¿Qué es un actor en un diagrama de casos de uso?', opciones: ['Un usuario o entidad que interactúa con el sistema', 'Un objeto', 'Una función', 'Una variable'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama de clases?', opciones: ['Representa la estructura estática de un sistema', 'Representa el flujo de datos', 'Representa la interfaz', 'Representa el hardware'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama de secuencia?', opciones: ['Representa la interacción entre objetos en el tiempo', 'Representa la estructura', 'Representa el flujo de datos', 'Representa el hardware'], correcta: 0 },
-                    { pregunta: '¿Qué es el ciclo de vida de un sistema?', opciones: ['Etapas por las que pasa un sistema desde su concepción hasta su retiro', 'El tiempo de ejecución', 'La vida útil del hardware', 'El tiempo de desarrollo'], correcta: 0 },
-                    { pregunta: '¿Qué es la metodología en cascada?', opciones: ['Modelo de desarrollo secuencial por fases', 'Desarrollo ágil', 'Desarrollo iterativo', 'Sin metodología'], correcta: 0 },
-                    { pregunta: '¿Qué es el desarrollo ágil?', opciones: ['Metodología iterativa con entregas frecuentes', 'Desarrollo secuencial', 'Sin metodología', 'Modelo en cascada'], correcta: 0 },
-                    { pregunta: '¿Qué es Scrum?', opciones: ['Framework ágil para gestión de proyectos', 'Un lenguaje de programación', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es un sprint en Scrum?', opciones: ['Período de tiempo para completar un conjunto de tareas', 'Un error', 'Una reunión', 'Una documentación'], correcta: 0 },
-                    { pregunta: '¿Qué es un product backlog?', opciones: ['Lista de requerimientos del producto', 'Lista de errores', 'Lista de tareas técnicas', 'Lista de personas'], correcta: 0 },
-                    { pregunta: '¿Qué es el diseño de interfaz de usuario?', opciones: ['Diseñar la interacción entre el usuario y el sistema', 'Diseñar la base de datos', 'Diseñar el hardware', 'Diseñar la red'], correcta: 0 },
-                    { pregunta: '¿Qué es la usabilidad en sistemas?', opciones: ['Facilidad de uso del sistema por parte de los usuarios', 'Velocidad del sistema', 'Seguridad del sistema', 'Costo del sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es la arquitectura de software?', opciones: ['Estructura general y organización de un sistema', 'El hardware', 'La red', 'La base de datos'], correcta: 0 },
-                    { pregunta: '¿Qué es un patrón de diseño?', opciones: ['Solución reutilizable para problemas comunes en diseño de software', 'Un error', 'Un lenguaje', 'Una función'], correcta: 0 },
-                    { pregunta: '¿Qué es un modelo de datos?', opciones: ['Representación de la estructura de los datos en un sistema', 'El hardware', 'La interfaz', 'El código'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama entidad-relación?', opciones: ['Representa las entidades y relaciones en una base de datos', 'Representa el flujo de datos', 'Representa la interfaz', 'Representa el hardware'], correcta: 0 },
-                    { pregunta: '¿Qué es la abstracción en diseño de sistemas?', opciones: ['Simplificar un sistema enfocándose en lo esencial', 'Complicar un sistema', 'Eliminar un sistema', 'Comprar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es la modularidad en sistemas?', opciones: ['Dividir un sistema en partes independientes', 'Unir todo en un solo bloque', 'Eliminar partes', 'Comprar partes'], correcta: 0 },
-                    { pregunta: '¿Qué es el acoplamiento en diseño de software?', opciones: ['Grado de dependencia entre módulos', 'Grado de independencia', 'La velocidad', 'El costo'], correcta: 0 },
-                    { pregunta: '¿Qué es la cohesión en diseño de software?', opciones: ['Grado de relación entre elementos de un mismo módulo', 'Grado de dependencia', 'La velocidad', 'El costo'], correcta: 0 },
-                    { pregunta: '¿Qué es un prototipo en diseño de sistemas?', opciones: ['Versión inicial del sistema para probar conceptos', 'El sistema final', 'El hardware', 'La documentación'], correcta: 0 },
-                    { pregunta: '¿Qué es el análisis de viabilidad?', opciones: ['Evaluación si un sistema es posible y rentable', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un estudio de factibilidad?', opciones: ['Análisis para determinar si un proyecto es viable', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es la documentación en sistemas?', opciones: ['Registro escrito de la información del sistema', 'El código', 'El hardware', 'La red'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama de Gantt?', opciones: ['Gráfico para planificar y programar tareas', 'Diagrama de flujo', 'Diagrama de clases', 'Diagrama de secuencia'], correcta: 0 },
-                    { pregunta: '¿Qué es un diagrama PERT?', opciones: ['Técnica para planificar y controlar proyectos', 'Diagrama de flujo', 'Diagrama de clases', 'Diagrama de secuencia'], correcta: 0 },
-                    { pregunta: '¿Qué es el alcance de un proyecto?', opciones: ['Define los límites y objetivos del proyecto', 'El costo', 'El tiempo', 'El equipo'], correcta: 0 },
-                    { pregunta: '¿Qué es un stakeholder?', opciones: ['Persona o grupo con interés en el proyecto', 'El programador', 'El usuario', 'El gerente'], correcta: 0 },
-                    { pregunta: '¿Qué es un entregable en proyectos?', opciones: ['Producto o resultado que se entrega al cliente', 'Un error', 'Un documento', 'Una reunión'], correcta: 0 },
-                    { pregunta: '¿Qué es la gestión de riesgos?', opciones: ['Identificar y mitigar posibles problemas en un proyecto', 'Eliminar todos los riesgos', 'Ignorar los riesgos', 'Aceptar todos los riesgos'], correcta: 0 },
-                    { pregunta: '¿Qué es el control de calidad en sistemas?', opciones: ['Asegurar que el sistema cumpla con los estándares', 'Aumentar el costo', 'Reducir el tiempo', 'Eliminar pruebas'], correcta: 0 },
-                    { pregunta: '¿Qué es la migración de sistemas?', opciones: ['Proceso de trasladar un sistema a otro entorno', 'Eliminar un sistema', 'Comprar un sistema', 'Diseñar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es la interoperabilidad?', opciones: ['Capacidad de un sistema para interactuar con otros', 'Capacidad de un sistema para ser rápido', 'Capacidad de un sistema para ser seguro', 'Capacidad de un sistema para ser barato'], correcta: 0 },
-                    { pregunta: '¿Qué es la escalabilidad?', opciones: ['Capacidad de un sistema para crecer según la demanda', 'Capacidad de un sistema para ser rápido', 'Capacidad de un sistema para ser seguro', 'Capacidad de un sistema para ser barato'], correcta: 0 },
-                    { pregunta: '¿Qué es el análisis de requisitos?', opciones: ['Proceso de recopilar y entender las necesidades del usuario', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es una entrevista en análisis de sistemas?', opciones: ['Técnica para recopilar información de los usuarios', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es una encuesta en análisis de sistemas?', opciones: ['Técnica para recopilar información de un grupo grande', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es la observación en análisis de sistemas?', opciones: ['Técnica para ver cómo trabajan los usuarios actualmente', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un análisis de brecha?', opciones: ['Comparación entre el estado actual y el deseado', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un análisis de impacto?', opciones: ['Evaluación de los efectos de un cambio en el sistema', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un análisis de costo-beneficio?', opciones: ['Evaluación de costos vs beneficios de un proyecto', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un análisis FODA en sistemas?', opciones: ['Análisis de Fortalezas, Oportunidades, Debilidades y Amenazas', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es una matriz de trazabilidad?', opciones: ['Documento que relaciona requisitos con su implementación', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 },
-                    { pregunta: '¿Qué es un modelo de proceso?', opciones: ['Representación de las actividades y flujo de trabajo', 'Diseñar un sistema', 'Implementar un sistema', 'Probar un sistema'], correcta: 0 }
-                ]
-            },
-            {
-                id: 'web',
-                nombre: 'Diseño de Portales Web y Recursos Multimedia',
-                icono: '🌐',
-                descripcion: 'Diseño y desarrollo de portales web, recursos multimedia, HTML, CSS, JavaScript, frameworks y más.',
-                ano: 'AÑO ESCOLAR 2026-2027',
-                preguntas: [
-                    // 50 preguntas de Web - las mismas de antes
-                    { pregunta: '¿Qué significa HTML?', opciones: ['Lenguaje de marcado de hipertexto', 'Lenguaje de máquina de alta tecnología', 'Lenguaje de texto de alto nivel', 'Lenguaje moderno de hipertexto'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para el título de una página?', opciones: ['<title>', '<head>', '<header>', '<h1>'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para enlaces?', opciones: ['<a>', '<link>', '<href>', '<url>'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para imágenes?', opciones: ['<img>', '<image>', '<src>', '<picture>'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para listas ordenadas?', opciones: ['<ol>', '<ul>', '<li>', '<list>'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para listas desordenadas?', opciones: ['<ul>', '<ol>', '<li>', '<list>'], correcta: 0 },
-                    { pregunta: '¿Qué etiqueta HTML se usa para tablas?', opciones: ['<table>', '<tab>', '<grid>', '<list>'], correcta: 0 },
-                    { pregunta: '¿Qué es un formulario en HTML?', opciones: ['Permite recopilar datos del usuario', 'Muestra imágenes', 'Crea enlaces', 'Define estilos'], correcta: 0 },
-                    { pregunta: '¿Qué atributo se usa en <a> para abrir en nueva pestaña?', opciones: ['target="_blank"', 'target="_new"', 'open="new"', 'new="true"'], correcta: 0 },
-                    { pregunta: '¿Qué es un div en HTML?', opciones: ['Contenedor genérico para agrupar elementos', 'Un enlace', 'Una imagen', 'Un título'], correcta: 0 },
-                    { pregunta: '¿Qué significa CSS?', opciones: ['Hojas de estilo en cascada', 'Hojas de estilo creativas', 'Sistema de estilo por computadora', 'Hojas de estilo con colores'], correcta: 0 },
-                    { pregunta: '¿Qué propiedad de CSS se usa para cambiar el color de fondo?', opciones: ['background-color', 'color', 'font-color', 'bgcolor'], correcta: 0 },
-                    { pregunta: '¿Qué propiedad de CSS se usa para cambiar el tamaño de fuente?', opciones: ['font-size', 'size', 'text-size', 'font'], correcta: 0 },
-                    { pregunta: '¿Qué es flexbox en CSS?', opciones: ['Modelo de diseño para alinear elementos', 'Un tipo de fuente', 'Un color', 'Un selector'], correcta: 0 },
-                    { pregunta: '¿Qué es grid en CSS?', opciones: ['Sistema de diseño en cuadrícula', 'Un tipo de fuente', 'Un color', 'Un selector'], correcta: 0 },
-                    { pregunta: '¿Qué es un selector en CSS?', opciones: ['Permite seleccionar elementos HTML para aplicar estilos', 'Un color', 'Una fuente', 'Un borde'], correcta: 0 },
-                    { pregunta: '¿Qué es una clase en CSS?', opciones: ['Selector que se aplica a múltiples elementos', 'Un identificador único', 'Un color', 'Una fuente'], correcta: 0 },
-                    { pregunta: '¿Qué es un id en CSS?', opciones: ['Selector único para un elemento', 'Una clase', 'Un color', 'Una fuente'], correcta: 0 },
-                    { pregunta: '¿Qué hace la propiedad display: flex?', opciones: ['Activa el modelo de diseño flexbox', 'Oculta el elemento', 'Muestra el elemento', 'Centra el texto'], correcta: 0 },
-                    { pregunta: '¿Qué hace la propiedad position: absolute?', opciones: ['Posiciona el elemento de forma absoluta', 'Lo centra', 'Lo oculta', 'Lo muestra'], correcta: 0 },
-                    { pregunta: '¿Qué es JavaScript?', opciones: ['Lenguaje de programación para la web', 'Un framework de CSS', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Cómo se escribe un comentario en JavaScript?', opciones: ['// o /* */', '<!-- -->', '**', '#'], correcta: 0 },
-                    { pregunta: '¿Qué hace console.log()?', opciones: ['Muestra un mensaje en la consola del navegador', 'Guarda datos en el servidor', 'Crea una variable', 'Detiene la ejecución'], correcta: 0 },
-                    { pregunta: '¿Qué tipo de dato es "true" en JavaScript?', opciones: ['Booleano', 'Cadena de texto', 'Número', 'Arreglo'], correcta: 0 },
-                    { pregunta: '¿Qué hace el operador "==="?', opciones: ['Compara valor y tipo', 'Compara solo el valor', 'Asigna un valor', 'Concatena cadenas'], correcta: 0 },
-                    { pregunta: '¿Qué es una variable en JavaScript?', opciones: ['Espacio para guardar datos', 'Un bucle', 'Una función', 'Un objeto'], correcta: 0 },
-                    { pregunta: '¿Qué es un arreglo en JavaScript?', opciones: ['Una lista de elementos', 'Un tipo de bucle', 'Una función', 'Un estilo de CSS'], correcta: 0 },
-                    { pregunta: '¿Qué es una función en JavaScript?', opciones: ['Bloque de código reutilizable', 'Una variable', 'Un bucle', 'Un objeto'], correcta: 0 },
-                    { pregunta: '¿Qué hace addEventListener?', opciones: ['Escucha eventos del usuario', 'Agrega un elemento HTML', 'Elimina un evento', 'Crea una variable'], correcta: 0 },
-                    { pregunta: '¿Qué es el DOM en JavaScript?', opciones: ['Modelo de objetos del documento', 'Modelo de datos', 'Dominio de objetos', 'Documento de memoria'], correcta: 0 },
-                    { pregunta: '¿Qué es un recurso multimedia?', opciones: ['Contenido como imágenes, audio y video', 'Solo texto', 'Solo código', 'Solo datos'], correcta: 0 },
-                    { pregunta: '¿Qué formato de imagen es mejor para la web?', opciones: ['WebP, JPEG y PNG', 'BMP y TIFF', 'PSD y AI', 'RAW y CR2'], correcta: 0 },
-                    { pregunta: '¿Qué formato de video se usa comúnmente en la web?', opciones: ['MP4 y WebM', 'AVI y MOV', 'MKV y FLV', 'WMV y MPEG'], correcta: 0 },
-                    { pregunta: '¿Qué formato de audio se usa en la web?', opciones: ['MP3, AAC y OGG', 'WAV y AIFF', 'FLAC y ALAC', 'MIDI y REX'], correcta: 0 },
-                    { pregunta: '¿Qué es el diseño responsivo?', opciones: ['Adapta la página a diferentes dispositivos', 'Diseño fijo', 'Diseño solo para escritorio', 'Diseño solo para móvil'], correcta: 0 },
-                    { pregunta: '¿Qué es la optimización de imágenes?', opciones: ['Reducir tamaño sin perder calidad', 'Aumentar tamaño', 'Cambiar formato', 'Eliminar imágenes'], correcta: 0 },
-                    { pregunta: '¿Qué es una CDN?', opciones: ['Red de distribución de contenido', 'Centro de datos', 'Control de dominio', 'Código de navegación'], correcta: 0 },
-                    { pregunta: '¿Qué es un sprite en desarrollo web?', opciones: ['Imagen que contiene múltiples iconos', 'Un video', 'Un audio', 'Un texto'], correcta: 0 },
-                    { pregunta: '¿Qué es un favicon?', opciones: ['Icono de la página en la pestaña del navegador', 'Un video', 'Un audio', 'Un texto'], correcta: 0 },
-                    { pregunta: '¿Qué es la accesibilidad web?', opciones: ['Hacer sitios usables para todas las personas', 'Hacer sitios rápidos', 'Hacer sitios bonitos', 'Hacer sitios baratos'], correcta: 0 },
-                    { pregunta: '¿Qué es React?', opciones: ['Biblioteca de JavaScript para interfaces de usuario', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Angular?', opciones: ['Framework de desarrollo web de Google', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Vue.js?', opciones: ['Framework progresivo de JavaScript', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Bootstrap?', opciones: ['Framework de CSS para diseño responsivo', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Node.js?', opciones: ['Entorno para ejecutar JavaScript en el servidor', 'Un framework de CSS', 'Un navegador', 'Una base de datos'], correcta: 0 },
-                    { pregunta: '¿Qué es npm?', opciones: ['Gestor de paquetes de Node.js', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Git?', opciones: ['Sistema de control de versiones', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es Webpack?', opciones: ['Empaquetador de módulos de JavaScript', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es TypeScript?', opciones: ['Superset de JavaScript con tipos', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 },
-                    { pregunta: '¿Qué es un CMS?', opciones: ['Sistema de gestión de contenido', 'Un lenguaje', 'Una base de datos', 'Un sistema operativo'], correcta: 0 }
-                ]
-            },
-            {
-                id: 'bd',
-                nombre: 'Diseño y Desarrollo de Base de Datos',
-                icono: '🗄️',
-                descripcion: 'SQL, bases de datos relacionales, NoSQL, MongoDB, Redis, Cassandra y administración de datos.',
-                ano: 'AÑO ESCOLAR 2026-2027',
-                preguntas: [
-                    // 50 preguntas de BD
-                    { pregunta: '¿Qué significa SQL?', opciones: ['Lenguaje de consulta estructurada', 'Lenguaje de preguntas simple', 'Lógica de consulta de sistemas', 'Lenguaje de calidad estándar'], correcta: 0 },
-                    { pregunta: '¿Qué es una base de datos relacional?', opciones: ['Datos organizados en tablas con relaciones', 'Datos en un solo archivo', 'Datos sin estructura', 'Datos solo en memoria'], correcta: 0 },
-                    { pregunta: '¿Qué es una clave primaria?', opciones: ['Un campo que identifica de forma única cada registro', 'Un campo que puede estar vacío', 'Un campo que se repite', 'Un campo sin importancia'], correcta: 0 },
-                    { pregunta: '¿Qué es una clave foránea?', opciones: ['Un campo que referencia otra tabla', 'Un campo que es clave primaria', 'Un campo con valores nulos', 'Un campo sin relación'], correcta: 0 },
-                    { pregunta: '¿Qué comando SQL se usa para consultar datos?', opciones: ['SELECT', 'INSERT', 'UPDATE', 'DELETE'], correcta: 0 },
-                    { pregunta: '¿Qué comando SQL se usa para insertar datos?', opciones: ['INSERT INTO', 'SELECT', 'UPDATE', 'DELETE'], correcta: 0 },
-                    { pregunta: '¿Qué comando SQL se usa para actualizar datos?', opciones: ['UPDATE', 'SELECT', 'INSERT', 'DELETE'], correcta: 0 },
-                    { pregunta: '¿Qué comando SQL se usa para eliminar datos?', opciones: ['DELETE FROM', 'SELECT', 'INSERT', 'UPDATE'], correcta: 0 },
-                    { pregunta: '¿Qué hace la cláusula WHERE en SQL?', opciones: ['Filtra los resultados', 'Ordena los resultados', 'Agrupa los resultados', 'Une tablas'], correcta: 0 },
-                    { pregunta: '¿Qué hace la cláusula ORDER BY en SQL?', opciones: ['Ordena los resultados', 'Filtra los resultados', 'Agrupa los resultados', 'Elimina datos'], correcta: 0 },
-                    { pregunta: '¿Qué hace INNER JOIN en SQL?', opciones: ['Une dos tablas con coincidencias', 'Une todas las filas de una tabla', 'Une tablas sin coincidencias', 'Elimina datos'], correcta: 0 },
-                    { pregunta: '¿Qué hace LEFT JOIN en SQL?', opciones: ['Muestra todos los registros de la tabla izquierda', 'Muestra solo coincidencias', 'Muestra todos los registros de la tabla derecha', 'No une tablas'], correcta: 0 },
-                    { pregunta: '¿Qué hace RIGHT JOIN en SQL?', opciones: ['Muestra todos los registros de la tabla derecha', 'Muestra solo coincidencias', 'Muestra todos los registros de la tabla izquierda', 'No une tablas'], correcta: 0 },
-                    { pregunta: '¿Qué hace FULL OUTER JOIN en SQL?', opciones: ['Muestra todos los registros de ambas tablas', 'Muestra solo coincidencias', 'Muestra solo registros únicos', 'No une tablas'], correcta: 0 },
-                    { pregunta: '¿Qué es una relación uno a muchos en bases de datos?', opciones: ['Un registro en una tabla se relaciona con muchos en otra', 'Un registro se relaciona con uno solo', 'Muchos se relacionan con muchos', 'No hay relación'], correcta: 0 },
-                    { pregunta: '¿Qué es una relación muchos a muchos en bases de datos?', opciones: ['Varios registros se relacionan con varios en otra tabla', 'Uno a uno', 'Uno a muchos', 'No hay relación'], correcta: 0 },
-                    { pregunta: '¿Qué es una tabla intermedia o de unión?', opciones: ['Tabla que conecta dos tablas en relación muchos a muchos', 'Tabla principal', 'Tabla sin datos', 'Tabla de respaldo'], correcta: 0 },
-                    { pregunta: '¿Qué es la integridad referencial?', opciones: ['Garantiza que las relaciones entre tablas sean válidas', 'Garantiza datos únicos', 'Garantiza datos nulos', 'Garantiza datos duplicados'], correcta: 0 },
-                    { pregunta: '¿Qué es una vista en SQL?', opciones: ['Una tabla virtual basada en una consulta', 'Una tabla física', 'Un índice', 'Un procedimiento'], correcta: 0 },
-                    { pregunta: '¿Qué es un índice en SQL?', opciones: ['Estructura que acelera las búsquedas', 'Una tabla', 'Una vista', 'Un procedimiento'], correcta: 0 },
-                    { pregunta: '¿Qué es la normalización en bases de datos?', opciones: ['Organizar datos para reducir redundancia', 'Eliminar todos los datos', 'Duplicar datos', 'Desordenar datos'], correcta: 0 },
-                    { pregunta: '¿Qué es la primera forma normal (1NF)?', opciones: ['Cada columna tiene valores atómicos', 'Tabla sin llave primaria', 'Datos duplicados', 'Sin estructura'], correcta: 0 },
-                    { pregunta: '¿Qué es la segunda forma normal (2NF)?', opciones: ['Cumple 1NF y todos los atributos dependen de la llave completa', 'Cumple 1NF', 'Sin dependencias', 'Datos duplicados'], correcta: 0 },
-                    { pregunta: '¿Qué es la tercera forma normal (3NF)?', opciones: ['Cumple 2NF y no hay dependencias transitivas', 'Cumple 1NF', 'Cumple 2NF', 'Sin estructura'], correcta: 0 },
-                    { pregunta: '¿Qué es la forma normal de Boyce-Codd (BCNF)?', opciones: ['Versión más estricta de 3NF', 'Igual que 1NF', 'Igual que 2NF', 'Sin normalización'], correcta: 0 },
-                    { pregunta: '¿Por qué es importante normalizar una base de datos?', opciones: ['Evita redundancia y anomalías', 'Hace los datos más grandes', 'Complica las consultas', 'No es importante'], correcta: 0 },
-                    { pregunta: '¿Qué hace GROUP BY en SQL?', opciones: ['Agrupa resultados según una columna', 'Ordena resultados', 'Filtra resultados', 'Elimina resultados'], correcta: 0 },
-                    { pregunta: '¿Qué hace HAVING en SQL?', opciones: ['Filtra grupos después de GROUP BY', 'Filtra antes de GROUP BY', 'Ordena grupos', 'Elimina grupos'], correcta: 0 },
-                    { pregunta: '¿Qué es una subconsulta en SQL?', opciones: ['Una consulta dentro de otra consulta', 'Una consulta simple', 'Una consulta sin resultado', 'Una consulta vacía'], correcta: 0 },
-                    { pregunta: '¿Qué es un procedimiento almacenado?', opciones: ['Bloque de código SQL almacenado en el servidor', 'Una consulta simple', 'Una vista', 'Un índice'], correcta: 0 },
-                    { pregunta: '¿Qué es un disparador (trigger) en SQL?', opciones: ['Código que se ejecuta automáticamente ante un evento', 'Una consulta', 'Una tabla', 'Un índice'], correcta: 0 },
-                    { pregunta: '¿Qué significa ACID en bases de datos?', opciones: ['Atomicidad, Consistencia, Aislamiento, Durabilidad', 'Acceso, Control, Integridad, Datos', 'Almacenamiento, Consulta, Índice, Datos', 'Aplicación, Conexión, Interfaz, Datos'], correcta: 0 },
-                    { pregunta: '¿Qué es una transacción en SQL?', opciones: ['Conjunto de operaciones que se ejecutan como una unidad', 'Una consulta simple', 'Un procedimiento', 'Una vista'], correcta: 0 },
-                    { pregunta: '¿Qué comandos controlan transacciones en SQL?', opciones: ['COMMIT, ROLLBACK, SAVEPOINT', 'SELECT, INSERT, UPDATE', 'CREATE, DROP, ALTER', 'GRANT, REVOKE'], correcta: 0 },
-                    { pregunta: '¿Qué es una base de datos NoSQL?', opciones: ['Base de datos no relacional', 'Base de datos relacional', 'Base de datos SQL', 'Base de datos tradicional'], correcta: 0 },
-                    { pregunta: '¿Qué tipo de base de datos NoSQL usa documentos JSON?', opciones: ['Documental (MongoDB)', 'Clave-Valor', 'Columnas', 'Grafos'], correcta: 0 },
-                    { pregunta: '¿Qué tipo de base de datos NoSQL usa clave-valor?', opciones: ['Redis y DynamoDB', 'MongoDB', 'Cassandra', 'Neo4j'], correcta: 0 },
-                    { pregunta: '¿Qué tipo de base de datos NoSQL usa columnas?', opciones: ['Cassandra y HBase', 'MongoDB', 'Redis', 'Neo4j'], correcta: 0 },
-                    { pregunta: '¿Qué tipo de base de datos NoSQL usa grafos?', opciones: ['Neo4j', 'MongoDB', 'Redis', 'Cassandra'], correcta: 0 },
-                    { pregunta: '¿Qué es MongoDB?', opciones: ['Base de datos NoSQL documental', 'Base de datos SQL', 'Base de datos relacional', 'Base de datos de grafos'], correcta: 0 },
-                    { pregunta: '¿Qué es Redis?', opciones: ['Base de datos NoSQL clave-valor en memoria', 'Base de datos SQL', 'Base de datos relacional', 'Base de datos documental'], correcta: 0 },
-                    { pregunta: '¿Qué es Cassandra?', opciones: ['Base de datos NoSQL columnar', 'Base de datos SQL', 'Base de datos relacional', 'Base de datos documental'], correcta: 0 },
-                    { pregunta: '¿Qué hace COUNT() en SQL?', opciones: ['Cuenta el número de registros', 'Suma valores', 'Promedia valores', 'Busca valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace SUM() en SQL?', opciones: ['Suma los valores de una columna', 'Cuenta registros', 'Promedia valores', 'Busca valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace AVG() en SQL?', opciones: ['Calcula el promedio de valores', 'Suma valores', 'Cuenta registros', 'Busca valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace MAX() en SQL?', opciones: ['Devuelve el valor máximo', 'Devuelve el valor mínimo', 'Cuenta registros', 'Suma valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace MIN() en SQL?', opciones: ['Devuelve el valor mínimo', 'Devuelve el valor máximo', 'Cuenta registros', 'Suma valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace DISTINCT en SQL?', opciones: ['Devuelve valores únicos', 'Devuelve valores duplicados', 'Ordena valores', 'Cuenta valores'], correcta: 0 },
-                    { pregunta: '¿Qué hace LIKE en SQL?', opciones: ['Busca patrones en texto', 'Busca valores exactos', 'Ordena resultados', 'Agrupa resultados'], correcta: 0 },
-                    { pregunta: '¿Qué hace IN en SQL?', opciones: ['Verifica si un valor está en una lista', 'Verifica si un valor es nulo', 'Ordena resultados', 'Agrupa resultados'], correcta: 0 }
-                ]
-            }
+            { id: 'ads', nombre: 'Análisis y Diseño de Sistemas Informáticos (ADS)', icono: '📊', descripcion: 'Aprende a analizar y diseñar sistemas informáticos.', ano: 'AÑO ESCOLAR 2026-2027', preguntas: PREGUNTAS_ADS },
+            { id: 'web', nombre: 'Diseño de Portales Web y Recursos Multimedia', icono: '🌐', descripcion: 'Diseño y desarrollo de portales web, recursos multimedia y más.', ano: 'AÑO ESCOLAR 2026-2027', preguntas: PREGUNTAS_WEB },
+            { id: 'bd', nombre: 'Diseño y Desarrollo de Base de Datos', icono: '🗄️', descripcion: 'SQL, bases de datos relacionales, NoSQL y administración de datos.', ano: 'AÑO ESCOLAR 2026-2027', preguntas: PREGUNTAS_BD }
         ];
 
         // ============================================================
@@ -1260,41 +2021,28 @@
         let esPrimeraVez = false;
 
         // ============================================================
-        //  FUNCIONES PARA MEZCLAR OPCIONES
+        //  FUNCIONES DE MEZCLA
         // ============================================================
         function mezclarOpciones(pregunta) {
-            const opcionesConIndice = pregunta.opciones.map((texto, idx) => ({
-                texto: texto,
-                indiceOriginal: idx
-            }));
-            
+            const opcionesConIndice = pregunta.opciones.map((texto, idx) => ({ texto: texto, indiceOriginal: idx }));
             for (let i = opcionesConIndice.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [opcionesConIndice[i], opcionesConIndice[j]] = [opcionesConIndice[j], opcionesConIndice[i]];
             }
-            
             const opcionesMezcladas = opcionesConIndice.map(item => item.texto);
             const nuevoIndiceCorrecto = opcionesConIndice.findIndex(item => item.indiceOriginal === pregunta.correcta);
-            
-            return {
-                opciones: opcionesMezcladas,
-                correcta: nuevoIndiceCorrecto
-            };
+            return { opciones: opcionesMezcladas, correcta: nuevoIndiceCorrecto };
         }
 
         function generarPreguntasMezcladas(preguntasBase) {
             return preguntasBase.map(p => {
                 const mezclado = mezclarOpciones(p);
-                return {
-                    pregunta: p.pregunta,
-                    opciones: mezclado.opciones,
-                    correcta: mezclado.correcta
-                };
+                return { pregunta: p.pregunta, opciones: mezclado.opciones, correcta: mezclado.correcta };
             });
         }
 
         // ============================================================
-        //  F U N C I O N E S   D E   A U T E N T I C A C I Ó N
+        //  FUNCIONES DE AUTENTICACIÓN
         // ============================================================
         function registrarUsuario() {
             const usuario = document.getElementById('regUsuario').value.trim();
@@ -1326,15 +2074,17 @@
             DB.setUsuario(usuario, {
                 password: password,
                 nombre: nombre,
+                rol: 'usuario',
                 progreso: {},
                 fechaRegistro: new Date().toISOString(),
                 bienvenidoVisto: false,
-                racha: 0
+                racha: 0,
+                tema: 'oscuro',
+                idioma: 'es'
             });
 
             errorEl.style.display = 'none';
             alert('✅ ¡Usuario registrado exitosamente!');
-            
             document.getElementById('regUsuario').value = '';
             document.getElementById('regPassword').value = '';
             document.getElementById('regNombre').value = '';
@@ -1368,10 +2118,8 @@
             DB.iniciarSesion(usuario);
             usuarioActual = usuario;
             esPrimeraVez = DB.esPrimeraVez(usuario);
-            
             document.getElementById('loginUsuario').value = '';
             document.getElementById('loginPassword').value = '';
-            
             cargarApp();
         }
 
@@ -1399,18 +2147,55 @@
             document.getElementById('regError').style.display = 'none';
         }
 
+        // ============================================================
+        //  FUNCIONES DE LA APP
+        // ============================================================
         function cargarApp() {
             document.getElementById('pantallaLogin').style.display = 'none';
             document.getElementById('pantallaApp').style.display = 'block';
-            
+
             const userData = DB.getUsuario(usuarioActual);
             document.getElementById('usuarioActual').textContent = usuarioActual;
-            document.getElementById('perfilNombre').textContent = usuarioActual;
-            document.getElementById('perfilNombreCompleto').textContent = userData ? userData.nombre : '-';
-            
+            document.getElementById('perfilNombre').textContent = userData ? userData.nombre : usuarioActual;
+            document.getElementById('perfilUsuario').textContent = '@' + usuarioActual;
+
+            // Mostrar badge de admin
+            const adminBadgeContainer = document.getElementById('adminBadgeContainer');
+            if (userData && userData.rol === 'admin') {
+                adminBadgeContainer.innerHTML = '<span class="badge-count admin-badge">🛡️ Admin</span>';
+                document.getElementById('btnAdminPanel').style.display = 'inline-flex';
+                const adminPanel = document.getElementById('adminPanel');
+                adminPanel.classList.add('visible');
+                renderizarAdminPanel();
+            } else {
+                adminBadgeContainer.innerHTML = '';
+                document.getElementById('btnAdminPanel').style.display = 'none';
+                document.getElementById('adminPanel').classList.remove('visible');
+            }
+
+            // Datos de usuario para calificaciones y preferencias
+            if (userData) {
+                document.getElementById('datoUsuario').textContent = usuarioActual;
+                document.getElementById('datoNombre').textContent = userData.nombre || '-';
+                document.getElementById('datoPassword').textContent = '••••••••';
+                document.getElementById('datoRegistro').textContent = userData.fechaRegistro ? new Date(userData.fechaRegistro).toLocaleDateString() : '-';
+                document.getElementById('prefUsuario').textContent = usuarioActual;
+                document.getElementById('prefNombre').textContent = userData.nombre || '-';
+                document.getElementById('prefPassword').textContent = '••••••••';
+                document.getElementById('prefRegistro').textContent = userData.fechaRegistro ? new Date(userData.fechaRegistro).toLocaleDateString() : '-';
+            }
+
+            // Tema
+            const tema = DB.getTema(usuarioActual);
+            aplicarTema(tema);
+
+            // Idioma
+            const idioma = DB.getIdioma(usuarioActual);
+            document.getElementById('selectIdioma').value = idioma;
+
             rachaActual = DB.getRacha(usuarioActual) || 0;
             actualizarRachaUI();
-            
+
             const bienvenida = document.getElementById('bienvenida');
             if (esPrimeraVez) {
                 bienvenida.style.display = 'flex';
@@ -1421,7 +2206,7 @@
                 bienvenida.style.display = 'none';
                 bienvenida.classList.remove('visible');
             }
-            
+
             estadoPreguntas = {};
             CARPETAS.forEach(carpeta => {
                 estadoPreguntas[carpeta.id] = {
@@ -1431,7 +2216,7 @@
                     selecciones: carpeta.preguntas.map(() => null)
                 };
             });
-            
+
             const progreso = DB.getProgreso(usuarioActual) || {};
             CARPETAS.forEach(carpeta => {
                 const key = carpeta.id;
@@ -1456,13 +2241,9 @@
         }
 
         function actualizarRachaUI() {
-            const rachaHeader = document.getElementById('rachaHeader');
+            document.getElementById('rachaHeader').textContent = rachaActual;
+            document.getElementById('perfilRacha').textContent = rachaActual;
             const rachaBadge = document.getElementById('rachaBadge');
-            const perfilRacha = document.getElementById('perfilRacha');
-            
-            rachaHeader.textContent = rachaActual;
-            perfilRacha.textContent = rachaActual;
-            
             if (rachaActual >= 3) {
                 rachaBadge.classList.add('racha-encendida');
                 rachaBadge.classList.remove('racha-activa');
@@ -1472,7 +2253,6 @@
                 rachaBadge.classList.remove('racha-encendida');
                 rachaBadge.classList.remove('racha-activa');
             }
-            
             if (usuarioActual) {
                 DB.setRacha(usuarioActual, rachaActual);
             }
@@ -1517,7 +2297,6 @@
             `;
             notif.textContent = mensaje;
             document.body.appendChild(notif);
-            
             setTimeout(() => {
                 notif.style.opacity = '0';
                 notif.style.transform = 'translateX(-50%) translateY(-20px)';
@@ -1563,6 +2342,8 @@
                 vPerfil.style.display = 'block';
                 document.getElementById('breadActual').textContent = 'Perfil';
                 actualizarPerfil();
+                cargarCalificaciones();
+                configurarTabsPerfil();
             }
             actualizarContadores();
         }
@@ -1582,15 +2363,15 @@
         function renderizarCarpetas() {
             const grid = document.getElementById('carpetasGrid');
             grid.innerHTML = '';
-            
             CARPETAS.forEach(carpeta => {
                 const estado = estadoPreguntas[carpeta.id];
                 const total = carpeta.preguntas.length;
                 const respondidas = estado.respondidas.filter(r => r === true).length;
                 const porcentaje = total > 0 ? Math.round((respondidas / total) * 100) : 0;
+                const oculta = DB.getCarpetaOculta(carpeta.id);
 
                 const card = document.createElement('div');
-                card.className = 'carpeta-card fade-in';
+                card.className = 'carpeta-card fade-in' + (oculta ? ' oculta' : '');
                 card.style.animationDelay = (CARPETAS.indexOf(carpeta) * 0.1) + 's';
                 card.innerHTML = `
                     <div class="badge-cantidad">${total}</div>
@@ -1607,25 +2388,30 @@
                         <div class="barra" style="width:${porcentaje}%;"></div>
                     </div>
                     <button class="btn btn-primary btn-iniciar" style="margin-top:14px; width:100%; padding:10px; border-radius:10px; font-size:0.9rem;">
-                        🚀 ¡Iniciar ahora!
+                        ${oculta ? '🔒 Oculto' : '🚀 ¡Iniciar ahora!'}
                     </button>
                 `;
-                
                 card.addEventListener('click', function(e) {
                     if (e.target.classList.contains('btn-iniciar')) return;
+                    if (oculta) {
+                        mostrarNotificacion('🔒 Este curso está oculto por el administrador');
+                        return;
+                    }
                     carpetaActual = carpeta.id;
                     preguntaActualIndex = 0;
                     mostrarVista('preguntas');
                 });
-                
                 const btnIniciar = card.querySelector('.btn-iniciar');
                 btnIniciar.addEventListener('click', function(e) {
                     e.stopPropagation();
+                    if (oculta) {
+                        mostrarNotificacion('🔒 Este curso está oculto por el administrador');
+                        return;
+                    }
                     carpetaActual = carpeta.id;
                     preguntaActualIndex = 0;
                     mostrarVista('preguntas');
                 });
-                
                 grid.appendChild(card);
             });
         }
@@ -1633,31 +2419,29 @@
         function mostrarPreguntaActual() {
             const carpeta = CARPETAS.find(c => c.id === carpetaActual);
             if (!carpeta) return;
-            
             const estado = estadoPreguntas[carpeta.id];
             const data = estado.preguntas[preguntaActualIndex];
             const respondida = estado.respondidas[preguntaActualIndex];
             const acertada = estado.acertadas[preguntaActualIndex];
             const seleccion = estado.selecciones[preguntaActualIndex];
             const total = carpeta.preguntas.length;
-            
+
             document.getElementById('preguntaNumeroActual').textContent = preguntaActualIndex + 1;
             document.getElementById('preguntaTotalActual').textContent = total;
-            
+
             const respondidasTotal = estado.respondidas.filter(r => r === true).length;
             const acertadasTotal = estado.acertadas.filter(a => a === true).length;
             document.getElementById('preguntasAcertadas').textContent = acertadasTotal;
             document.getElementById('preguntasRespondidas').textContent = respondidasTotal;
-            
+
             const progreso = ((preguntaActualIndex + 1) / total) * 100;
             document.getElementById('barraProgreso').style.width = progreso + '%';
-            
             document.getElementById('preguntaTexto').textContent = data.pregunta;
-            
+
             const container = document.getElementById('opcionesContainer');
             container.innerHTML = '';
             document.getElementById('feedbackContainer').innerHTML = '';
-            
+
             const letras = ['A', 'B', 'C', 'D'];
             data.opciones.forEach(function(opt, i) {
                 const div = document.createElement('div');
@@ -1667,26 +2451,21 @@
                     if (i === data.correcta) div.classList.add('correct');
                     if (i === seleccion && i !== data.correcta) div.classList.add('incorrect');
                 }
-                
                 const letterSpan = document.createElement('span');
                 letterSpan.className = 'letter';
                 letterSpan.textContent = letras[i];
-                
                 const textSpan = document.createElement('span');
                 textSpan.textContent = opt || ('Opción ' + letras[i]);
                 textSpan.style.color = '#e2e8f0';
                 textSpan.style.fontWeight = '500';
-                
                 div.appendChild(letterSpan);
                 div.appendChild(textSpan);
-                
                 if (!respondida) {
                     div.addEventListener('click', function() {
                         const esCorrecta = (i === data.correcta);
                         estado.respondidas[preguntaActualIndex] = true;
                         estado.selecciones[preguntaActualIndex] = i;
                         estado.acertadas[preguntaActualIndex] = esCorrecta;
-                        
                         procesarRespuesta(esCorrecta);
                         guardarProgreso();
                         mostrarPreguntaActual();
@@ -1695,7 +2474,7 @@
                 }
                 container.appendChild(div);
             });
-            
+
             if (respondida) {
                 const feedback = document.getElementById('feedbackContainer');
                 const fb = document.createElement('div');
@@ -1706,7 +2485,7 @@
                     '❌ Ups, la correcta era: "<strong>' + correctaTexto + '</strong>". ¡Sigue intentando! 💪';
                 feedback.appendChild(fb);
             }
-            
+
             document.getElementById('btnAnteriorPregunta').disabled = (preguntaActualIndex === 0);
             document.getElementById('btnSiguientePregunta').disabled = (preguntaActualIndex === total - 1);
         }
@@ -1714,33 +2493,145 @@
         function reiniciarPreguntaActual() {
             const carpeta = CARPETAS.find(c => c.id === carpetaActual);
             if (!carpeta) return;
-            
             const estado = estadoPreguntas[carpeta.id];
             if (!estado.respondidas[preguntaActualIndex]) {
                 mostrarNotificacion('⚠️ Esta pregunta ya está sin responder');
                 return;
             }
-            
             const preguntaOriginal = carpeta.preguntas[preguntaActualIndex];
             const mezclado = mezclarOpciones(preguntaOriginal);
-            
             estado.preguntas[preguntaActualIndex] = {
                 pregunta: preguntaOriginal.pregunta,
                 opciones: mezclado.opciones,
                 correcta: mezclado.correcta
             };
-            
             estado.respondidas[preguntaActualIndex] = false;
             estado.acertadas[preguntaActualIndex] = false;
             estado.selecciones[preguntaActualIndex] = null;
-            
             guardarProgreso();
             mostrarPreguntaActual();
             actualizarContadores();
-            
             mostrarNotificacion('🔄 Pregunta reiniciada con opciones en nuevo orden. ¡Inténtalo de nuevo!');
         }
 
+        // ============================================================
+        //  ADMIN PANEL
+        // ============================================================
+        function renderizarAdminPanel() {
+            const grid = document.getElementById('adminGrid');
+            const stats = DB.getEstadisticas();
+            const usuarios = DB.getTodosLosUsuarios();
+
+            grid.innerHTML = '';
+
+            // Estadísticas
+            const statsCard = document.createElement('div');
+            statsCard.className = 'admin-card';
+            statsCard.innerHTML = `
+                <span class="label">📊 Estadísticas</span>
+                <div class="valor">
+                    👥 ${stats.total} usuarios | 🛡️ ${stats.admins} admins | 📝 ${stats.totalPreguntas} respuestas
+                </div>
+            `;
+            grid.appendChild(statsCard);
+
+            // Gestión de usuarios
+            Object.keys(usuarios).forEach(key => {
+                const user = usuarios[key];
+                const card = document.createElement('div');
+                card.className = 'admin-card';
+                const esAdmin = user.rol === 'admin';
+                const esActual = key === usuarioActual;
+                card.innerHTML = `
+                    <span class="label">👤 ${key}</span>
+                    <div class="valor">
+                        ${user.nombre || key} ${esAdmin ? '🛡️' : ''} ${esActual ? '⭐' : ''}
+                        <span style="font-size:0.7rem; color:#94a3b8;">${user.rol || 'usuario'}</span>
+                    </div>
+                    <div class="acciones">
+                        ${!esActual ? `
+                            <button class="btn btn-sm ${esAdmin ? 'btn-warning' : 'btn-primary'}" onclick="cambiarRolAdmin('${key}')">
+                                ${esAdmin ? '⬇ Quitar Admin' : '⬆ Hacer Admin'}
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarUsuarioAdmin('${key}')">
+                                🗑️ Eliminar
+                            </button>
+                        ` : `
+                            <span style="font-size:0.7rem; color:#94a3b8;">Usuario actual</span>
+                        `}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Ocultar/Mostrar carpetas
+            CARPETAS.forEach(carpeta => {
+                const oculta = DB.getCarpetaOculta(carpeta.id);
+                const card = document.createElement('div');
+                card.className = 'admin-card';
+                card.innerHTML = `
+                    <span class="label">📁 ${carpeta.icono} ${carpeta.nombre}</span>
+                    <div class="valor" style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:0.85rem;">${oculta ? '🔒 Oculto' : '👁️ Visible'}</span>
+                        <div class="toggle-switch-sm ${oculta ? '' : 'active'}" onclick="toggleCarpetaAdmin('${carpeta.id}')">
+                            <div class="thumb-sm"></div>
+                        </div>
+                    </div>
+                    <div class="acciones" style="margin-top:8px;">
+                        <button class="btn btn-sm btn-secondary" onclick="editarTextoAdmin('${carpeta.id}')">
+                            ✏️ Editar texto
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Funciones admin globales
+        window.cambiarRolAdmin = function(usuario) {
+            const userData = DB.getUsuario(usuario);
+            if (!userData) return;
+            const nuevoRol = userData.rol === 'admin' ? 'usuario' : 'admin';
+            if (DB.cambiarRol(usuario, nuevoRol)) {
+                mostrarNotificacion(`✅ Usuario ${usuario} ahora es ${nuevoRol === 'admin' ? 'Administrador' : 'Usuario'}`);
+                renderizarAdminPanel();
+            }
+        };
+
+        window.eliminarUsuarioAdmin = function(usuario) {
+            if (confirm(`⚠️ ¿Seguro que quieres eliminar al usuario "${usuario}"?`)) {
+                if (DB.eliminarUsuario(usuario)) {
+                    mostrarNotificacion(`🗑️ Usuario ${usuario} eliminado`);
+                    renderizarAdminPanel();
+                }
+            }
+        };
+
+        window.toggleCarpetaAdmin = function(id) {
+            const oculta = DB.getCarpetaOculta(id);
+            DB.setCarpetaOculta(id, !oculta);
+            mostrarNotificacion(`📁 Carpeta ${!oculta ? 'ocultada' : 'visible'}`);
+            renderizarAdminPanel();
+            renderizarCarpetas();
+        };
+
+        window.editarTextoAdmin = function(id) {
+            const carpeta = CARPETAS.find(c => c.id === id);
+            if (!carpeta) return;
+            const textoActual = DB.getTextoPersonalizadoId(id) || carpeta.descripcion;
+            const nuevoTexto = prompt('✏️ Editar descripción de la carpeta:', textoActual);
+            if (nuevoTexto !== null && nuevoTexto.trim() !== '') {
+                DB.setTextoPersonalizado(id, nuevoTexto.trim());
+                CARPETAS.find(c => c.id === id).descripcion = nuevoTexto.trim();
+                mostrarNotificacion('✅ Texto actualizado');
+                renderizarAdminPanel();
+                renderizarCarpetas();
+            }
+        };
+
+        // ============================================================
+        //  PERFIL - FUNCIONES
+        // ============================================================
         function actualizarPerfil() {
             let totalRespondidas = 0;
             let totalAcertadas = 0;
@@ -1767,9 +2658,80 @@
             document.getElementById('perfilEstado').textContent = nivel;
         }
 
+        function cargarCalificaciones() {
+            const container = document.getElementById('calificacionesList');
+            container.innerHTML = '';
+            CARPETAS.forEach(carpeta => {
+                const estado = estadoPreguntas[carpeta.id];
+                const total = carpeta.preguntas.length;
+                const respondidas = estado.respondidas.filter(r => r === true).length;
+                const acertadas = estado.acertadas.filter(a => a === true).length;
+                const porcentaje = total > 0 ? Math.round((acertadas / total) * 100) : 0;
+
+                const item = document.createElement('div');
+                item.className = 'calificacion-item';
+                item.innerHTML = `
+                    <span class="materia">${carpeta.icono} ${carpeta.nombre}</span>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="color:#94a3b8; font-size:0.8rem;">${respondidas}/${total} respondidas</span>
+                        <span class="nota">${porcentaje}%</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function configurarTabsPerfil() {
+            const menuItems = document.querySelectorAll('.perfil-menu li');
+            const tabs = {
+                'info': document.getElementById('tab-info'),
+                'calificaciones': document.getElementById('tab-calificaciones'),
+                'preferencias': document.getElementById('tab-preferencias')
+            };
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tab = this.dataset.tab;
+                    if (tab === 'cerrar') {
+                        cerrarSesion();
+                        return;
+                    }
+                    menuItems.forEach(li => li.classList.remove('active'));
+                    this.classList.add('active');
+                    Object.keys(tabs).forEach(key => {
+                        tabs[key].classList.remove('active');
+                    });
+                    if (tabs[tab]) {
+                        tabs[tab].classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ============================================================
+        //  TEMA / IDIOMA
+        // ============================================================
+        function aplicarTema(tema) {
+            const body = document.body;
+            const toggle = document.getElementById('toggleTema');
+            const label = document.getElementById('temaLabel');
+
+            if (tema === 'claro') {
+                body.classList.add('modo-claro');
+                toggle.classList.add('active');
+                label.textContent = 'Claro';
+            } else {
+                body.classList.remove('modo-claro');
+                toggle.classList.remove('active');
+                label.textContent = 'Oscuro';
+            }
+        }
+
+        // ============================================================
+        //  REINICIAR TODO (solo desde consola)
+        // ============================================================
         function reiniciarTodoManual() {
             if (!confirm('¿Seguro que quieres reiniciar todo tu progreso?')) return;
-            
             CARPETAS.forEach(carpeta => {
                 const estado = estadoPreguntas[carpeta.id];
                 estado.preguntas = generarPreguntasMezcladas(carpeta.preguntas);
@@ -1777,17 +2739,14 @@
                 estado.acertadas = carpeta.preguntas.map(() => false);
                 estado.selecciones = carpeta.preguntas.map(() => null);
             });
-            
             rachaActual = 0;
             guardarProgreso();
             DB.setRacha(usuarioActual, 0);
-            
             carpetaActual = null;
             preguntaActualIndex = 0;
             actualizarRachaUI();
             mostrarVista('carpetas');
             actualizarContadores();
-            
             mostrarNotificacion('🔄 Todo el progreso ha sido reiniciado con nuevas opciones mezcladas');
         }
 
@@ -1807,7 +2766,6 @@
         document.getElementById('btnMostrarRegistro').addEventListener('click', mostrarRegistro);
         document.getElementById('btnMostrarLogin').addEventListener('click', mostrarLogin);
 
-        document.getElementById('btnCerrarSesion').addEventListener('click', cerrarSesion);
         document.getElementById('cerrarBienvenida').addEventListener('click', cerrarBienvenida);
         document.getElementById('btnReiniciarPregunta').addEventListener('click', reiniciarPreguntaActual);
 
@@ -1817,10 +2775,17 @@
             mostrarVista('carpetas');
         });
 
+        document.getElementById('btnAdminPanel').addEventListener('click', function() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('visible');
+            if (panel.classList.contains('visible')) {
+                renderizarAdminPanel();
+            }
+        });
+
         document.getElementById('btnIrPerfil').addEventListener('click', function() { mostrarVista('perfil'); });
         document.getElementById('btnVolverPerfil').addEventListener('click', function() { mostrarVista('carpetas'); });
         document.getElementById('btnVolverCarpetas').addEventListener('click', function() { mostrarVista('carpetas'); });
-        document.getElementById('reiniciarDesdePerfil').addEventListener('click', reiniciarTodoManual);
 
         document.getElementById('btnAnteriorPregunta').addEventListener('click', function() {
             if (preguntaActualIndex > 0) {
@@ -1843,6 +2808,20 @@
             }
         });
 
+        // Toggle tema
+        document.getElementById('toggleTema').addEventListener('click', function() {
+            const actual = DB.getTema(usuarioActual);
+            const nuevo = actual === 'oscuro' ? 'claro' : 'oscuro';
+            DB.setTema(usuarioActual, nuevo);
+            aplicarTema(nuevo);
+        });
+
+        // Select idioma
+        document.getElementById('selectIdioma').addEventListener('change', function() {
+            DB.setIdioma(usuarioActual, this.value);
+            mostrarNotificacion('🌐 Idioma cambiado a ' + (this.value === 'es' ? 'Español' : 'English'));
+        });
+
         // Enter para login
         document.getElementById('loginPassword').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') iniciarSesion();
@@ -1855,17 +2834,25 @@
         });
 
         // ============================================================
-        //  C O N S O L A   P A R A   B O R R A R   C U E N T A S
+        //  C O N S O L A
         // ============================================================
-        console.log('🔧 Para BORRAR TODAS LAS CUENTAS, escribe en la consola:');
-        console.log('   borrarTodasLasCuentas()');
+        console.log('🔧 Comandos disponibles:');
+        console.log('   reiniciarTodoManual()     - Reiniciar todo el progreso');
+        console.log('   borrarTodasLasCuentas()   - Borrar TODAS las cuentas');
+        console.log('   DB.getUsuarios()          - Ver todos los usuarios');
+        console.log('   DB.getUsuario("admin")    - Ver datos del admin');
         console.log('');
-        console.log('📊 Para ver los usuarios registrados:');
-        console.log('   DB.getUsuarios()');
+        console.log('👤 Credenciales Admin:');
+        console.log('   Usuario: admin');
+        console.log('   Contraseña: admin123');
+        console.log('');
+        console.log('🛡️ Panel Admin visible al iniciar sesión como admin');
 
         // ============================================================
         //  I N I C I O
         // ============================================================
+        crearAdminPorDefecto();
+
         if (DB.haySesion()) {
             usuarioActual = DB.getSesion();
             esPrimeraVez = DB.esPrimeraVez(usuarioActual);
@@ -1874,10 +2861,7 @@
             mostrarLogin();
         }
 
-        console.log('✅ DevQuest - Login Persistente cargado correctamente');
-        var totalPreguntas = CARPETAS.reduce(function(sum, c) { return sum + c.preguntas.length; }, 0);
-        console.log('📚 Total de preguntas: ' + totalPreguntas);
-        console.log('👤 Las cuentas se guardan en localStorage');
+        console.log('✅ DevQuest - Con Panel Admin cargado correctamente');
     </script>
 </body>
 </html>

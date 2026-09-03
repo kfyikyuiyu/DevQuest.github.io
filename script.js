@@ -1,4 +1,35 @@
 // ============================================================
+//  C R E A R   U S U A R I O   A D M I N   (FORZADO)
+// ============================================================
+// Ejecutar esto para crear el usuario admin manualmente
+function crearAdminForzado() {
+    const usuarios = localStorage.getItem('devquest_usuarios');
+    let data = usuarios ? JSON.parse(usuarios) : {};
+    
+    if (!data['admin']) {
+        data['admin'] = {
+            password: 'admin123',
+            nombre: 'Administrador',
+            rol: 'admin',
+            progreso: {},
+            fechaRegistro: new Date().toISOString(),
+            bienvenidoVisto: true,
+            racha: 0,
+            tema: 'oscuro',
+            idioma: 'es'
+        };
+        localStorage.setItem('devquest_usuarios', JSON.stringify(data));
+        console.log('✅ Usuario admin creado forzadamente');
+        console.log('👤 Usuario: admin');
+        console.log('🔒 Contraseña: admin123');
+    } else {
+        console.log('✅ Usuario admin ya existe');
+    }
+}
+
+// Ejecutar al cargar
+crearAdminForzado();
+// ============================================================
 //  B A S E   D E   D A T O S   (localStorage)
 // ============================================================
 const DB = {
