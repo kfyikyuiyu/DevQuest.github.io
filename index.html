@@ -14,6 +14,7 @@
             --bg-secondary: #0d0d14;
             --bg-card: rgba(22, 22, 35, 0.85);
             --bg-card-hover: rgba(30, 30, 48, 0.95);
+            --bg-elevated: rgba(30, 30, 48, 0.6);
             --border-color: rgba(255, 255, 255, 0.06);
             --border-hover: rgba(139, 92, 246, 0.4);
             --text-primary: #f1f5f9;
@@ -25,10 +26,13 @@
             --success: #10b981;
             --error: #ef4444;
             --warning: #f59e0b;
+            --info: #3b82f6;
             --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
             --gradient-success: linear-gradient(135deg, #10b981, #059669);
             --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
             --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-info: linear-gradient(135deg, #3b82f6, #2563eb);
+            --gradient-rainbow: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -47,6 +51,7 @@
             --bg-secondary: #f1f5f9;
             --bg-card: rgba(255, 255, 255, 0.9);
             --bg-card-hover: rgba(255, 255, 255, 1);
+            --bg-elevated: rgba(241, 245, 249, 0.8);
             --border-color: rgba(0, 0, 0, 0.08);
             --border-hover: rgba(99, 102, 241, 0.5);
             --text-primary: #0f172a;
@@ -55,7 +60,6 @@
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
             --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
-            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.1);
         }
 
         * {
@@ -64,9 +68,7 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -96,8 +98,8 @@
         }
 
         @keyframes bgPulse {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
         body::after {
@@ -113,7 +115,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1400px;
             width: 100%;
             background: var(--bg-card);
             backdrop-filter: blur(24px) saturate(180%);
@@ -132,6 +134,9 @@
             box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
+        /* ============================================================
+           🎯 HEADER
+           ============================================================ */
         .header {
             display: flex;
             justify-content: space-between;
@@ -152,9 +157,8 @@
         .header-left .logo {
             font-size: 2.6rem;
             filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.4));
-            transition: transform var(--transition-bounce);
-            cursor: default;
             animation: logoFloat 4s ease-in-out infinite;
+            cursor: default;
         }
 
         @keyframes logoFloat {
@@ -203,7 +207,7 @@
             flex-wrap: wrap;
         }
 
-        .header-right .badge-count {
+        .badge-count {
             background: rgba(255, 255, 255, 0.04);
             padding: 8px 18px;
             border-radius: 40px;
@@ -218,24 +222,26 @@
             white-space: nowrap;
         }
 
-        .header-right .badge-count:hover {
+        .badge-count:hover {
             border-color: var(--border-hover);
             background: rgba(139, 92, 246, 0.08);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
         }
 
-        .header-right .badge-count span {
+        .badge-count span {
             color: var(--accent-tertiary);
             font-weight: 700;
         }
 
-        .header-right .user-badge {
+        .user-badge {
             background: rgba(139, 92, 246, 0.1);
             border-color: rgba(139, 92, 246, 0.25);
             color: var(--accent-tertiary);
         }
 
+        /* ============================================================
+           🎮 BOTONES
+           ============================================================ */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -256,19 +262,6 @@
             overflow: hidden;
             white-space: nowrap;
             user-select: none;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .btn:hover::before {
-            opacity: 1;
         }
 
         .btn:hover {
@@ -312,6 +305,13 @@
             box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
         }
 
+        .btn-info {
+            background: var(--gradient-info);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+        }
+
         .btn-outline {
             background: transparent;
             color: var(--text-secondary);
@@ -332,18 +332,6 @@
 
         .btn-secondary:hover {
             background: rgba(139, 92, 246, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
         }
 
         .btn-sm {
@@ -358,6 +346,12 @@
             border-radius: var(--radius-md);
         }
 
+        .btn-xs {
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            border-radius: 6px;
+        }
+
         .btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
@@ -365,6 +359,9 @@
             box-shadow: none !important;
         }
 
+        /* ============================================================
+           🧭 BREADCRUMB
+           ============================================================ */
         .breadcrumb {
             display: flex;
             align-items: center;
@@ -391,14 +388,13 @@
             color: var(--accent-tertiary);
             cursor: pointer;
             font-weight: 600;
-            transition: all var(--transition-fast);
             padding: 4px 12px;
             border-radius: 8px;
+            transition: all var(--transition-fast);
         }
 
         .breadcrumb .folder-link:hover {
             background: rgba(139, 92, 246, 0.1);
-            transform: translateX(-2px);
         }
 
         .breadcrumb .current {
@@ -406,6 +402,9 @@
             font-weight: 700;
         }
 
+        /* ============================================================
+           📊 STATS RÁPIDOS
+           ============================================================ */
         .stats-rapidos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -422,14 +421,12 @@
             align-items: center;
             gap: 14px;
             transition: all var(--transition-bounce);
-            cursor: default;
         }
 
         .stat-rapido:hover {
             transform: translateY(-4px);
             border-color: var(--border-hover);
             box-shadow: var(--shadow-md);
-            background: var(--bg-card-hover);
         }
 
         .stat-rapido .icon {
@@ -459,6 +456,9 @@
             letter-spacing: 0.5px;
         }
 
+        /* ============================================================
+           📁 CARPETAS
+           ============================================================ */
         #vistaCarpetas { display: block; }
 
         .carpetas-grid {
@@ -477,7 +477,6 @@
             transition: all var(--transition-bounce);
             text-align: center;
             position: relative;
-            box-shadow: var(--shadow-sm);
             overflow: hidden;
         }
 
@@ -493,9 +492,7 @@
             transition: opacity var(--transition-base);
         }
 
-        .carpeta-card:hover::before {
-            opacity: 1;
-        }
+        .carpeta-card:hover::before { opacity: 1; }
 
         .carpeta-card:hover {
             border-color: var(--border-hover);
@@ -508,7 +505,6 @@
             opacity: 0.35;
             filter: grayscale(1);
             pointer-events: none;
-            cursor: not-allowed;
         }
 
         .carpeta-card .icon {
@@ -516,7 +512,6 @@
             margin-bottom: 12px;
             display: block;
             transition: transform var(--transition-bounce);
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
         }
 
         .carpeta-card:hover .icon {
@@ -536,7 +531,6 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-top: 6px;
-            font-weight: 500;
             line-height: 1.5;
         }
 
@@ -574,23 +568,6 @@
             background: var(--gradient-primary);
             border-radius: 8px;
             transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-        }
-
-        .carpeta-card .progreso .barra::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         .carpeta-card .meta-info {
@@ -603,12 +580,9 @@
             flex-wrap: wrap;
         }
 
-        .carpeta-card .meta-info span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
+        /* ============================================================
+           ❓ PREGUNTAS
+           ============================================================ */
         #vistaPreguntas { display: none; }
 
         .question-card {
@@ -649,24 +623,6 @@
             font-weight: 500;
             font-size: 0.98rem;
             color: var(--text-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .question-card .options-grid .opt::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .question-card .options-grid .opt:hover:not(.disabled)::before {
-            opacity: 1;
         }
 
         .question-card .options-grid .opt:hover:not(.disabled) {
@@ -688,27 +644,13 @@
             font-size: 0.9rem;
             flex-shrink: 0;
             color: var(--text-muted);
-            transition: all var(--transition-base);
             border: 1px solid var(--border-color);
-        }
-
-        .question-card .options-grid .opt:hover:not(.disabled) .letter {
-            background: var(--gradient-primary);
-            color: white;
-            border-color: transparent;
-            transform: scale(1.05);
+            transition: all var(--transition-base);
         }
 
         .question-card .options-grid .opt.correct {
             border-color: var(--success);
             background: rgba(16, 185, 129, 0.1);
-            animation: correctPulse 0.5s ease;
-        }
-
-        @keyframes correctPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
         }
 
         .question-card .options-grid .opt.correct .letter {
@@ -720,15 +662,6 @@
         .question-card .options-grid .opt.incorrect {
             border-color: var(--error);
             background: rgba(239, 68, 68, 0.1);
-            animation: shake 0.5s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-8px); }
-            40% { transform: translateX(8px); }
-            60% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
         }
 
         .question-card .options-grid .opt.incorrect .letter {
@@ -742,11 +675,6 @@
             opacity: 0.75;
         }
 
-        .question-card .options-grid .opt.disabled:hover {
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
         .question-card .feedback-text {
             margin-top: 20px;
             padding: 18px 24px;
@@ -755,8 +683,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1rem;
-            animation: fadeInUp 0.4s var(--transition-bounce);
         }
 
         .feedback-text.ok {
@@ -765,20 +691,10 @@
             border-left: 4px solid var(--success);
         }
 
-        body.light-mode .feedback-text.ok {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
         .feedback-text.fail {
             background: rgba(239, 68, 68, 0.1);
             color: #fca5a5;
             border-left: 4px solid var(--error);
-        }
-
-        body.light-mode .feedback-text.fail {
-            background: #fee2e2;
-            color: #991b1b;
         }
 
         .question-card .acciones {
@@ -821,7 +737,6 @@
             background: rgba(255, 255, 255, 0.06);
             border-radius: 8px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-bar .fill {
@@ -829,20 +744,11 @@
             background: var(--gradient-primary);
             border-radius: 8px;
             transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
         }
 
-        .progress-bar .fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 2s infinite;
-        }
-
+        /* ============================================================
+           👤 PERFIL
+           ============================================================ */
         #pantallaPerfil { display: none; }
 
         .perfil-grid {
@@ -853,10 +759,7 @@
         }
 
         @media (max-width: 800px) {
-            .perfil-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+            .perfil-grid { grid-template-columns: 1fr; }
         }
 
         .perfil-sidebar {
@@ -889,18 +792,6 @@
             box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
             transition: transform var(--transition-bounce);
             cursor: default;
-            position: relative;
-        }
-
-        .perfil-avatar .avatar::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            z-index: -1;
-            opacity: 0.3;
-            filter: blur(12px);
         }
 
         .perfil-avatar .avatar:hover {
@@ -911,7 +802,6 @@
             font-size: 1.35rem;
             font-weight: 800;
             color: var(--text-primary);
-            letter-spacing: -0.4px;
         }
 
         .perfil-avatar .usuario {
@@ -937,20 +827,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .perfil-menu li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity var(--transition-base);
         }
 
         .perfil-menu li:hover {
@@ -962,10 +838,6 @@
         .perfil-menu li.active {
             background: rgba(139, 92, 246, 0.12);
             color: var(--accent-tertiary);
-        }
-
-        .perfil-menu li.active::before {
-            opacity: 1;
         }
 
         .perfil-menu li .icon {
@@ -1012,13 +884,11 @@
             text-align: center;
             border: 1px solid var(--border-color);
             transition: all var(--transition-bounce);
-            cursor: default;
         }
 
         .stat-card-perfil:hover {
             transform: translateY(-6px);
             border-color: var(--border-hover);
-            box-shadow: var(--shadow-md);
         }
 
         .stat-card-perfil .numero {
@@ -1037,7 +907,6 @@
             margin-top: 4px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .stat-card-perfil .emoji {
@@ -1054,9 +923,7 @@
         }
 
         @media (max-width: 600px) {
-            .preferencias-grid {
-                grid-template-columns: 1fr;
-            }
+            .preferencias-grid { grid-template-columns: 1fr; }
         }
 
         .preferencia-item {
@@ -1069,7 +936,6 @@
 
         .preferencia-item:hover {
             border-color: var(--border-hover);
-            background: rgba(139, 92, 246, 0.04);
         }
 
         .preferencia-item .label {
@@ -1079,7 +945,6 @@
             display: block;
             margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .preferencia-item .valor {
@@ -1102,12 +967,10 @@
             font-family: 'Inter', sans-serif;
             outline: none;
             cursor: pointer;
-            transition: all var(--transition-base);
         }
 
         .preferencia-item select:focus {
             border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
         }
 
         .toggle-switch {
@@ -1125,7 +988,6 @@
         .toggle-switch.active {
             background: var(--gradient-primary);
             border-color: transparent;
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
 
         .toggle-switch .thumb {
@@ -1137,18 +999,9 @@
             border-radius: 50%;
             background: white;
             transition: all var(--transition-bounce);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .toggle-switch.active .thumb {
-            left: 28px;
-        }
-
-        .toggle-label {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
+        .toggle-switch.active .thumb { left: 28px; }
 
         .datos-usuario {
             background: rgba(255, 255, 255, 0.02);
@@ -1166,14 +1019,11 @@
             align-items: center;
         }
 
-        .datos-usuario .dato:last-child {
-            border-bottom: none;
-        }
+        .datos-usuario .dato:last-child { border-bottom: none; }
 
         .datos-usuario .dato .label {
             color: var(--text-muted);
             font-size: 0.88rem;
-            font-weight: 500;
         }
 
         .datos-usuario .dato .valor {
@@ -1191,9 +1041,7 @@
             flex-wrap: wrap;
         }
 
-        .calificacion-item:last-child {
-            border-bottom: none;
-        }
+        .calificacion-item:last-child { border-bottom: none; }
 
         .calificacion-item .materia {
             color: var(--text-primary);
@@ -1212,6 +1060,9 @@
             font-size: 1.2rem;
         }
 
+        /* ============================================================
+           🔐 LOGIN
+           ============================================================ */
         #pantallaLogin {
             max-width: 440px;
             margin: 0 auto;
@@ -1234,11 +1085,6 @@
         #pantallaLogin input:focus {
             border-color: var(--accent-primary);
             box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
-            background: rgba(139, 92, 246, 0.04);
-        }
-
-        #pantallaLogin input::placeholder {
-            color: var(--text-muted);
         }
 
         #pantallaLogin label {
@@ -1261,9 +1107,11 @@
             padding: 12px 16px;
             border-radius: var(--radius-sm);
             border: 1px solid rgba(239, 68, 68, 0.15);
-            animation: fadeInUp 0.3s ease;
         }
 
+        /* ============================================================
+           🎉 BIENVENIDA
+           ============================================================ */
         #bienvenida {
             display: none;
             background: rgba(139, 92, 246, 0.08);
@@ -1273,12 +1121,9 @@
             margin-bottom: 20px;
             align-items: center;
             gap: 16px;
-            animation: fadeInUp 0.5s var(--transition-bounce);
         }
 
-        #bienvenida.visible {
-            display: flex;
-        }
+        #bienvenida.visible { display: flex; }
 
         #bienvenida button {
             background: none;
@@ -1288,7 +1133,6 @@
             font-size: 1.2rem;
             padding: 6px 10px;
             border-radius: 8px;
-            transition: all var(--transition-base);
             margin-left: auto;
         }
 
@@ -1297,18 +1141,17 @@
             color: var(--text-primary);
         }
 
+        /* ============================================================
+           🔥 RACHA
+           ============================================================ */
         @keyframes rachaPulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.4); color: #fbbf24; text-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+            50% { transform: scale(1.4); color: #fbbf24; }
             100% { transform: scale(1); }
         }
 
         .racha-activa {
             animation: rachaPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 3;
-        }
-
-        #rachaBadge {
-            transition: all var(--transition-base);
         }
 
         #rachaBadge.racha-encendida {
@@ -1330,13 +1173,17 @@
             letter-spacing: 0.8px;
         }
 
+        /* ============================================================
+           🛡️ ADMIN PANEL — DASHBOARD PROFESIONAL
+           ============================================================ */
         .admin-panel {
             background: rgba(255, 255, 255, 0.02);
             border-radius: var(--radius-lg);
-            padding: 28px;
+            padding: 0;
             border: 1px solid var(--border-color);
             margin-top: 20px;
             display: none;
+            overflow: hidden;
         }
 
         .admin-panel.visible {
@@ -1344,67 +1191,667 @@
             animation: fadeInUp 0.4s var(--transition-bounce);
         }
 
-        .admin-panel .titulo {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text-primary);
+        .admin-header {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .admin-panel .titulo .badge-admin {
-            background: var(--gradient-danger);
-            color: white;
-            font-size: 0.65rem;
-            padding: 4px 14px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-weight: 800;
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            flex-wrap: wrap;
             gap: 16px;
         }
 
-        .admin-card {
-            background: rgba(255, 255, 255, 0.02);
+        .admin-header .title-block {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-header .icon-shield {
+            font-size: 2.4rem;
+            animation: shieldGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes shieldGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.8)); }
+        }
+
+        .admin-header h2 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--gradient-danger);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .admin-header .subtitle-admin {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Admin Tabs */
+        .admin-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 12px 24px 0 24px;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .admin-tabs::-webkit-scrollbar { height: 4px; }
+        .admin-tabs::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .admin-tab {
+            padding: 12px 22px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            color: var(--text-secondary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            top: 1px;
+        }
+
+        .admin-tab:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+        }
+
+        .admin-tab.active {
+            color: var(--accent-tertiary);
+            background: rgba(139, 92, 246, 0.08);
+            border-bottom-color: var(--accent-primary);
+        }
+
+        .admin-tab .badge-tab {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent-tertiary);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        .admin-body {
+            padding: 28px 32px 32px 32px;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+            animation: fadeInUp 0.35s var(--transition-bounce);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(99, 102, 241, 0.04));
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-bounce);
+            cursor: default;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .dashboard-card:hover::before { opacity: 1; }
+
+        .dashboard-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dashboard-card .dc-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .dashboard-card .dc-value {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-card .dc-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-card .dc-trend {
+            font-size: 0.75rem;
+            color: var(--success);
+            font-weight: 700;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sección de búsqueda */
+        .admin-toolbar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .admin-search {
+            flex: 1;
+            min-width: 220px;
+            position: relative;
+        }
+
+        .admin-search input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border-radius: var(--radius-sm);
             border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
             transition: all var(--transition-base);
         }
 
-        .admin-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: var(--shadow-sm);
+        .admin-search input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
         }
 
-        .admin-card .label {
+        .admin-search::before {
+            content: '🔍';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.95rem;
+            opacity: 0.6;
+        }
+
+        /* Tabla de usuarios */
+        .users-table-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .users-table thead {
+            background: rgba(139, 92, 246, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .users-table thead th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .users-table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .users-table tbody tr:hover {
+            background: rgba(139, 92, 246, 0.06);
+        }
+
+        .users-table tbody tr:last-child { border-bottom: none; }
+
+        .users-table td {
+            padding: 14px 16px;
+            color: var(--text-primary);
+            vertical-align: middle;
+        }
+
+        .users-table .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .users-table .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            font-weight: 800;
+            color: white;
+        }
+
+        .users-table .user-info .user-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.92rem;
+        }
+
+        .users-table .user-info .user-handle {
             font-size: 0.75rem;
             color: var(--text-muted);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .users-table .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .admin-card .valor {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+        .users-table .role-badge.admin {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.25);
         }
 
-        .admin-card .acciones {
+        .users-table .role-badge.user {
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .users-table .stat-mini {
             display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .users-table .stat-mini .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        .users-table .stat-mini.warn .dot { background: var(--warning); }
+        .users-table .stat-mini.danger .dot { background: var(--error); }
+
+        .users-table .actions-cell {
+            display: flex;
+            gap: 4px;
+            justify-content: flex-end;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            padding: 0;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+            border-color: var(--border-hover);
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-tertiary);
+        }
+
+        .icon-btn.danger:hover {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+        }
+
+        .icon-btn.success:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.1);
+            color: #6ee7b7;
+        }
+
+        /* Modal Detalles Usuario */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            max-width: 720px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            animation: modalIn 0.4s var(--transition-bounce);
+            position: relative;
+        }
+
+        @keyframes modalIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+        }
+
+        .modal-header .title-info h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .modal-header .title-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 4px;
+        }
+
+        .modal-section-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin: 24px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .modal-data-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+        }
+
+        .modal-data-item .md-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .modal-data-item .md-value {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        .modal-data-item .md-value.mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .modal-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-progress-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+        }
+
+        .modal-progress-item .mp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
             gap: 8px;
             flex-wrap: wrap;
+        }
+
+        .modal-progress-item .mp-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .modal-progress-item .mp-stats {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .modal-progress-item .mp-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .modal-progress-item .mp-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        /* Gestión de Cursos */
+        .course-admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .course-admin-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: all var(--transition-base);
+        }
+
+        .course-admin-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .course-admin-card .ca-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .course-admin-card .ca-icon {
+            font-size: 2.2rem;
+        }
+
+        .course-admin-card .ca-info .ca-name {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .course-admin-card .ca-info .ca-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .course-admin-card .ca-toggles {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .course-admin-card .ca-toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .course-admin-card .ca-toggle-row span {
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         .toggle-switch-sm {
@@ -1434,42 +1881,273 @@
             border-radius: 50%;
             background: white;
             transition: all var(--transition-bounce);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
 
-        .toggle-switch-sm.active .thumb-sm {
-            left: 20px;
+        .toggle-switch-sm.active .thumb-sm { left: 20px; }
+
+        /* Actividad reciente */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
+        .activity-item {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .activity-item:hover {
+            background: rgba(139, 92, 246, 0.05);
+            transform: translateX(4px);
+        }
+
+        .activity-item .ac-icon {
+            font-size: 1.4rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .activity-item .ac-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .activity-item .ac-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        .activity-item .ac-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .activity-item .ac-time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+        }
+
+        /* Configuración */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .setting-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .setting-card .sc-title {
+            font-weight: 800;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .setting-card .sc-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* Estadísticas visuales */
+        .chart-bar-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .chart-bar-container .cb-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            height: 180px;
+            padding-bottom: 30px;
+            position: relative;
+        }
+
+        .bar-chart .bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-chart .bar {
+            width: 100%;
+            max-width: 50px;
+            background: var(--gradient-primary);
+            border-radius: 6px 6px 0 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            min-height: 4px;
+            box-shadow: 0 -4px 16px rgba(139, 92, 246, 0.3);
+        }
+
+        .bar-chart .bar:hover {
+            filter: brightness(1.2);
+            transform: scaleY(1.05);
+        }
+
+        .bar-chart .bar-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-align: center;
+            position: absolute;
+            bottom: -24px;
+            white-space: nowrap;
+        }
+
+        .bar-chart .bar-value {
+            font-size: 0.72rem;
+            color: var(--accent-tertiary);
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Exportación / herramientas */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            transition: all var(--transition-bounce);
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .tool-card .tc-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tool-card .tc-title {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .tool-card .tc-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state .es-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        .empty-state .es-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .empty-state .es-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           📱 RESPONSIVE
+           ============================================================ */
         @media (max-width: 768px) {
             body { padding: 12px; }
             .container { padding: 24px 20px; border-radius: 24px; }
-            .header { flex-direction: column; align-items: stretch; gap: 12px; }
+            .header { flex-direction: column; align-items: stretch; }
             .header-left h1 { font-size: 1.6rem; }
-            .header-left .subtitle { display: none; }
-            .carpetas-grid { grid-template-columns: 1fr; gap: 16px; }
+            .carpetas-grid { grid-template-columns: 1fr; }
             .question-card { padding: 24px 20px; }
             .question-card .q-text { font-size: 1.15rem; }
-            .btn { padding: 10px 18px; font-size: 0.85rem; }
-            .btn-lg { padding: 14px 24px; font-size: 0.95rem; }
-            .header-right { flex-wrap: wrap; justify-content: flex-start; }
             .perfil-grid { grid-template-columns: 1fr; }
-            .perfil-content { padding: 24px 20px; }
             .preferencias-grid { grid-template-columns: 1fr; }
-            .admin-grid { grid-template-columns: 1fr; }
-            .stats-rapidos { grid-template-columns: 1fr 1fr; }
+            .admin-body { padding: 20px 16px; }
+            .admin-header { padding: 20px; }
+            .admin-tabs { padding: 8px 12px 0 12px; }
+            .admin-tab { padding: 10px 14px; font-size: 0.78rem; }
+            .users-table { font-size: 0.78rem; }
+            .users-table thead th,
+            .users-table td { padding: 10px 8px; }
+            .modal-content { padding: 24px 20px; }
+            .dashboard-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 20px 16px; border-radius: 20px; }
-            .carpetas-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px 16px; }
             .header-right .badge-count { font-size: 0.72rem; padding: 6px 12px; }
             .btn-sm { padding: 6px 12px; font-size: 0.75rem; }
-            #pantallaLogin { padding: 0; }
-            .stats-rapidos { grid-template-columns: 1fr; }
-            .perfil-sidebar { position: static; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .modal-data-grid { grid-template-columns: 1fr; }
         }
 
+        /* ============================================================
+           ✨ ANIMACIONES
+           ============================================================ */
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(24px) scale(0.97); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -1480,18 +2158,10 @@
             100% { opacity: 1; }
         }
 
-        .fade-in {
-            animation: fadeInUp 0.5s var(--transition-bounce) forwards;
-        }
+        .fade-in { animation: fadeInUp 0.5s var(--transition-bounce) forwards; }
 
-        .perfil-tab {
-            display: none;
-        }
-
-        .perfil-tab.active {
-            display: block;
-            animation: fadeInUp 0.3s ease;
-        }
+        .perfil-tab { display: none; }
+        .perfil-tab.active { display: block; animation: fadeInUp 0.3s ease; }
 
         .text-muted { color: var(--text-muted); font-size: 0.85rem; }
         .text-center { text-align: center; }
@@ -1519,6 +2189,7 @@
             gap: 10px;
         }
 
+        /* Notificaciones */
         .notificacion {
             position: fixed;
             top: 24px;
@@ -1541,28 +2212,22 @@
             max-width: 90vw;
         }
 
-        .notificacion.show {
-            transform: translateX(-50%) translateY(0);
-        }
+        .notificacion.show { transform: translateX(-50%) translateY(0); }
 
-        .notificacion.success {
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
-        }
+        .notificacion.success { border-color: rgba(16, 185, 129, 0.3); }
+        .notificacion.error { border-color: rgba(239, 68, 68, 0.3); }
+        .notificacion.warning { border-color: rgba(245, 158, 11, 0.3); }
+        .notificacion.info { border-color: rgba(139, 92, 246, 0.3); }
 
-        .notificacion.error {
-            border-color: rgba(239, 68, 68, 0.3);
-            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.15);
+        /* Scroll personalizado */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
         }
-
-        .notificacion.warning {
-            border-color: rgba(245, 158, 11, 0.3);
-            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
-        }
-
-        .notificacion.info {
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.5);
         }
     </style>
 </head>
@@ -1570,6 +2235,9 @@
 
     <div class="container" id="app">
 
+        <!-- ============================================================
+        🔐 LOGIN
+        ============================================================ -->
         <div id="pantallaLogin" class="fade-in">
             <div style="text-align:center; margin-bottom:36px;">
                 <span style="font-size:5rem; display:block; margin-bottom:8px;">🧠</span>
@@ -1588,7 +2256,7 @@
                 </div>
                 <button class="btn btn-primary btn-lg" id="btnLogin" style="width:100%;">🚀 Iniciar Sesión</button>
                 <p style="text-align:center; color:var(--text-secondary); font-size:0.88rem; margin-top:20px;">
-                    ¿No tienes cuenta? <span id="btnMostrarRegistro" style="color:var(--accent-tertiary); cursor:pointer; font-weight:700; transition:all 0.2s;">Regístrate aquí</span>
+                    ¿No tienes cuenta? <span id="btnMostrarRegistro" style="color:var(--accent-tertiary); cursor:pointer; font-weight:700;">Regístrate aquí</span>
                 </p>
                 <div id="loginError" class="login-error"></div>
             </div>
@@ -1608,19 +2276,22 @@
                 </div>
                 <button class="btn btn-success btn-lg" id="btnRegistro" style="width:100%;">📝 Registrarse</button>
                 <p style="text-align:center; color:var(--text-secondary); font-size:0.88rem; margin-top:20px;">
-                    ¿Ya tienes cuenta? <span id="btnMostrarLogin" style="color:var(--accent-tertiary); cursor:pointer; font-weight:700; transition:all 0.2s;">Inicia sesión</span>
+                    ¿Ya tienes cuenta? <span id="btnMostrarLogin" style="color:var(--accent-tertiary); cursor:pointer; font-weight:700;">Inicia sesión</span>
                 </p>
                 <div id="regError" class="login-error"></div>
             </div>
         </div>
 
+        <!-- ============================================================
+        🏠 APP PRINCIPAL
+        ============================================================ -->
         <div id="pantallaApp" style="display:none;">
 
             <div class="header">
                 <div class="header-left">
                     <span class="logo">🧠</span>
                     <h1>DevQuest</h1>
-                    <span class="subtitle">v2.0</span>
+                    <span class="subtitle">v3.0</span>
                 </div>
                 <div class="header-right">
                     <span class="badge-count user-badge">👤 <span id="usuarioActual">Usuario</span></span>
@@ -1645,18 +2316,220 @@
                 <span class="separator">›</span>
                 <span class="current" id="breadActual">Cursos</span>
                 <span style="margin-left:auto; display:flex; gap:8px; align-items:center;">
-                    <button class="btn btn-danger btn-sm" id="btnAdminPanel" style="display:none;">🛡️ Admin</button>
+                    <button class="btn btn-danger btn-sm" id="btnAdminPanel" style="display:none;">🛡️ Panel Admin</button>
                 </span>
             </div>
 
+            <!-- ============================================================
+            🛡️ ADMIN PANEL - DASHBOARD COMPLETO
+            ============================================================ -->
             <div class="admin-panel" id="adminPanel">
-                <div class="titulo">
-                    🛡️ Panel de Administración
-                    <span class="badge-admin">Admin</span>
+                <div class="admin-header">
+                    <div class="title-block">
+                        <span class="icon-shield">🛡️</span>
+                        <div>
+                            <h2>Panel de Administración</h2>
+                            <div class="subtitle-admin">Control total de usuarios, cursos y estadísticas</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button class="btn btn-info btn-sm" onclick="exportarDatos()">📥 Exportar</button>
+                        <button class="btn btn-warning btn-sm" onclick="importarDatos()">📤 Importar</button>
+                    </div>
                 </div>
-                <div class="admin-grid" id="adminGrid"></div>
+
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-admin-tab="dashboard">
+                        <span>📊</span> Dashboard
+                    </div>
+                    <div class="admin-tab" data-admin-tab="usuarios">
+                        <span>👥</span> Usuarios <span class="badge-tab" id="badgeUsuarios">0</span>
+                    </div>
+                    <div class="admin-tab" data-admin-tab="cursos">
+                        <span>📚</span> Cursos
+                    </div>
+                    <div class="admin-tab" data-admin-tab="actividad">
+                        <span>⚡</span> Actividad
+                    </div>
+                    <div class="admin-tab" data-admin-tab="herramientas">
+                        <span>🔧</span> Herramientas
+                    </div>
+                    <div class="admin-tab" data-admin-tab="config">
+                        <span>⚙️</span> Configuración
+                    </div>
+                </div>
+
+                <div class="admin-body">
+
+                    <!-- SECCIÓN: DASHBOARD -->
+                    <div class="admin-section active" data-admin-section="dashboard">
+                        <div class="dashboard-grid" id="dashboardGrid"></div>
+                        
+                        <div class="chart-bar-container">
+                            <div class="cb-title">📈 Progreso por curso</div>
+                            <div class="bar-chart" id="barChartCursos"></div>
+                        </div>
+
+                        <div class="chart-bar-container">
+                            <div class="cb-title">🏆 Top 5 usuarios con más aciertos</div>
+                            <div id="topUsuarios"></div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN: USUARIOS -->
+                    <div class="admin-section" data-admin-section="usuarios">
+                        <div class="admin-toolbar">
+                            <div class="admin-search">
+                                <input type="text" id="searchUsuarios" placeholder="Buscar usuario o nombre...">
+                            </div>
+                            <select id="filtroRol" style="padding:12px 16px; border-radius:var(--radius-sm); border:1px solid var(--border-color); background:rgba(255,255,255,0.03); color:var(--text-primary); font-family:'Inter',sans-serif; font-weight:600; font-size:0.88rem; outline:none; cursor:pointer;">
+                                <option value="todos">Todos los roles</option>
+                                <option value="admin">Solo admins</option>
+                                <option value="usuario">Solo usuarios</option>
+                            </select>
+                            <select id="ordenUsuarios" style="padding:12px 16px; border-radius:var(--radius-sm); border:1px solid var(--border-color); background:rgba(255,255,255,0.03); color:var(--text-primary); font-family:'Inter',sans-serif; font-weight:600; font-size:0.88rem; outline:none; cursor:pointer;">
+                                <option value="nombre">Ordenar por nombre</option>
+                                <option value="aciertos">Más aciertos</option>
+                                <option value="reciente">Más reciente</option>
+                                <option value="antiguo">Más antiguo</option>
+                            </select>
+                            <button class="btn btn-danger btn-sm" onclick="confirmarEliminarTodos()">🗑️ Eliminar todos</button>
+                        </div>
+                        <div class="users-table-wrapper">
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Rol</th>
+                                        <th>Progreso</th>
+                                        <th>Aciertos</th>
+                                        <th>Racha</th>
+                                        <th>Registro</th>
+                                        <th style="text-align:right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN: CURSOS -->
+                    <div class="admin-section" data-admin-section="cursos">
+                        <div class="course-admin-grid" id="courseAdminGrid"></div>
+                    </div>
+
+                    <!-- SECCIÓN: ACTIVIDAD -->
+                    <div class="admin-section" data-admin-section="actividad">
+                        <div class="activity-list" id="activityList"></div>
+                    </div>
+
+                    <!-- SECCIÓN: HERRAMIENTAS -->
+                    <div class="admin-section" data-admin-section="herramientas">
+                        <div class="tools-grid">
+                            <div class="tool-card" onclick="exportarDatos()">
+                                <span class="tc-icon">📥</span>
+                                <div class="tc-title">Exportar datos</div>
+                                <div class="tc-desc">Descarga un archivo JSON con todos los usuarios y su progreso</div>
+                            </div>
+                            <div class="tool-card" onclick="importarDatos()">
+                                <span class="tc-icon">📤</span>
+                                <div class="tc-title">Importar datos</div>
+                                <div class="tc-desc">Restaura datos desde un archivo JSON previamente exportado</div>
+                            </div>
+                            <div class="tool-card" onclick="reiniciarProgresoTodos()">
+                                <span class="tc-icon">🔄</span>
+                                <div class="tc-title">Reiniciar progreso</div>
+                                <div class="tc-desc">Reinicia el progreso de TODOS los usuarios (sin borrar cuentas)</div>
+                            </div>
+                            <div class="tool-card" onclick="limpiarProgresoUnUsuario()">
+                                <span class="tc-icon">🧹</span>
+                                <div class="tc-title">Limpiar progreso</div>
+                                <div class="tc-desc">Elimina el progreso de un usuario específico</div>
+                            </div>
+                            <div class="tool-card" onclick="crearUsuarioRapido()">
+                                <span class="tc-icon">➕</span>
+                                <div class="tc-title">Crear usuario</div>
+                                <div class="tc-desc">Crea rápidamente una cuenta de usuario o admin</div>
+                            </div>
+                            <div class="tool-card" onclick="cambiarPasswordAdmin()">
+                                <span class="tc-icon">🔑</span>
+                                <div class="tc-title">Cambiar contraseña admin</div>
+                                <div class="tc-desc">Cambia la contraseña de tu cuenta de administrador</div>
+                            </div>
+                            <div class="tool-card" onclick="verEstadisticasCompletas()">
+                                <span class="tc-icon">📊</span>
+                                <div class="tc-title">Estadísticas completas</div>
+                                <div class="tc-desc">Ver reporte detallado con todas las métricas</div>
+                            </div>
+                            <div class="tool-card" onclick="borrarTodasLasCuentas()" style="border-color:rgba(239,68,68,0.2);">
+                                <span class="tc-icon">🗑️</span>
+                                <div class="tc-title" style="color:#fca5a5;">Borrar todo</div>
+                                <div class="tc-desc">Elimina TODAS las cuentas y progreso (¡cuidado!)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN: CONFIGURACIÓN -->
+                    <div class="admin-section" data-admin-section="config">
+                        <div class="settings-grid">
+                            <div class="setting-card">
+                                <div class="sc-title">🎨 Apariencia global</div>
+                                <div class="sc-desc">Configura el aspecto visual predeterminado de la aplicación</div>
+                                <div class="ca-toggle-row" style="margin-bottom:10px;">
+                                    <span style="font-size:0.88rem; color:var(--text-secondary); font-weight:600;">Modo oscuro por defecto</span>
+                                    <div class="toggle-switch-sm active" onclick="toggleConfig('modoOscuro', this)">
+                                        <div class="thumb-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="ca-toggle-row">
+                                    <span style="font-size:0.88rem; color:var(--text-secondary); font-weight:600;">Mostrar estadísticas públicas</span>
+                                    <div class="toggle-switch-sm active" onclick="toggleConfig('mostrarStats', this)">
+                                        <div class="thumb-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-card">
+                                <div class="sc-title">🔒 Seguridad</div>
+                                <div class="sc-desc">Opciones de seguridad y control de acceso</div>
+                                <div class="ca-toggle-row" style="margin-bottom:10px;">
+                                    <span style="font-size:0.88rem; color:var(--text-secondary); font-weight:600;">Permitir registro público</span>
+                                    <div class="toggle-switch-sm active" onclick="toggleConfig('registroPublico', this)">
+                                        <div class="thumb-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="ca-toggle-row">
+                                    <span style="font-size:0.88rem; color:var(--text-secondary); font-weight:600;">Modo mantenimiento</span>
+                                    <div class="toggle-switch-sm" onclick="toggleConfig('mantenimiento', this)">
+                                        <div class="thumb-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-card">
+                                <div class="sc-title">📊 Sistema</div>
+                                <div class="sc-desc">Información del sistema y almacenamiento</div>
+                                <div id="systemInfo" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.8;"></div>
+                            </div>
+
+                            <div class="setting-card">
+                                <div class="sc-title">ℹ️ Acerca de</div>
+                                <div class="sc-desc">Información de la aplicación</div>
+                                <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.8;">
+                                    <div><strong style="color:var(--text-primary);">DevQuest</strong> v3.0</div>
+                                    <div>Sistema de aprendizaje de programación</div>
+                                    <div style="margin-top:8px;">👨‍💻 Desarrollado con ❤️</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
+            <!-- ============================================================
+            📁 VISTA CARPETAS
+            ============================================================ -->
             <div id="vistaCarpetas" class="fade-in">
                 <div class="stats-rapidos">
                     <div class="stat-rapido">
@@ -1696,20 +2569,19 @@
                 <div class="carpetas-grid" id="carpetasGrid"></div>
             </div>
 
+            <!-- ============================================================
+            ❓ VISTA PREGUNTAS
+            ============================================================ -->
             <div id="vistaPreguntas" class="fade-in">
                 <div class="flex-between mb-16">
-                    <span style="font-size:1.25rem; font-weight:800; color:var(--text-primary); letter-spacing:-0.4px;" id="tituloCarpeta">🌐 Curso</span>
+                    <span style="font-size:1.25rem; font-weight:800; color:var(--text-primary);" id="tituloCarpeta">🌐 Curso</span>
                     <span class="text-muted" id="infoCarpeta">0 preguntas • 0 respondidas</span>
                 </div>
                 
                 <div class="progress-container">
                     <div class="progress-header">
-                        <span class="info">
-                            Pregunta <span id="preguntaNumeroActual">1</span> de <span id="preguntaTotalActual">50</span>
-                        </span>
-                        <span class="info">
-                            ✅ <span id="preguntasAcertadas">0</span> / <span id="preguntasRespondidas">0</span>
-                        </span>
+                        <span class="info">Pregunta <span id="preguntaNumeroActual">1</span> de <span id="preguntaTotalActual">50</span></span>
+                        <span class="info">✅ <span id="preguntasAcertadas">0</span> / <span id="preguntasRespondidas">0</span></span>
                     </div>
                     <div class="progress-bar">
                         <div class="fill" id="barraProgreso" style="width:0%;"></div>
@@ -1729,9 +2601,12 @@
                 </div>
             </div>
 
+            <!-- ============================================================
+            👤 PERFIL
+            ============================================================ -->
             <div id="pantallaPerfil" class="fade-in">
                 <div class="flex-between mb-20">
-                    <h2 style="font-size:1.5rem; color:var(--text-primary); font-weight:900; letter-spacing:-0.5px;">👤 Mi Perfil</h2>
+                    <h2 style="font-size:1.5rem; color:var(--text-primary); font-weight:900;">👤 Mi Perfil</h2>
                     <button class="btn btn-secondary btn-sm" id="btnVolverPerfil">← Volver</button>
                 </div>
 
@@ -1743,18 +2618,10 @@
                             <div class="usuario" id="perfilUsuario">@usuario</div>
                         </div>
                         <ul class="perfil-menu">
-                            <li class="active" data-tab="info">
-                                <span class="icon">📊</span> Información
-                            </li>
-                            <li data-tab="calificaciones">
-                                <span class="icon">📝</span> Calificaciones
-                            </li>
-                            <li data-tab="preferencias">
-                                <span class="icon">⚙️</span> Preferencias
-                            </li>
-                            <li data-tab="cerrar" style="color:#ef4444; margin-top:12px; border-top:1px solid var(--border-color); padding-top:14px;">
-                                <span class="icon">🚪</span> Cerrar sesión
-                            </li>
+                            <li class="active" data-tab="info"><span class="icon">📊</span> Información</li>
+                            <li data-tab="calificaciones"><span class="icon">📝</span> Calificaciones</li>
+                            <li data-tab="preferencias"><span class="icon">⚙️</span> Preferencias</li>
+                            <li data-tab="cerrar" style="color:#ef4444; margin-top:12px; border-top:1px solid var(--border-color); padding-top:14px;"><span class="icon">🚪</span> Cerrar sesión</li>
                         </ul>
                     </div>
 
@@ -1762,30 +2629,12 @@
                         <div class="perfil-tab active" id="tab-info">
                             <div class="titulo">📊 Información</div>
                             <div class="subtitulo">Tu progreso en DevQuest</div>
-                            
                             <div class="stats-grid-perfil">
-                                <div class="stat-card-perfil">
-                                    <span class="emoji">✅</span>
-                                    <div class="numero" id="perfilAciertos">0</div>
-                                    <div class="label">Correctas</div>
-                                </div>
-                                <div class="stat-card-perfil">
-                                    <span class="emoji">❌</span>
-                                    <div class="numero" id="perfilFallos">0</div>
-                                    <div class="label">Incorrectas</div>
-                                </div>
-                                <div class="stat-card-perfil">
-                                    <span class="emoji">📊</span>
-                                    <div class="numero" id="perfilPorcentaje">0%</div>
-                                    <div class="label">Porcentaje</div>
-                                </div>
-                                <div class="stat-card-perfil">
-                                    <span class="emoji">🏆</span>
-                                    <div class="numero" id="perfilEstado">⚡</div>
-                                    <div class="label">Nivel</div>
-                                </div>
+                                <div class="stat-card-perfil"><span class="emoji">✅</span><div class="numero" id="perfilAciertos">0</div><div class="label">Correctas</div></div>
+                                <div class="stat-card-perfil"><span class="emoji">❌</span><div class="numero" id="perfilFallos">0</div><div class="label">Incorrectas</div></div>
+                                <div class="stat-card-perfil"><span class="emoji">📊</span><div class="numero" id="perfilPorcentaje">0%</div><div class="label">Porcentaje</div></div>
+                                <div class="stat-card-perfil"><span class="emoji">🏆</span><div class="numero" id="perfilEstado">⚡</div><div class="label">Nivel</div></div>
                             </div>
-
                             <div style="padding:16px 20px; background:rgba(255,255,255,0.02); border-radius:var(--radius-md); border:1px solid var(--border-color);">
                                 <div class="flex-between">
                                     <span style="color:var(--text-secondary); font-size:0.9rem; font-weight:600;">🔥 Racha actual</span>
@@ -1797,71 +2646,40 @@
                         <div class="perfil-tab" id="tab-calificaciones">
                             <div class="titulo">📝 Calificaciones</div>
                             <div class="subtitulo">Tus resultados por materia</div>
-                            
                             <div class="datos-usuario" id="datosUsuario">
-                                <div class="dato">
-                                    <span class="label">👤 Usuario</span>
-                                    <span class="valor" id="datoUsuario">-</span>
-                                </div>
-                                <div class="dato">
-                                    <span class="label">📛 Nombre completo</span>
-                                    <span class="valor" id="datoNombre">-</span>
-                                </div>
-                                <div class="dato">
-                                    <span class="label">🔒 Contraseña</span>
-                                    <span class="valor" id="datoPassword">••••••••</span>
-                                </div>
-                                <div class="dato">
-                                    <span class="label">📅 Registro</span>
-                                    <span class="valor" id="datoRegistro">-</span>
-                                </div>
+                                <div class="dato"><span class="label">👤 Usuario</span><span class="valor" id="datoUsuario">-</span></div>
+                                <div class="dato"><span class="label">📛 Nombre completo</span><span class="valor" id="datoNombre">-</span></div>
+                                <div class="dato"><span class="label">🔒 Contraseña</span><span class="valor" id="datoPassword">••••••••</span></div>
+                                <div class="dato"><span class="label">📅 Registro</span><span class="valor" id="datoRegistro">-</span></div>
                             </div>
-                            
                             <div id="calificacionesList"></div>
                         </div>
 
                         <div class="perfil-tab" id="tab-preferencias">
                             <div class="titulo">⚙️ Preferencias</div>
                             <div class="subtitulo">Configura tu experiencia en DevQuest</div>
-                            
                             <div style="margin-bottom:24px;">
-                                <div style="font-size:0.9rem; font-weight:700; color:var(--text-secondary); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">👤 Cuenta de usuario</div>
+                                <div style="font-size:0.9rem; font-weight:700; color:var(--text-secondary); margin-bottom:12px; text-transform:uppercase;">👤 Cuenta de usuario</div>
                                 <div class="preferencias-grid">
-                                    <div class="preferencia-item">
-                                        <span class="label">👤 Usuario</span>
-                                        <div class="valor" id="prefUsuario">-</div>
-                                    </div>
-                                    <div class="preferencia-item">
-                                        <span class="label">📛 Nombre completo</span>
-                                        <div class="valor" id="prefNombre">-</div>
-                                    </div>
-                                    <div class="preferencia-item">
-                                        <span class="label">🔒 Contraseña</span>
-                                        <div class="valor" id="prefPassword">••••••••</div>
-                                    </div>
-                                    <div class="preferencia-item">
-                                        <span class="label">📅 Fecha de registro</span>
-                                        <div class="valor" id="prefRegistro">-</div>
-                                    </div>
+                                    <div class="preferencia-item"><span class="label">👤 Usuario</span><div class="valor" id="prefUsuario">-</div></div>
+                                    <div class="preferencia-item"><span class="label">📛 Nombre completo</span><div class="valor" id="prefNombre">-</div></div>
+                                    <div class="preferencia-item"><span class="label">🔒 Contraseña</span><div class="valor" id="prefPassword">••••••••</div></div>
+                                    <div class="preferencia-item"><span class="label">📅 Fecha de registro</span><div class="valor" id="prefRegistro">-</div></div>
                                 </div>
                             </div>
-
-                            <div style="font-size:0.9rem; font-weight:700; color:var(--text-secondary); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">⚙️ Configuración</div>
+                            <div style="font-size:0.9rem; font-weight:700; color:var(--text-secondary); margin-bottom:12px; text-transform:uppercase;">⚙️ Configuración</div>
                             <div class="preferencias-grid">
                                 <div class="preferencia-item">
                                     <span class="label">🌓 Tema</span>
                                     <div class="valor">
                                         <div class="flex-center" style="gap:12px;">
                                             <span style="font-size:0.85rem; color:var(--text-muted);">🌙</span>
-                                            <div class="toggle-switch" id="toggleTema">
-                                                <div class="thumb"></div>
-                                            </div>
+                                            <div class="toggle-switch" id="toggleTema"><div class="thumb"></div></div>
                                             <span style="font-size:0.85rem; color:var(--text-muted);">☀️</span>
                                         </div>
                                         <span id="temaLabel" style="font-size:0.82rem; color:var(--text-muted); font-weight:600;">Oscuro</span>
                                     </div>
                                 </div>
-
                                 <div class="preferencia-item">
                                     <span class="label">🌐 Idioma</span>
                                     <div class="valor">
@@ -1882,12 +2700,18 @@
             </div>
 
         </div>
+    </div>
 
+    <!-- ============================================================
+    🪟 MODAL DETALLES USUARIO
+    ============================================================ -->
+    <div class="modal-overlay" id="modalUsuario">
+        <div class="modal-content" id="modalUsuarioContent"></div>
     </div>
 
     <script>
         // ============================================================
-        //  🖥️ CONSOLA SILENCIOSA (primero, antes que nada)
+        //  🖥️ SILENCIAR CONSOLA EN PRODUCCIÓN
         // ============================================================
         (function() {
             const esLocal = location.hostname === 'localhost' || 
@@ -1899,12 +2723,11 @@
                 console.info = noop;
                 console.warn = noop;
                 console.debug = noop;
-                // console.error se mantiene para errores críticos
             }
         })();
 
         // ============================================================
-        //  🗄️ BASE DE DATOS (localStorage + Admin)
+        //  🗄️ BASE DE DATOS
         // ============================================================
         const DB = {
             getUsuarios() {
@@ -1951,28 +2774,17 @@
                     this.setUsuario(nombre, usuario);
                 }
             },
-            getSesion() {
-                return localStorage.getItem('devquest_sesion') || null;
-            },
-            iniciarSesion(nombre) {
-                localStorage.setItem('devquest_sesion', nombre);
-            },
-            cerrarSesion() {
-                localStorage.removeItem('devquest_sesion');
-            },
-            haySesion() {
-                return !!this.getSesion();
-            },
+            getSesion() { return localStorage.getItem('devquest_sesion') || null; },
+            iniciarSesion(nombre) { localStorage.setItem('devquest_sesion', nombre); },
+            cerrarSesion() { localStorage.removeItem('devquest_sesion'); },
+            haySesion() { return !!this.getSesion(); },
             esPrimeraVez(nombre) {
                 const usuario = this.getUsuario(nombre);
                 return usuario ? !usuario.bienvenidoVisto : true;
             },
             marcarBienvenido(nombre) {
                 const usuario = this.getUsuario(nombre);
-                if (usuario) {
-                    usuario.bienvenidoVisto = true;
-                    this.setUsuario(nombre, usuario);
-                }
+                if (usuario) { usuario.bienvenidoVisto = true; this.setUsuario(nombre, usuario); }
             },
             getTema(nombre) {
                 const usuario = this.getUsuario(nombre);
@@ -1980,10 +2792,7 @@
             },
             setTema(nombre, tema) {
                 const usuario = this.getUsuario(nombre);
-                if (usuario) {
-                    usuario.tema = tema;
-                    this.setUsuario(nombre, usuario);
-                }
+                if (usuario) { usuario.tema = tema; this.setUsuario(nombre, usuario); }
             },
             getIdioma(nombre) {
                 const usuario = this.getUsuario(nombre);
@@ -1991,18 +2800,13 @@
             },
             setIdioma(nombre, idioma) {
                 const usuario = this.getUsuario(nombre);
-                if (usuario) {
-                    usuario.idioma = idioma;
-                    this.setUsuario(nombre, usuario);
-                }
+                if (usuario) { usuario.idioma = idioma; this.setUsuario(nombre, usuario); }
             },
             esAdmin(nombre) {
                 const usuarios = this.getUsuarios();
                 return usuarios[nombre] && usuarios[nombre].rol === 'admin';
             },
-            getTodosLosUsuarios() {
-                return this.getUsuarios();
-            },
+            getTodosLosUsuarios() { return this.getUsuarios(); },
             cambiarRol(nombre, nuevoRol) {
                 const usuarios = this.getUsuarios();
                 if (usuarios[nombre]) {
@@ -2026,8 +2830,10 @@
                 const total = Object.keys(usuarios).length;
                 let admins = 0;
                 let totalPreguntas = 0;
+                let totalRachas = 0;
                 Object.keys(usuarios).forEach(key => {
                     if (usuarios[key].rol === 'admin') admins++;
+                    totalRachas += usuarios[key].racha || 0;
                     if (usuarios[key].progreso) {
                         Object.keys(usuarios[key].progreso).forEach(c => {
                             if (usuarios[key].progreso[c] && usuarios[key].progreso[c].acertadas) {
@@ -2036,7 +2842,7 @@
                         });
                     }
                 });
-                return { total, admins, totalPreguntas };
+                return { total, admins, totalPreguntas, totalRachas };
             },
             getCarpetasOcultas() {
                 try {
@@ -2067,16 +2873,44 @@
             getTextoPersonalizadoId(id) {
                 const textos = this.getTextoPersonalizado();
                 return textos[id] || null;
+            },
+            getActividad() {
+                try {
+                    const data = localStorage.getItem('devquest_actividad');
+                    return data ? JSON.parse(data) : [];
+                } catch (e) { return []; }
+            },
+            registrarActividad(tipo, descripcion, usuario) {
+                const actividad = this.getActividad();
+                actividad.unshift({
+                    tipo, descripcion, usuario,
+                    timestamp: new Date().toISOString()
+                });
+                // Máximo 100 entradas
+                if (actividad.length > 100) actividad.length = 100;
+                localStorage.setItem('devquest_actividad', JSON.stringify(actividad));
+            },
+            getConfig() {
+                try {
+                    const data = localStorage.getItem('devquest_config');
+                    return data ? JSON.parse(data) : {
+                        modoOscuro: true,
+                        mostrarStats: true,
+                        registroPublico: true,
+                        mantenimiento: false
+                    };
+                } catch (e) { return { modoOscuro: true, mostrarStats: true, registroPublico: true, mantenimiento: false }; }
+            },
+            setConfig(config) {
+                localStorage.setItem('devquest_config', JSON.stringify(config));
             }
         };
 
         // ============================================================
-        //  👑 CREAR USUARIO ADMIN POR DEFECTO (SIN CREDENCIALES EN CONSOLA)
+        //  👑 CREAR ADMIN POR DEFECTO
         // ============================================================
         function crearAdminPorDefecto() {
             if (!DB.existeUsuario('admin')) {
-                // ⚠️ La contraseña está codificada en base64 para no ser legible fácilmente
-                // Contraseña real: admin123
                 const passOfuscada = atob('YWRtaW4xMjM=');
                 DB.setUsuario('admin', {
                     password: passOfuscada,
@@ -2089,7 +2923,7 @@
                     tema: 'oscuro',
                     idioma: 'es'
                 });
-                // ⚠️ NO se muestra nada en consola
+                DB.registrarActividad('sistema', 'Usuario admin creado automáticamente', 'admin');
             }
         }
 
@@ -2255,9 +3089,6 @@
             { pregunta: '¿Qué hace IN en SQL?', opciones: ['Verifica si un valor está en una lista', 'Verifica si un valor es nulo', 'Ordena resultados', 'Agrupa resultados'], correcta: 0 }
         ];
 
-        // ============================================================
-        //  📂 ESTRUCTURA DE CARPETAS
-        // ============================================================
         const CARPETAS = [
             { id: 'ads', nombre: 'Análisis y Diseño de Sistemas Informáticos', icono: '📊', descripcion: 'Aprende a analizar y diseñar sistemas informáticos.', ano: 'AÑO ESCOLAR 2026-2027', preguntas: PREGUNTAS_ADS },
             { id: 'web', nombre: 'Diseño de Portales Web y Recursos Multimedia', icono: '🌐', descripcion: 'Diseño y desarrollo de portales web, recursos multimedia y más.', ano: 'AÑO ESCOLAR 2026-2027', preguntas: PREGUNTAS_WEB },
@@ -2269,18 +3100,16 @@
         // ============================================================
         let usuarioActual = null;
         let estadoPreguntas = {};
-        let aciertos = 0;
-        let fallos = 0;
         let carpetaActual = null;
         let preguntaActualIndex = 0;
         let rachaActual = 0;
         let esPrimeraVez = false;
 
         // ============================================================
-        //  🔀 FUNCIONES DE MEZCLA
+        //  🔀 MEZCLA
         // ============================================================
         function mezclarOpciones(pregunta) {
-            const opcionesConIndice = pregunta.opciones.map((texto, idx) => ({ texto: texto, indiceOriginal: idx }));
+            const opcionesConIndice = pregunta.opciones.map((texto, idx) => ({ texto, indiceOriginal: idx }));
             for (let i = opcionesConIndice.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [opcionesConIndice[i], opcionesConIndice[j]] = [opcionesConIndice[j], opcionesConIndice[i]];
@@ -2298,13 +3127,20 @@
         }
 
         // ============================================================
-        //  🔐 FUNCIONES DE AUTENTICACIÓN
+        //  🔐 AUTENTICACIÓN
         // ============================================================
         function registrarUsuario() {
             const usuario = document.getElementById('regUsuario').value.trim();
             const password = document.getElementById('regPassword').value.trim();
             const nombre = document.getElementById('regNombre').value.trim();
             const errorEl = document.getElementById('regError');
+
+            const config = DB.getConfig();
+            if (!config.registroPublico) {
+                errorEl.textContent = '⚠️ El registro público está deshabilitado';
+                errorEl.style.display = 'block';
+                return;
+            }
 
             if (!usuario || !password || !nombre) {
                 errorEl.textContent = '⚠️ Todos los campos son obligatorios';
@@ -2328,16 +3164,12 @@
             }
 
             DB.setUsuario(usuario, {
-                password: password,
-                nombre: nombre,
-                rol: 'usuario',
-                progreso: {},
+                password, nombre, rol: 'usuario', progreso: {},
                 fechaRegistro: new Date().toISOString(),
-                bienvenidoVisto: false,
-                racha: 0,
-                tema: 'oscuro',
-                idioma: 'es'
+                bienvenidoVisto: false, racha: 0, tema: 'oscuro', idioma: 'es'
             });
+
+            DB.registrarActividad('registro', `Nuevo usuario registrado: ${nombre}`, usuario);
 
             errorEl.style.display = 'none';
             mostrarNotificacion('✅ ¡Usuario registrado exitosamente!', 'success');
@@ -2376,11 +3208,13 @@
             esPrimeraVez = DB.esPrimeraVez(usuario);
             document.getElementById('loginUsuario').value = '';
             document.getElementById('loginPassword').value = '';
+            DB.registrarActividad('login', `Inició sesión`, usuario);
             cargarApp();
             mostrarNotificacion(`👋 ¡Bienvenido de nuevo, ${userData.nombre || usuario}!`, 'info');
         }
 
         function cerrarSesion() {
+            if (usuarioActual) DB.registrarActividad('logout', 'Cerró sesión', usuarioActual);
             DB.cerrarSesion();
             usuarioActual = null;
             esPrimeraVez = false;
@@ -2406,7 +3240,7 @@
         }
 
         // ============================================================
-        //  🚀 FUNCIONES DE LA APP
+        //  🚀 APP
         // ============================================================
         function cargarApp() {
             document.getElementById('pantallaLogin').style.display = 'none';
@@ -2421,8 +3255,6 @@
             if (userData && userData.rol === 'admin') {
                 adminBadgeContainer.innerHTML = '<span class="badge-count admin-badge">🛡️ Admin</span>';
                 document.getElementById('btnAdminPanel').style.display = 'inline-flex';
-                document.getElementById('adminPanel').classList.add('visible');
-                renderizarAdminPanel();
             } else {
                 adminBadgeContainer.innerHTML = '';
                 document.getElementById('btnAdminPanel').style.display = 'none';
@@ -2430,21 +3262,19 @@
             }
 
             if (userData) {
+                const fechaFmt = userData.fechaRegistro ? new Date(userData.fechaRegistro).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : '-';
                 document.getElementById('datoUsuario').textContent = usuarioActual;
                 document.getElementById('datoNombre').textContent = userData.nombre || '-';
                 document.getElementById('datoPassword').textContent = '••••••••';
-                document.getElementById('datoRegistro').textContent = userData.fechaRegistro ? new Date(userData.fechaRegistro).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : '-';
+                document.getElementById('datoRegistro').textContent = fechaFmt;
                 document.getElementById('prefUsuario').textContent = usuarioActual;
                 document.getElementById('prefNombre').textContent = userData.nombre || '-';
                 document.getElementById('prefPassword').textContent = '••••••••';
-                document.getElementById('prefRegistro').textContent = userData.fechaRegistro ? new Date(userData.fechaRegistro).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : '-';
+                document.getElementById('prefRegistro').textContent = fechaFmt;
             }
 
-            const tema = DB.getTema(usuarioActual);
-            aplicarTema(tema);
-
-            const idioma = DB.getIdioma(usuarioActual);
-            document.getElementById('selectIdioma').value = idioma;
+            aplicarTema(DB.getTema(usuarioActual));
+            document.getElementById('selectIdioma').value = DB.getIdioma(usuarioActual);
 
             rachaActual = DB.getRacha(usuarioActual) || 0;
             actualizarRachaUI();
@@ -2454,7 +3284,7 @@
                 bienvenida.style.display = 'flex';
                 bienvenida.classList.add('visible');
                 DB.marcarBienvenido(usuarioActual);
-                setTimeout(() => { cerrarBienvenida(); }, 10000);
+                setTimeout(() => cerrarBienvenida(), 10000);
             } else {
                 bienvenida.style.display = 'none';
                 bienvenida.classList.remove('visible');
@@ -2488,9 +3318,9 @@
         }
 
         function cerrarBienvenida() {
-            const bienvenida = document.getElementById('bienvenida');
-            bienvenida.style.display = 'none';
-            bienvenida.classList.remove('visible');
+            const b = document.getElementById('bienvenida');
+            b.style.display = 'none';
+            b.classList.remove('visible');
         }
 
         function actualizarRachaUI() {
@@ -2498,31 +3328,20 @@
             document.getElementById('perfilRacha').textContent = rachaActual;
             const rachaBadge = document.getElementById('rachaBadge');
             if (rachaActual >= 3) {
-                rachaBadge.classList.add('racha-encendida');
-                rachaBadge.classList.remove('racha-activa');
-                void rachaBadge.offsetWidth;
-                rachaBadge.classList.add('racha-activa');
+                rachaBadge.classList.add('racha-encendida', 'racha-activa');
             } else {
-                rachaBadge.classList.remove('racha-encendida');
-                rachaBadge.classList.remove('racha-activa');
+                rachaBadge.classList.remove('racha-encendida', 'racha-activa');
             }
-            if (usuarioActual) {
-                DB.setRacha(usuarioActual, rachaActual);
-            }
+            if (usuarioActual) DB.setRacha(usuarioActual, rachaActual);
         }
 
         function procesarRespuesta(esCorrecta) {
             if (esCorrecta) {
                 rachaActual++;
-                if (rachaActual === 3) {
-                    mostrarNotificacion('🔥 ¡Racha de 3! ¡Sigue así!', 'warning');
-                } else if (rachaActual > 3 && rachaActual % 5 === 0) {
-                    mostrarNotificacion('🔥 ¡Racha de ' + rachaActual + '! ¡Eres una máquina!', 'warning');
-                }
+                if (rachaActual === 3) mostrarNotificacion('🔥 ¡Racha de 3! ¡Sigue así!', 'warning');
+                else if (rachaActual > 3 && rachaActual % 5 === 0) mostrarNotificacion('🔥 ¡Racha de ' + rachaActual + '!', 'warning');
             } else {
-                if (rachaActual >= 3) {
-                    mostrarNotificacion('💔 ¡Racha de ' + rachaActual + ' perdida! Vuelve a intentarlo.', 'error');
-                }
+                if (rachaActual >= 3) mostrarNotificacion('💔 ¡Racha de ' + rachaActual + ' perdida!', 'error');
                 rachaActual = 0;
             }
             actualizarRachaUI();
@@ -2533,9 +3352,7 @@
             notif.className = 'notificacion ' + tipo;
             notif.textContent = mensaje;
             document.body.appendChild(notif);
-            requestAnimationFrame(() => {
-                notif.classList.add('show');
-            });
+            requestAnimationFrame(() => notif.classList.add('show'));
             setTimeout(() => {
                 notif.classList.remove('show');
                 setTimeout(() => notif.remove(), 500);
@@ -2587,8 +3404,7 @@
         }
 
         function actualizarContadores() {
-            let totalAcertadas = 0;
-            let totalRespondidas = 0;
+            let totalAcertadas = 0, totalRespondidas = 0;
             CARPETAS.forEach(carpeta => {
                 const estado = estadoPreguntas[carpeta.id];
                 totalAcertadas += estado.acertadas.filter(a => a === true).length;
@@ -2598,7 +3414,6 @@
             const totalPreguntas = CARPETAS.reduce((sum, c) => sum + c.preguntas.length, 0);
             document.getElementById('totalHeader').textContent = totalPreguntas;
             document.getElementById('totalPreguntasCarpetas').textContent = totalPreguntas;
-
             document.getElementById('statCursos').textContent = CARPETAS.length;
             document.getElementById('statPreguntas').textContent = totalPreguntas;
             document.getElementById('statRespondidas').textContent = totalRespondidas;
@@ -2639,19 +3454,14 @@
                         <span>⏳ ${total - respondidas} pendientes</span>
                         <span>📊 ${porcentaje}%</span>
                     </div>
-                    <div class="progreso">
-                        <div class="barra" style="width:${porcentaje}%;"></div>
-                    </div>
-                    <button class="btn btn-primary btn-iniciar" style="margin-top:18px; width:100%; padding:12px; border-radius:var(--radius-sm); font-size:0.95rem;">
+                    <div class="progreso"><div class="barra" style="width:${porcentaje}%;"></div></div>
+                    <button class="btn btn-primary btn-iniciar" style="margin-top:18px; width:100%; padding:12px;">
                         ${oculta ? '🔒 Oculto' : '🚀 ¡Iniciar ahora!'}
                     </button>
                 `;
                 card.addEventListener('click', function(e) {
                     if (e.target.classList.contains('btn-iniciar')) return;
-                    if (oculta) {
-                        mostrarNotificacion('🔒 Este curso está oculto por el administrador', 'warning');
-                        return;
-                    }
+                    if (oculta) { mostrarNotificacion('🔒 Curso oculto', 'warning'); return; }
                     carpetaActual = carpeta.id;
                     preguntaActualIndex = 0;
                     mostrarVista('preguntas');
@@ -2659,10 +3469,7 @@
                 const btnIniciar = card.querySelector('.btn-iniciar');
                 btnIniciar.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    if (oculta) {
-                        mostrarNotificacion('🔒 Este curso está oculto por el administrador', 'warning');
-                        return;
-                    }
+                    if (oculta) { mostrarNotificacion('🔒 Curso oculto', 'warning'); return; }
                     carpetaActual = carpeta.id;
                     preguntaActualIndex = 0;
                     mostrarVista('preguntas');
@@ -2683,14 +3490,11 @@
 
             document.getElementById('preguntaNumeroActual').textContent = preguntaActualIndex + 1;
             document.getElementById('preguntaTotalActual').textContent = total;
-
             const respondidasTotal = estado.respondidas.filter(r => r === true).length;
             const acertadasTotal = estado.acertadas.filter(a => a === true).length;
             document.getElementById('preguntasAcertadas').textContent = acertadasTotal;
             document.getElementById('preguntasRespondidas').textContent = respondidasTotal;
-
-            const progreso = ((preguntaActualIndex + 1) / total) * 100;
-            document.getElementById('barraProgreso').style.width = progreso + '%';
+            document.getElementById('barraProgreso').style.width = ((preguntaActualIndex + 1) / total) * 100 + '%';
             document.getElementById('preguntaTexto').textContent = data.pregunta;
 
             const container = document.getElementById('opcionesContainer');
@@ -2737,7 +3541,7 @@
                 const correctaTexto = data.opciones[data.correcta] || 'Opción correcta';
                 fb.innerHTML = acertada ?
                     '✅ ¡Correcto! Bien hecho. 🎉' :
-                    '❌ Ups, la correcta era: "<strong>' + correctaTexto + '</strong>". ¡Sigue intentando! 💪';
+                    '❌ Ups, la correcta era: "<strong>' + correctaTexto + '</strong>".';
                 feedback.appendChild(fb);
             }
 
@@ -2766,102 +3570,472 @@
             guardarProgreso();
             mostrarPreguntaActual();
             actualizarContadores();
-            mostrarNotificacion('🔄 Pregunta reiniciada con opciones en nuevo orden. ¡Inténtalo de nuevo!', 'info');
+            mostrarNotificacion('🔄 Pregunta reiniciada', 'info');
         }
 
         // ============================================================
-        //  🛡️ ADMIN PANEL
+        //  🛡️ ADMIN PANEL COMPLETO
         // ============================================================
-        function renderizarAdminPanel() {
-            const grid = document.getElementById('adminGrid');
-            const stats = DB.getEstadisticas();
-            const usuarios = DB.getTodosLosUsuarios();
-            grid.innerHTML = '';
 
-            const statsCard = document.createElement('div');
-            statsCard.className = 'admin-card';
-            statsCard.innerHTML = `
-                <span class="label">📊 Estadísticas</span>
-                <div class="valor">
-                    👥 ${stats.total} usuarios | 🛡️ ${stats.admins} admins | 📝 ${stats.totalPreguntas} respuestas
+        // Tabs del admin
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.adminTab;
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelector(`.admin-section[data-admin-section="${target}"]`).classList.add('active');
+
+                // Renderizar contenido según tab
+                if (target === 'dashboard') renderDashboard();
+                else if (target === 'usuarios') renderUsuariosTabla();
+                else if (target === 'cursos') renderCursosAdmin();
+                else if (target === 'actividad') renderActividad();
+                else if (target === 'config') renderConfig();
+            });
+        });
+
+        // Render Dashboard
+        function renderDashboard() {
+            const stats = DB.getEstadisticas();
+            const usuarios = DB.getAllUsersCount ? DB.getAllUsersCount() : Object.keys(DB.getUsuarios()).length;
+            const grid = document.getElementById('dashboardGrid');
+            
+            grid.innerHTML = `
+                <div class="dashboard-card">
+                    <span class="dc-icon">👥</span>
+                    <div class="dc-value">${stats.total}</div>
+                    <div class="dc-label">Usuarios totales</div>
+                    <div class="dc-trend">🛡️ ${stats.admins} admin${stats.admins !== 1 ? 's' : ''}</div>
+                </div>
+                <div class="dashboard-card">
+                    <span class="dc-icon">✅</span>
+                    <div class="dc-value">${stats.totalPreguntas}</div>
+                    <div class="dc-label">Respuestas correctas</div>
+                    <div class="dc-trend">📈 Total acumulado</div>
+                </div>
+                <div class="dashboard-card">
+                    <span class="dc-icon">🔥</span>
+                    <div class="dc-value">${stats.totalRachas}</div>
+                    <div class="dc-label">Rachas acumuladas</div>
+                    <div class="dc-trend">⚡ Suma total</div>
+                </div>
+                <div class="dashboard-card">
+                    <span class="dc-icon">📚</span>
+                    <div class="dc-value">${CARPETAS.length}</div>
+                    <div class="dc-label">Cursos activos</div>
+                    <div class="dc-trend">📝 ${CARPETAS.reduce((s,c) => s + c.preguntas.length, 0)} preguntas</div>
                 </div>
             `;
-            grid.appendChild(statsCard);
 
-            Object.keys(usuarios).forEach(key => {
-                const user = usuarios[key];
-                const card = document.createElement('div');
-                card.className = 'admin-card';
-                const esAdmin = user.rol === 'admin';
-                const esActual = key === usuarioActual;
-                card.innerHTML = `
-                    <span class="label">👤 ${key}</span>
-                    <div class="valor">
-                        ${user.nombre || key} ${esAdmin ? '🛡️' : ''} ${esActual ? '⭐' : ''}
-                        <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">(${user.rol || 'usuario'})</span>
-                    </div>
-                    <div class="acciones">
-                        ${!esActual ? `
-                            <button class="btn btn-sm ${esAdmin ? 'btn-warning' : 'btn-primary'}" onclick="cambiarRolAdmin('${key}')">
-                                ${esAdmin ? '⬇ Quitar Admin' : '⬆ Hacer Admin'}
-                            </button>
-                            <button class="btn btn-sm btn-danger" onclick="eliminarUsuarioAdmin('${key}')">
-                                🗑️ Eliminar
-                            </button>
-                        ` : `
-                            <span style="font-size:0.75rem; color:var(--text-muted);">Usuario actual</span>
-                        `}
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
+            // Chart de progreso por curso
+            const chart = document.getElementById('barChartCursos');
+            chart.innerHTML = '';
+            const usuariosTodos = DB.getUsuarios();
             CARPETAS.forEach(carpeta => {
-                const oculta = DB.getCarpetaOculta(carpeta.id);
-                const card = document.createElement('div');
-                card.className = 'admin-card';
-                card.innerHTML = `
-                    <span class="label">📁 ${carpeta.icono} ${carpeta.nombre}</span>
-                    <div class="valor" style="display:flex; align-items:center; gap:12px;">
-                        <span style="font-size:0.88rem;">${oculta ? '🔒 Oculto' : '👁️ Visible'}</span>
-                        <div class="toggle-switch-sm ${oculta ? '' : 'active'}" onclick="toggleCarpetaAdmin('${carpeta.id}')">
-                            <div class="thumb-sm"></div>
-                        </div>
-                    </div>
-                    <div class="acciones" style="margin-top:10px;">
-                        <button class="btn btn-sm btn-secondary" onclick="editarTextoAdmin('${carpeta.id}')">
-                            ✏️ Editar texto
-                        </button>
-                    </div>
+                let totalAcertadas = 0, totalPosibles = 0;
+                Object.values(usuariosTodos).forEach(u => {
+                    if (u.progreso && u.progreso[carpeta.id]) {
+                        const p = u.progreso[carpeta.id];
+                        if (p.acertadas) totalAcertadas += p.acertadas.filter(a => a === true).length;
+                        totalPosibles += carpeta.preguntas.length;
+                    }
+                });
+                const porcentaje = totalPosibles > 0 ? Math.round((totalAcertadas / totalPosibles) * 100) : 0;
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bar-wrapper';
+                wrapper.innerHTML = `
+                    <div class="bar-value">${porcentaje}%</div>
+                    <div class="bar" style="height:${Math.max(porcentaje, 4)}%;"></div>
+                    <div class="bar-label" style="position:relative; bottom:0; margin-top:8px;">${carpeta.icono}<br>${carpeta.id.toUpperCase()}</div>
                 `;
-                grid.appendChild(card);
+                chart.appendChild(wrapper);
             });
+
+            // Top 5 usuarios
+            const topContainer = document.getElementById('topUsuarios');
+            const usuariosArr = Object.keys(usuariosTodos).map(key => {
+                const u = usuariosTodos[key];
+                let aciertos = 0;
+                if (u.progreso) {
+                    Object.values(u.progreso).forEach(p => {
+                        if (p.acertadas) aciertos += p.acertadas.filter(a => a === true).length;
+                    });
+                }
+                return { key, nombre: u.nombre || key, aciertos, rol: u.rol };
+            }).sort((a, b) => b.aciertos - a.aciertos).slice(0, 5);
+
+            if (usuariosArr.length === 0) {
+                topContainer.innerHTML = '<div class="empty-state"><span class="es-icon">📭</span><div class="es-title">Sin datos</div></div>';
+            } else {
+                topContainer.innerHTML = usuariosArr.map((u, i) => {
+                    const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+                    return `
+                        <div class="activity-item">
+                            <span class="ac-icon" style="background:transparent; font-size:1.6rem;">${medals[i]}</span>
+                            <div class="ac-content">
+                                <div class="ac-title">${u.nombre} ${u.rol === 'admin' ? '🛡️' : ''}</div>
+                                <div class="ac-desc">@${u.key}</div>
+                            </div>
+                            <div style="font-weight:900; color:var(--accent-tertiary); font-size:1.1rem;">${u.aciertos} ✅</div>
+                        </div>
+                    `;
+                }).join('');
+            }
         }
 
+        // Render tabla de usuarios
+        let usuariosFiltradosCache = [];
+        
+        function renderUsuariosTabla() {
+            const usuarios = DB.getUsuarios();
+            const busqueda = (document.getElementById('searchUsuarios')?.value || '').toLowerCase();
+            const filtroRol = document.getElementById('filtroRol')?.value || 'todos';
+            const orden = document.getElementById('ordenUsuarios')?.value || 'nombre';
+
+            let usuariosArr = Object.keys(usuarios).map(key => {
+                const u = usuarios[key];
+                let aciertos = 0, respondidas = 0;
+                if (u.progreso) {
+                    Object.values(u.progreso).forEach(p => {
+                        if (p.acertadas) aciertos += p.acertadas.filter(a => a === true).length;
+                        if (p.respondidas) respondidas += p.respondidas.filter(r => r === true).length;
+                    });
+                }
+                return { key, ...u, aciertos, respondidas };
+            });
+
+            // Filtrar
+            usuariosArr = usuariosArr.filter(u => {
+                const matchBusqueda = !busqueda || 
+                    u.key.toLowerCase().includes(busqueda) || 
+                    (u.nombre || '').toLowerCase().includes(busqueda);
+                const matchRol = filtroRol === 'todos' || u.rol === filtroRol;
+                return matchBusqueda && matchRol;
+            });
+
+            // Ordenar
+            usuariosArr.sort((a, b) => {
+                if (orden === 'aciertos') return b.aciertos - a.aciertos;
+                if (orden === 'reciente') return new Date(b.fechaRegistro) - new Date(a.fechaRegistro);
+                if (orden === 'antiguo') return new Date(a.fechaRegistro) - new Date(b.fechaRegistro);
+                return (a.nombre || a.key).localeCompare(b.nombre || b.key);
+            });
+
+            usuariosFiltradosCache = usuariosArr;
+
+            const tbody = document.getElementById('usersTableBody');
+            if (usuariosArr.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:40px; color:var(--text-muted);">
+                    <div style="font-size:3rem; margin-bottom:8px;">🔍</div>
+                    <div style="font-weight:700;">No se encontraron usuarios</div>
+                </td></tr>`;
+                document.getElementById('badgeUsuarios').textContent = '0';
+                return;
+            }
+
+            document.getElementById('badgeUsuarios').textContent = usuariosArr.length;
+
+            tbody.innerHTML = usuariosArr.map(u => {
+                const inicial = (u.nombre || u.key).charAt(0).toUpperCase();
+                const esAdmin = u.rol === 'admin';
+                const esActual = u.key === usuarioActual;
+                const fechaCorta = u.fechaRegistro ? new Date(u.fechaRegistro).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }) : '-';
+                const claseRacha = u.racha >= 5 ? '' : (u.racha >= 1 ? 'warn' : 'danger');
+
+                return `
+                    <tr onclick="verDetallesUsuario('${u.key}')" style="${esActual ? 'background:rgba(139,92,246,0.06);' : ''}">
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar">${inicial}</div>
+                                <div class="user-info">
+                                    <div class="user-name">${u.nombre || u.key} ${esActual ? '⭐' : ''}</div>
+                                    <div class="user-handle">@${u.key}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge ${esAdmin ? 'admin' : 'user'}">${esAdmin ? '🛡️ Admin' : '👤 Usuario'}</span></td>
+                        <td><span class="stat-mini"><span class="dot"></span>${u.respondidas} resp.</span></td>
+                        <td><span class="stat-mini"><span class="dot"></span>${u.aciertos} ✅</span></td>
+                        <td><span class="stat-mini ${claseRacha}"><span class="dot"></span>${u.racha || 0} 🔥</span></td>
+                        <td style="font-size:0.8rem; color:var(--text-muted);">${fechaCorta}</td>
+                        <td>
+                            <div class="actions-cell" onclick="event.stopPropagation();">
+                                <button class="icon-btn" onclick="verDetallesUsuario('${u.key}')" title="Ver detalles">👁️</button>
+                                ${!esActual ? `
+                                    <button class="icon-btn ${esAdmin ? 'danger' : 'success'}" onclick="cambiarRolAdmin('${u.key}')" title="${esAdmin ? 'Quitar admin' : 'Hacer admin'}">
+                                        ${esAdmin ? '⬇️' : '⬆️'}
+                                    </button>
+                                    <button class="icon-btn danger" onclick="eliminarUsuarioAdmin('${u.key}')" title="Eliminar">🗑️</button>
+                                ` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Event listeners del toolbar
+        document.getElementById('searchUsuarios')?.addEventListener('input', renderUsuariosTabla);
+        document.getElementById('filtroRol')?.addEventListener('change', renderUsuariosTabla);
+        document.getElementById('ordenUsuarios')?.addEventListener('change', renderUsuariosTabla);
+
+        // Ver detalles de usuario
+        window.verDetallesUsuario = function(usuario) {
+            const u = DB.getUsuario(usuario);
+            if (!u) return;
+            
+            const modal = document.getElementById('modalUsuario');
+            const content = document.getElementById('modalUsuarioContent');
+            
+            const inicial = (u.nombre || usuario).charAt(0).toUpperCase();
+            const fechaFmt = u.fechaRegistro ? new Date(u.fechaRegistro).toLocaleString('es-ES', { 
+                year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+            }) : '-';
+            
+            // Calcular stats
+            let totalAciertos = 0, totalRespondidas = 0, totalFallos = 0;
+            const progresoPorCurso = [];
+            
+            CARPETAS.forEach(carpeta => {
+                const p = u.progreso?.[carpeta.id] || { respondidas: [], acertadas: [] };
+                const respondidas = p.respondidas ? p.respondidas.filter(r => r === true).length : 0;
+                const acertadas = p.acertadas ? p.acertadas.filter(a => a === true).length : 0;
+                totalAciertos += acertadas;
+                totalRespondidas += respondidas;
+                totalFallos += (respondidas - acertadas);
+                
+                progresoPorCurso.push({
+                    nombre: carpeta.nombre,
+                    icono: carpeta.icono,
+                    total: carpeta.preguntas.length,
+                    respondidas,
+                    acertadas,
+                    porcentaje: carpeta.preguntas.length > 0 ? Math.round((acertadas / carpeta.preguntas.length) * 100) : 0
+                });
+            });
+            
+            const porcentajeGlobal = totalRespondidas > 0 ? Math.round((totalAciertos / totalRespondidas) * 100) : 0;
+            const esAdmin = u.rol === 'admin';
+            const esActual = usuario === usuarioActual;
+
+            content.innerHTML = `
+                <button class="modal-close" onclick="cerrarModalUsuario()">✕</button>
+                
+                <div class="modal-header">
+                    <div class="modal-avatar">${inicial}</div>
+                    <div class="title-info">
+                        <h3>${u.nombre || usuario} ${esActual ? '⭐' : ''}</h3>
+                        <p>@${usuario}</p>
+                        <div style="margin-top:8px;">
+                            <span class="role-badge ${esAdmin ? 'admin' : 'user'}">${esAdmin ? '🛡️ Administrador' : '👤 Usuario'}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">📋 Información de la cuenta</div>
+                <div class="modal-data-grid">
+                    <div class="modal-data-item">
+                        <div class="md-label">Usuario</div>
+                        <div class="md-value mono">${usuario}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Nombre completo</div>
+                        <div class="md-value">${u.nombre || '-'}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Contraseña</div>
+                        <div class="md-value mono">••••••••</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Fecha de registro</div>
+                        <div class="md-value">${fechaFmt}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Rol</div>
+                        <div class="md-value">${u.rol || 'usuario'}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Racha actual</div>
+                        <div class="md-value">${u.racha || 0} 🔥</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Tema</div>
+                        <div class="md-value">${u.tema === 'claro' ? '☀️ Claro' : '🌙 Oscuro'}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Idioma</div>
+                        <div class="md-value">${u.idioma === 'en' ? '🇺🇸 English' : '🇪🇸 Español'}</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">📊 Estadísticas generales</div>
+                <div class="modal-data-grid">
+                    <div class="modal-data-item">
+                        <div class="md-label">Aciertos totales</div>
+                        <div class="md-value" style="color:var(--success);">${totalAciertos} ✅</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Fallos totales</div>
+                        <div class="md-value" style="color:var(--error);">${totalFallos} ❌</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Respondidas</div>
+                        <div class="md-value">${totalRespondidas}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Porcentaje</div>
+                        <div class="md-value" style="color:var(--accent-tertiary);">${porcentajeGlobal}%</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">📚 Progreso por curso</div>
+                <div class="modal-progress-list">
+                    ${progresoPorCurso.map(c => `
+                        <div class="modal-progress-item">
+                            <div class="mp-header">
+                                <span class="mp-name">${c.icono} ${c.nombre}</span>
+                                <span class="mp-stats">${c.acertadas}/${c.total} • ${c.porcentaje}%</span>
+                            </div>
+                            <div class="mp-bar">
+                                <div class="mp-fill" style="width:${c.porcentaje}%;"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="modal-actions">
+                    ${!esActual ? `
+                        <button class="btn btn-warning btn-sm" onclick="cambiarRolAdmin('${usuario}'); cerrarModalUsuario();">
+                            ${esAdmin ? '⬇️ Quitar Admin' : '⬆️ Hacer Admin'}
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="reiniciarProgresoUsuario('${usuario}')">
+                            🔄 Reiniciar Progreso
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarUsuarioAdmin('${usuario}'); cerrarModalUsuario();" style="margin-left:auto;">
+                            🗑️ Eliminar Usuario
+                        </button>
+                    ` : `
+                        <span style="color:var(--text-muted); font-size:0.85rem; padding:8px 0;">Esta es tu cuenta actual</span>
+                    `}
+                </div>
+            `;
+            
+            modal.classList.add('visible');
+        };
+
+        window.cerrarModalUsuario = function() {
+            document.getElementById('modalUsuario').classList.remove('visible');
+        };
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modalUsuario')?.addEventListener('click', function(e) {
+            if (e.target === this) cerrarModalUsuario();
+        });
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarModalUsuario();
+            }
+        });
+
+        // Acciones admin
         window.cambiarRolAdmin = function(usuario) {
             const userData = DB.getUsuario(usuario);
             if (!userData) return;
             const nuevoRol = userData.rol === 'admin' ? 'usuario' : 'admin';
             if (DB.cambiarRol(usuario, nuevoRol)) {
-                mostrarNotificacion(`✅ Usuario ${usuario} ahora es ${nuevoRol === 'admin' ? 'Administrador' : 'Usuario'}`, 'success');
-                renderizarAdminPanel();
+                DB.registrarActividad('rol', `Cambió rol de ${usuario} a ${nuevoRol}`, usuarioActual);
+                mostrarNotificacion(`✅ ${usuario} ahora es ${nuevoRol === 'admin' ? 'Administrador' : 'Usuario'}`, 'success');
+                renderUsuariosTabla();
+                renderDashboard();
             }
         };
 
         window.eliminarUsuarioAdmin = function(usuario) {
-            if (confirm(`⚠️ ¿Seguro que quieres eliminar al usuario "${usuario}"?`)) {
+            if (confirm(`⚠️ ¿Seguro que quieres eliminar al usuario "${usuario}"? Esta acción no se puede deshacer.`)) {
                 if (DB.eliminarUsuario(usuario)) {
+                    DB.registrarActividad('eliminar', `Eliminó usuario ${usuario}`, usuarioActual);
                     mostrarNotificacion(`🗑️ Usuario ${usuario} eliminado`, 'success');
-                    renderizarAdminPanel();
+                    renderUsuariosTabla();
+                    renderDashboard();
                 }
             }
         };
 
+        window.reiniciarProgresoUsuario = function(usuario) {
+            if (!confirm(`🔄 ¿Reiniciar el progreso de "${usuario}"?`)) return;
+            DB.setProgreso(usuario, {});
+            DB.setRacha(usuario, 0);
+            DB.registrarActividad('reset', `Reinició progreso de ${usuario}`, usuarioActual);
+            mostrarNotificacion(`🔄 Progreso de ${usuario} reiniciado`, 'success');
+            verDetallesUsuario(usuario);
+            renderUsuariosTabla();
+        };
+
+        window.confirmarEliminarTodos = function() {
+            const usuarios = DB.getUsuarios();
+            const otrosUsuarios = Object.keys(usuarios).filter(u => u !== 'admin' && u !== usuarioActual);
+            
+            if (otrosUsuarios.length === 0) {
+                mostrarNotificacion('⚠️ No hay otros usuarios para eliminar', 'warning');
+                return;
+            }
+            
+            if (confirm(`⚠️ ¿Eliminar TODOS los usuarios excepto admin y tu cuenta actual?\n\nSe eliminarán: ${otrosUsuarios.length} usuarios\n\nEsta acción NO se puede deshacer.`)) {
+                otrosUsuarios.forEach(u => DB.eliminarUsuario(u));
+                DB.registrarActividad('eliminar', `Eliminó ${otrosUsuarios.length} usuarios`, usuarioActual);
+                mostrarNotificacion(`🗑️ ${otrosUsuarios.length} usuarios eliminados`, 'success');
+                renderUsuariosTabla();
+                renderDashboard();
+            }
+        };
+
+        // Render Cursos Admin
+        function renderCursosAdmin() {
+            const grid = document.getElementById('courseAdminGrid');
+            grid.innerHTML = CARPETAS.map(carpeta => {
+                const oculta = DB.getCarpetaOculta(carpeta.id);
+                const textoPersonalizado = DB.getTextoPersonalizadoId(carpeta.id);
+                
+                return `
+                    <div class="course-admin-card">
+                        <div class="ca-header">
+                            <span class="ca-icon">${carpeta.icono}</span>
+                            <div class="ca-info">
+                                <div class="ca-name">${carpeta.nombre}</div>
+                                <div class="ca-meta">${carpeta.preguntas.length} preguntas • ID: ${carpeta.id}</div>
+                            </div>
+                        </div>
+                        <div class="ca-toggles">
+                            <div class="ca-toggle-row">
+                                <span>${oculta ? '🔒 Oculto' : '👁️ Visible'}</span>
+                                <div class="toggle-switch-sm ${oculta ? '' : 'active'}" onclick="toggleCarpetaAdmin('${carpeta.id}')">
+                                    <div class="thumb-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="acciones" style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button class="btn btn-sm btn-secondary" onclick="editarTextoAdmin('${carpeta.id}')">
+                                ✏️ Editar descripción
+                            </button>
+                            <button class="btn btn-sm btn-info" onclick="verPreguntasCurso('${carpeta.id}')">
+                                👁️ Ver preguntas
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         window.toggleCarpetaAdmin = function(id) {
             const oculta = DB.getCarpetaOculta(id);
             DB.setCarpetaOculta(id, !oculta);
-            mostrarNotificacion(`📁 Carpeta ${!oculta ? 'ocultada' : 'visible'}`, 'info');
-            renderizarAdminPanel();
+            DB.registrarActividad('curso', `${!oculta ? 'Ocultó' : 'Mostró'} curso ${id}`, usuarioActual);
+            mostrarNotificacion(`📁 Curso ${!oculta ? 'ocultado' : 'visible'}`, 'info');
+            renderCursosAdmin();
             renderizarCarpetas();
         };
 
@@ -2869,36 +4043,396 @@
             const carpeta = CARPETAS.find(c => c.id === id);
             if (!carpeta) return;
             const textoActual = DB.getTextoPersonalizadoId(id) || carpeta.descripcion;
-            const nuevoTexto = prompt('✏️ Editar descripción de la carpeta:', textoActual);
+            const nuevoTexto = prompt('✏️ Editar descripción:', textoActual);
             if (nuevoTexto !== null && nuevoTexto.trim() !== '') {
                 DB.setTextoPersonalizado(id, nuevoTexto.trim());
-                CARPETAS.find(c => c.id === id).descripcion = nuevoTexto.trim();
-                mostrarNotificacion('✅ Texto actualizado', 'success');
-                renderizarAdminPanel();
+                carpeta.descripcion = nuevoTexto.trim();
+                DB.registrarActividad('curso', `Editó descripción de ${id}`, usuarioActual);
+                mostrarNotificacion('✅ Descripción actualizada', 'success');
+                renderCursosAdmin();
                 renderizarCarpetas();
             }
         };
 
+        window.verPreguntasCurso = function(id) {
+            const carpeta = CARPETAS.find(c => c.id === id);
+            if (!carpeta) return;
+            
+            const modal = document.getElementById('modalUsuario');
+            const content = document.getElementById('modalUsuarioContent');
+            
+            content.innerHTML = `
+                <button class="modal-close" onclick="cerrarModalUsuario()">✕</button>
+                
+                <div class="modal-header">
+                    <div class="modal-avatar">${carpeta.icono}</div>
+                    <div class="title-info">
+                        <h3>${carpeta.nombre}</h3>
+                        <p>${carpeta.preguntas.length} preguntas</p>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">📋 Lista de preguntas</div>
+                <div style="max-height:400px; overflow-y:auto;">
+                    ${carpeta.preguntas.map((p, i) => `
+                        <div class="modal-progress-item" style="margin-bottom:8px;">
+                            <div class="mp-header">
+                                <span class="mp-name" style="font-size:0.85rem;">${i + 1}. ${p.pregunta}</span>
+                            </div>
+                            <div style="margin-top:6px; font-size:0.78rem; color:var(--text-muted);">
+                                ✅ Correcta: <strong style="color:#6ee7b7;">${p.opciones[p.correcta]}</strong>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            modal.classList.add('visible');
+        };
+
+        // Render Actividad
+        function renderActividad() {
+            const actividad = DB.getActividad();
+            const container = document.getElementById('activityList');
+            
+            if (actividad.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <span class="es-icon">📭</span>
+                        <div class="es-title">Sin actividad reciente</div>
+                        <div class="es-desc">Las acciones de los usuarios aparecerán aquí</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const iconos = {
+                login: '🔓', logout: '🔒', registro: '📝', sistema: '⚙️',
+                rol: '🛡️', eliminar: '🗑️', reset: '🔄', curso: '📚',
+                respuesta: '✅', logro: '🏆'
+            };
+            
+            container.innerHTML = actividad.slice(0, 50).map(a => {
+                const fecha = new Date(a.timestamp);
+                const ahora = new Date();
+                const diffMin = Math.floor((ahora - fecha) / 60000);
+                let tiempoStr;
+                if (diffMin < 1) tiempoStr = 'Ahora';
+                else if (diffMin < 60) tiempoStr = `Hace ${diffMin}m`;
+                else if (diffMin < 1440) tiempoStr = `Hace ${Math.floor(diffMin/60)}h`;
+                else tiempoStr = `Hace ${Math.floor(diffMin/1440)}d`;
+                
+                return `
+                    <div class="activity-item">
+                        <span class="ac-icon">${iconos[a.tipo] || '📌'}</span>
+                        <div class="ac-content">
+                            <div class="ac-title">${a.descripcion}</div>
+                            <div class="ac-desc">@${a.usuario}</div>
+                        </div>
+                        <div class="ac-time">${tiempoStr}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render Configuración
+        function renderConfig() {
+            const config = DB.getConfig();
+            
+            // Toggles
+            document.querySelectorAll('.setting-card .toggle-switch-sm').forEach((toggle, i) => {
+                // Ya están seteados en el HTML inicialmente como active
+            });
+            
+            // Info del sistema
+            const usuarios = DB.getUsuarios();
+            const totalBytes = new Blob([JSON.stringify(usuarios)]).size;
+            const totalKB = (totalBytes / 1024).toFixed(2);
+            
+            document.getElementById('systemInfo').innerHTML = `
+                <div><strong style="color:var(--text-primary);">Usuarios:</strong> ${Object.keys(usuarios).length}</div>
+                <div><strong style="color:var(--text-primary);">Almacenamiento:</strong> ${totalKB} KB</div>
+                <div><strong style="color:var(--text-primary);">Cursos:</strong> ${CARPETAS.length}</div>
+                <div><strong style="color:var(--text-primary);">Preguntas totales:</strong> ${CARPETAS.reduce((s,c) => s + c.preguntas.length, 0)}</div>
+                <div><strong style="color:var(--text-primary);">Navegador:</strong> ${navigator.userAgent.split(' ')[0]}</div>
+            `;
+        }
+
+        window.toggleConfig = function(clave, el) {
+            const config = DB.getConfig();
+            config[clave] = !config[clave];
+            DB.setConfig(config);
+            el.classList.toggle('active', config[clave]);
+            mostrarNotificacion(`⚙️ ${clave}: ${config[clave] ? 'Activado' : 'Desactivado'}`, 'info');
+        };
+
         // ============================================================
-        //  👤 PERFIL - FUNCIONES
+        //  🔧 HERRAMIENTAS ADMIN
+        // ============================================================
+        window.exportarDatos = function() {
+            const data = {
+                usuarios: DB.getUsuarios(),
+                carpetasOcultas: DB.getCarpetasOcultas(),
+                textosPersonalizados: DB.getTextoPersonalizado(),
+                actividad: DB.getActividad(),
+                config: DB.getConfig(),
+                fechaExportacion: new Date().toISOString(),
+                version: '3.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `devquest-backup-${new Date().toISOString().slice(0,10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            DB.registrarActividad('sistema', 'Exportó datos del sistema', usuarioActual);
+            mostrarNotificacion('📥 Datos exportados correctamente', 'success');
+        };
+
+        window.importarDatos = function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        
+                        if (!confirm('⚠️ ¿Restaurar datos? Esto reemplazará los datos actuales.')) return;
+                        
+                        if (data.usuarios) localStorage.setItem('devquest_usuarios', JSON.stringify(data.usuarios));
+                        if (data.carpetasOcultas) localStorage.setItem('devquest_carpetas_ocultas', JSON.stringify(data.carpetasOcultas));
+                        if (data.textosPersonalizados) localStorage.setItem('devquest_textos_personalizados', JSON.stringify(data.textosPersonalizados));
+                        if (data.actividad) localStorage.setItem('devquest_actividad', JSON.stringify(data.actividad));
+                        if (data.config) localStorage.setItem('devquest_config', JSON.stringify(data.config));
+                        
+                        mostrarNotificacion('✅ Datos importados. Recargando...', 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    } catch (err) {
+                        mostrarNotificacion('❌ Error al importar: archivo inválido', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        };
+
+        window.reiniciarProgresoTodos = function() {
+            if (!confirm('🔄 ¿Reiniciar el progreso de TODOS los usuarios? (Las cuentas se mantienen)')) return;
+            
+            const usuarios = DB.getUsuarios();
+            Object.keys(usuarios).forEach(key => {
+                usuarios[key].progreso = {};
+                usuarios[key].racha = 0;
+            });
+            DB.guardarUsuarios(usuarios);
+            DB.registrarActividad('reset', 'Reinició el progreso de todos los usuarios', usuarioActual);
+            mostrarNotificacion('🔄 Progreso reiniciado para todos los usuarios', 'success');
+            renderDashboard();
+        };
+
+        window.limpiarProgresoUnUsuario = function() {
+            const usuario = prompt('👤 Ingresa el nombre de usuario:');
+            if (!usuario) return;
+            if (!DB.existeUsuario(usuario)) {
+                mostrarNotificacion('⚠️ Usuario no encontrado', 'error');
+                return;
+            }
+            if (confirm(`🔄 ¿Reiniciar progreso de "${usuario}"?`)) {
+                DB.setProgreso(usuario, {});
+                DB.setRacha(usuario, 0);
+                DB.registrarActividad('reset', `Reinició progreso de ${usuario}`, usuarioActual);
+                mostrarNotificacion(`🔄 Progreso de ${usuario} reiniciado`, 'success');
+            }
+        };
+
+        window.crearUsuarioRapido = function() {
+            const usuario = prompt('👤 Nombre de usuario:');
+            if (!usuario) return;
+            if (usuario.length < 3) {
+                mostrarNotificacion('⚠️ Usuario muy corto', 'error');
+                return;
+            }
+            if (DB.existeUsuario(usuario)) {
+                mostrarNotificacion('⚠️ Ese usuario ya existe', 'error');
+                return;
+            }
+            const nombre = prompt('📛 Nombre completo:') || usuario;
+            const password = prompt('🔒 Contraseña (mín. 4):');
+            if (!password || password.length < 4) {
+                mostrarNotificacion('⚠️ Contraseña muy corta', 'error');
+                return;
+            }
+            const esAdminRol = confirm('¿Hacer administrador? Aceptar = Admin, Cancelar = Usuario normal');
+            
+            DB.setUsuario(usuario, {
+                password, nombre,
+                rol: esAdminRol ? 'admin' : 'usuario',
+                progreso: {}, fechaRegistro: new Date().toISOString(),
+                bienvenidoVisto: true, racha: 0, tema: 'oscuro', idioma: 'es'
+            });
+            
+            DB.registrarActividad('registro', `Creó usuario ${usuario} (${esAdminRol ? 'admin' : 'usuario'})`, usuarioActual);
+            mostrarNotificacion(`✅ Usuario ${usuario} creado`, 'success');
+            renderUsuariosTabla();
+            renderDashboard();
+        };
+
+        window.cambiarPasswordAdmin = function() {
+            const actual = prompt('🔒 Contraseña actual:');
+            if (!actual) return;
+            const userData = DB.getUsuario(usuarioActual);
+            if (!userData || userData.password !== actual) {
+                mostrarNotificacion('❌ Contraseña actual incorrecta', 'error');
+                return;
+            }
+            const nueva = prompt('🔒 Nueva contraseña (mín. 4):');
+            if (!nueva || nueva.length < 4) {
+                mostrarNotificacion('⚠️ Contraseña muy corta', 'error');
+                return;
+            }
+            const confirmar = prompt('🔒 Confirmar nueva contraseña:');
+            if (nueva !== confirmar) {
+                mostrarNotificacion('❌ Las contraseñas no coinciden', 'error');
+                return;
+            }
+            DB.setUsuario(usuarioActual, { password: nueva });
+            DB.registrarActividad('sistema', 'Cambió su contraseña', usuarioActual);
+            mostrarNotificacion('✅ Contraseña actualizada', 'success');
+        };
+
+        window.verEstadisticasCompletas = function() {
+            const usuarios = DB.getUsuarios();
+            let totalAciertos = 0, totalRespondidas = 0, totalRacha = 0;
+            let mejorUsuario = null, mejorAciertos = 0;
+            let cursoMasPopular = {};
+            
+            Object.keys(usuarios).forEach(key => {
+                const u = usuarios[key];
+                let aciertos = 0;
+                if (u.progreso) {
+                    Object.keys(u.progreso).forEach(cId => {
+                        const p = u.progreso[cId];
+                        const ac = p.acertadas ? p.acertadas.filter(a => a === true).length : 0;
+                        const re = p.respondidas ? p.respondidas.filter(r => r === true).length : 0;
+                        aciertos += ac;
+                        totalAciertos += ac;
+                        totalRespondidas += re;
+                        cursoMasPopular[cId] = (cursoMasPopular[cId] || 0) + re;
+                    });
+                }
+                totalRacha += u.racha || 0;
+                if (aciertos > mejorAciertos) {
+                    mejorAciertos = aciertos;
+                    mejorUsuario = u.nombre || key;
+                }
+            });
+            
+            const cursoTop = Object.keys(cursoMasPopular).sort((a,b) => cursoMasPopular[b] - cursoMasPopular[a])[0];
+            const cursoNombre = cursoTop ? CARPETAS.find(c => c.id === cursoTop)?.nombre : 'N/A';
+            const porcentaje = totalRespondidas > 0 ? Math.round((totalAciertos / totalRespondidas) * 100) : 0;
+            
+            const modal = document.getElementById('modalUsuario');
+            const content = document.getElementById('modalUsuarioContent');
+            
+            content.innerHTML = `
+                <button class="modal-close" onclick="cerrarModalUsuario()">✕</button>
+                <div class="modal-header">
+                    <div class="modal-avatar">📊</div>
+                    <div class="title-info">
+                        <h3>Estadísticas Completas</h3>
+                        <p>Reporte detallado del sistema</p>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">👥 Usuarios</div>
+                <div class="modal-data-grid">
+                    <div class="modal-data-item">
+                        <div class="md-label">Total usuarios</div>
+                        <div class="md-value">${Object.keys(usuarios).length}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Administradores</div>
+                        <div class="md-value">${Object.values(usuarios).filter(u => u.rol === 'admin').length}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Mejor usuario</div>
+                        <div class="md-value">🏆 ${mejorUsuario || 'N/A'}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Aciertos del mejor</div>
+                        <div class="md-value" style="color:var(--accent-tertiary);">${mejorAciertos} ✅</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section-title">📈 Rendimiento global</div>
+                <div class="modal-data-grid">
+                    <div class="modal-data-item">
+                        <div class="md-label">Total aciertos</div>
+                        <div class="md-value" style="color:var(--success);">${totalAciertos}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Total respondidas</div>
+                        <div class="md-value">${totalRespondidas}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Porcentaje global</div>
+                        <div class="md-value" style="color:var(--accent-tertiary);">${porcentaje}%</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Rachas acumuladas</div>
+                        <div class="md-value">🔥 ${totalRacha}</div>
+                    </div>
+                    <div class="modal-data-item">
+                        <div class="md-label">Curso más popular</div>
+                        <div class="md-value">${cursoNombre || 'N/A'}</div>
+                    </div>
+                    <div class="md-data-item modal-data-item">
+                        <div class="md-label">Fecha del reporte</div>
+                        <div class="md-value">${new Date().toLocaleString('es-ES')}</div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('visible');
+        };
+
+        window.borrarTodasLasCuentas = function() {
+            if (!confirm('⚠️⚠️⚠️ ¿BORRAR TODAS LAS CUENTAS? Esta acción NO se puede deshacer.')) return;
+            if (!confirm('⚠️ ¿ESTÁS COMPLETAMENTE SEGURO? Se perderá TODO.')) return;
+            
+            localStorage.removeItem('devquest_usuarios');
+            localStorage.removeItem('devquest_sesion');
+            localStorage.removeItem('devquest_actividad');
+            alert('🗑️ Todas las cuentas han sido eliminadas. La página se recargará.');
+            location.reload();
+        };
+
+        // ============================================================
+        //  👤 PERFIL
         // ============================================================
         function actualizarPerfil() {
-            let totalRespondidas = 0;
-            let totalAcertadas = 0;
+            let totalRespondidas = 0, totalAcertadas = 0;
             CARPETAS.forEach(carpeta => {
                 const estado = estadoPreguntas[carpeta.id];
                 totalRespondidas += estado.respondidas.filter(r => r === true).length;
                 totalAcertadas += estado.acertadas.filter(a => a === true).length;
             });
             const fallosTotal = totalRespondidas - totalAcertadas;
-
             document.getElementById('perfilAciertos').textContent = totalAcertadas;
             document.getElementById('perfilFallos').textContent = fallosTotal;
-
             let porcentaje = 0;
             if (totalRespondidas > 0) porcentaje = Math.round((totalAcertadas / totalRespondidas) * 100);
             document.getElementById('perfilPorcentaje').textContent = porcentaje + '%';
-
             let nivel = '⚡ Novato';
             if (porcentaje >= 80) nivel = '🌟 Experto';
             else if (porcentaje >= 60) nivel = '🚀 Intermedio';
@@ -2916,13 +4450,12 @@
                 const respondidas = estado.respondidas.filter(r => r === true).length;
                 const acertadas = estado.acertadas.filter(a => a === true).length;
                 const porcentaje = total > 0 ? Math.round((acertadas / total) * 100) : 0;
-
                 const item = document.createElement('div');
                 item.className = 'calificacion-item';
                 item.innerHTML = `
                     <span class="materia">${carpeta.icono} ${carpeta.nombre}</span>
                     <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="color:var(--text-secondary); font-size:0.8rem;">${respondidas}/${total} respondidas</span>
+                        <span style="color:var(--text-secondary); font-size:0.8rem;">${respondidas}/${total}</span>
                         <span class="nota">${porcentaje}%</span>
                     </div>
                 `;
@@ -2937,34 +4470,25 @@
                 'calificaciones': document.getElementById('tab-calificaciones'),
                 'preferencias': document.getElementById('tab-preferencias')
             };
-
             menuItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const tab = this.dataset.tab;
-                    if (tab === 'cerrar') {
-                        cerrarSesion();
-                        return;
-                    }
+                    if (tab === 'cerrar') { cerrarSesion(); return; }
                     menuItems.forEach(li => li.classList.remove('active'));
                     this.classList.add('active');
-                    Object.keys(tabs).forEach(key => {
-                        tabs[key].classList.remove('active');
-                    });
-                    if (tabs[tab]) {
-                        tabs[tab].classList.add('active');
-                    }
+                    Object.keys(tabs).forEach(key => tabs[key].classList.remove('active'));
+                    if (tabs[tab]) tabs[tab].classList.add('active');
                 });
             });
         }
 
         // ============================================================
-        //  🌓 TEMA / IDIOMA
+        //  🌓 TEMA
         // ============================================================
         function aplicarTema(tema) {
             const body = document.body;
             const toggle = document.getElementById('toggleTema');
             const label = document.getElementById('temaLabel');
-
             if (tema === 'claro') {
                 body.classList.add('light-mode');
                 toggle.classList.add('active');
@@ -2977,36 +4501,12 @@
         }
 
         // ============================================================
-        //  🔄 REINICIAR TODO
-        // ============================================================
-        function reiniciarTodoManual() {
-            if (!confirm('¿Seguro que quieres reiniciar todo tu progreso?')) return;
-            CARPETAS.forEach(carpeta => {
-                const estado = estadoPreguntas[carpeta.id];
-                estado.preguntas = generarPreguntasMezcladas(carpeta.preguntas);
-                estado.respondidas = carpeta.preguntas.map(() => false);
-                estado.acertadas = carpeta.preguntas.map(() => false);
-                estado.selecciones = carpeta.preguntas.map(() => null);
-            });
-            rachaActual = 0;
-            guardarProgreso();
-            DB.setRacha(usuarioActual, 0);
-            carpetaActual = null;
-            preguntaActualIndex = 0;
-            actualizarRachaUI();
-            mostrarVista('carpetas');
-            actualizarContadores();
-            mostrarNotificacion('🔄 Todo el progreso ha sido reiniciado', 'info');
-        }
-
-        // ============================================================
         //  🎯 EVENTOS
         // ============================================================
         document.getElementById('btnLogin').addEventListener('click', iniciarSesion);
         document.getElementById('btnRegistro').addEventListener('click', registrarUsuario);
         document.getElementById('btnMostrarRegistro').addEventListener('click', mostrarRegistro);
         document.getElementById('btnMostrarLogin').addEventListener('click', mostrarLogin);
-
         document.getElementById('cerrarBienvenida').addEventListener('click', cerrarBienvenida);
         document.getElementById('btnReiniciarPregunta').addEventListener('click', reiniciarPreguntaActual);
 
@@ -3020,7 +4520,8 @@
             const panel = document.getElementById('adminPanel');
             panel.classList.toggle('visible');
             if (panel.classList.contains('visible')) {
-                renderizarAdminPanel();
+                renderDashboard();
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
 
@@ -3045,7 +4546,7 @@
                 mostrarPreguntaActual();
                 actualizarContadores();
             } else {
-                mostrarNotificacion('🎉 ¡Felicidades! Has completado todas las preguntas de esta materia.', 'success');
+                mostrarNotificacion('🎉 ¡Felicidades! Has completado todas las preguntas.', 'success');
             }
         });
 
@@ -3058,7 +4559,7 @@
 
         document.getElementById('selectIdioma').addEventListener('change', function() {
             DB.setIdioma(usuarioActual, this.value);
-            mostrarNotificacion('🌐 Idioma cambiado a ' + (this.value === 'es' ? 'Español' : 'English'), 'info');
+            mostrarNotificacion('🌐 Idioma: ' + (this.value === 'es' ? 'Español' : 'English'), 'info');
         });
 
         document.getElementById('loginPassword').addEventListener('keypress', function(e) {
@@ -3066,9 +4567,6 @@
         });
         document.getElementById('loginUsuario').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') iniciarSesion();
-        });
-        document.getElementById('regPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') registrarUsuario();
         });
 
         // ============================================================
